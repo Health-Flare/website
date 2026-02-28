@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Health Flare — Your private health companion</title>
+  <meta name="description" content="A calm, private health journal for people living with chronic illness. Track symptoms, spot patterns, and share with your care team — all on your device.">
+  <meta property="og:title" content="Health Flare — Your private health companion">
+  <meta property="og:description" content="Track symptoms, spot patterns, share what matters. Everything stays on your device.">
+  <meta property="og:url" content="https://healthflare.org">
+  <meta name="theme-color" content="#F5A623">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ── Reset & tokens ─────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --amber:  #F5A623;
+      --coral:  #F07560;
+      --sky:    #6BB8D4;
+      --dusk:   #2C2825;
+      --cloud:  #F4F1EC;
+      --peach:  #FDE8D8;
+      --sage:   #B8CCBF;
+
+      --dusk-80: rgba(44, 40, 37, 0.80);
+      --dusk-50: rgba(44, 40, 37, 0.50);
+      --dusk-15: rgba(44, 40, 37, 0.15);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-size: 1rem;
+      line-height: 1.65;
+      color: var(--dusk);
+      background: var(--cloud);
+    }
+
+    /* ── Accessibility helpers ──────────────────────────── */
+    .sr-only {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+
+    .skip-link {
+      position: absolute; top: -99px; left: 1rem;
+      background: var(--dusk); color: var(--cloud);
+      padding: 0.5rem 1rem; border-radius: 0 0 8px 8px;
+      font-size: 0.875rem; z-index: 999;
+      transition: top 0.15s;
+    }
+    .skip-link:focus { top: 0; }
+
+    /* ── Nav ────────────────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2rem;
+      background: rgba(244, 241, 236, 0.88);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--dusk-15);
+    }
+
+    .logo {
+      display: flex; align-items: center; gap: 0.55rem;
+      text-decoration: none; color: var(--dusk);
+    }
+
+    .logo-mark {
+      width: 34px; height: 34px; border-radius: 9px; flex-shrink: 0;
+      background: linear-gradient(145deg, var(--peach) 0%, var(--amber) 100%);
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .logo-name {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 1.1rem; font-weight: 600; letter-spacing: -0.01em;
+    }
+
+    .nav-pill {
+      display: inline-flex; align-items: center;
+      background: var(--amber); color: var(--dusk);
+      font-size: 0.875rem; font-weight: 500;
+      padding: 0.5rem 1.2rem; border-radius: 100px;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: opacity 0.15s, box-shadow 0.15s;
+    }
+    .nav-pill:hover { opacity: 0.88; box-shadow: 0 2px 12px rgba(245,166,35,0.35); }
+    .nav-pill:focus-visible { outline: 3px solid var(--dusk); outline-offset: 3px; }
+
+    /* ── Hero ───────────────────────────────────────────── */
+    .hero {
+      position: relative; overflow: hidden;
+      padding: 5.5rem 2rem 5rem;
+      text-align: center;
+    }
+
+    /* Dawn glow — decorative radial behind heading */
+    .hero::before {
+      content: '';
+      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 900px; height: 500px;
+      background: radial-gradient(ellipse at 50% 20%,
+        rgba(253, 232, 216, 0.7) 0%,
+        rgba(245, 166, 35, 0.08) 55%,
+        transparent 75%);
+      pointer-events: none; z-index: 0;
+    }
+
+    .hero > * { position: relative; z-index: 1; }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      background: var(--peach);
+      border: 1px solid rgba(240, 117, 96, 0.3);
+      color: var(--dusk); font-size: 0.8rem; font-weight: 500;
+      padding: 0.3rem 0.9rem; border-radius: 100px;
+      margin-bottom: 2rem;
+    }
+
+    .badge-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--coral); flex-shrink: 0;
+    }
+
+    h1 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(2.6rem, 6vw, 4.5rem);
+      font-weight: 700; line-height: 1.1; letter-spacing: -0.03em;
+      max-width: 18ch; margin: 0 auto 1.25rem;
+    }
+
+    /* Italic text has underline-style decoration so meaning isn't colour-only */
+    h1 em {
+      font-style: italic; color: var(--coral);
+      text-decoration: underline wavy;
+      text-decoration-color: rgba(240, 117, 96, 0.3);
+      text-underline-offset: 4px;
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2.2vw, 1.175rem);
+      color: var(--dusk-80);
+      max-width: 38rem; margin: 0 auto 2.75rem;
+    }
+
+    .hero-actions {
+      display: flex; align-items: center; justify-content: center;
+      gap: 1rem; flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--amber); color: var(--dusk);
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-size: 1rem; font-weight: 500;
+      padding: 0.8rem 1.75rem; border-radius: 100px;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 22px rgba(245, 166, 35, 0.4);
+    }
+    .btn-primary:focus-visible { outline: 3px solid var(--dusk); outline-offset: 3px; }
+
+    .btn-ghost {
+      font-size: 0.9rem; font-family: 'DM Sans', system-ui, sans-serif;
+      color: var(--dusk-80); background: none; border: none; cursor: pointer;
+      text-decoration: underline; text-underline-offset: 3px;
+      text-decoration-color: var(--dusk-50);
+    }
+    .btn-ghost:hover { color: var(--dusk); }
+    .btn-ghost:focus-visible { outline: 3px solid var(--dusk); outline-offset: 3px; border-radius: 3px; }
+
+    /* ── Mockup strip ───────────────────────────────────── */
+    .mockup-wrap {
+      max-width: 56rem; margin: 0 auto 5rem; padding: 0 2rem;
+    }
+
+    .mockup-card {
+      background: linear-gradient(155deg, var(--peach) 0%, rgba(255,255,255,0.8) 65%);
+      border-radius: 28px;
+      border: 1px solid var(--dusk-15);
+      padding: 3rem 2rem;
+      display: flex; flex-direction: column; align-items: center; gap: 2rem;
+    }
+
+    .phone-shells {
+      display: flex; gap: 1.25rem; align-items: flex-end;
+    }
+
+    .phone {
+      background: var(--dusk); border-radius: 22px;
+      padding: 1.25rem 1rem;
+      display: flex; flex-direction: column; gap: 0.6rem;
+    }
+
+    .phone-sm { width: 108px; height: 200px; }
+    .phone-lg { width: 128px; height: 240px; }
+
+    .p-bar {
+      height: 7px; border-radius: 3px;
+      background: var(--amber); opacity: 0.9;
+    }
+
+    .p-lines { display: flex; flex-direction: column; gap: 0.45rem; flex: 1; }
+    .p-line { height: 5px; border-radius: 3px; background: rgba(255,255,255,0.14); }
+    .p-line.s { width: 55%; } .p-line.m { width: 78%; } .p-line.l { width: 96%; }
+
+    .p-dots { display: flex; gap: 0.35rem; margin-top: 0.5rem; }
+    .p-dot {
+      width: 11px; height: 11px; border-radius: 50%;
+      outline: 2px solid rgba(255,255,255,0.15);
+    }
+    .dot-a { background: var(--amber); }
+    .dot-c { background: var(--coral); }
+    .dot-s { background: var(--sky); }
+    .dot-g { background: var(--sage); }
+
+    .p-chart { display: flex; align-items: flex-end; gap: 0.3rem; margin-top: 0.5rem; }
+    .p-bar-v {
+      width: 8px; border-radius: 3px 3px 0 0;
+      background: rgba(255,255,255,0.2);
+    }
+    .p-bar-v.hi { background: var(--amber); opacity: 0.8; }
+
+    .mockup-label {
+      font-size: 0.85rem; color: var(--dusk-50); font-style: italic;
+      letter-spacing: 0.01em;
+    }
+
+    /* ── Section base ───────────────────────────────────── */
+    .section { padding: 5rem 2rem; }
+    .inner { max-width: 56rem; margin: 0 auto; }
+
+    .eyebrow {
+      font-size: 0.72rem; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--dusk); opacity: 0.5;
+      margin-bottom: 0.9rem; display: block;
+    }
+
+    h2 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(1.8rem, 4vw, 2.75rem);
+      font-weight: 600; line-height: 1.2; letter-spacing: -0.025em;
+      margin-bottom: 1rem;
+    }
+
+    .lead {
+      font-size: 1.05rem; color: var(--dusk-80);
+      max-width: 40rem; margin-bottom: 3rem;
+    }
+
+    /* ── Feature grid ───────────────────────────────────── */
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .feature {
+      background: var(--peach);
+      border-radius: 20px; padding: 1.75rem;
+      border: 1px solid rgba(240, 117, 96, 0.1);
+    }
+
+    .f-icon {
+      width: 42px; height: 42px; border-radius: 11px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.25rem; flex-shrink: 0;
+    }
+    .ic-amber { background: var(--amber); }
+    .ic-sky   { background: var(--sky); }
+    .ic-coral { background: var(--coral); }
+    .ic-sage  { background: var(--sage); }
+
+    .feature h3 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 1.15rem; font-weight: 600;
+      letter-spacing: -0.01em; margin-bottom: 0.5rem;
+    }
+
+    .feature p { font-size: 0.9rem; color: var(--dusk-80); line-height: 1.65; }
+
+    /* ── Privacy block ──────────────────────────────────── */
+    .privacy-wrap { padding: 0 2rem; margin-bottom: 5rem; }
+
+    .privacy-block {
+      max-width: 56rem; margin: 0 auto;
+      background: var(--dusk); border-radius: 28px;
+      padding: 4rem 3.5rem; color: var(--cloud);
+    }
+
+    .privacy-block .eyebrow { color: var(--cloud); opacity: 0.45; }
+
+    .privacy-block h2 { color: var(--cloud); }
+
+    .privacy-block .lead {
+      color: rgba(244, 241, 236, 0.72);
+      margin-bottom: 2.5rem;
+    }
+
+    .checks { display: flex; flex-direction: column; gap: 1.1rem; }
+
+    .check-row {
+      display: flex; align-items: flex-start; gap: 0.9rem;
+    }
+
+    .check-icon {
+      width: 22px; height: 22px; border-radius: 50%;
+      background: var(--sage); flex-shrink: 0; margin-top: 0.15rem;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .check-text strong {
+      display: block; color: var(--cloud);
+      font-size: 0.95rem; font-weight: 500; margin-bottom: 0.15rem;
+    }
+
+    .check-text span {
+      font-size: 0.865rem;
+      color: rgba(244, 241, 236, 0.6);
+      line-height: 1.5;
+    }
+
+    /* ── Early access ───────────────────────────────────── */
+    .access-section {
+      text-align: center; padding: 5rem 2rem 6rem;
+      max-width: 44rem; margin: 0 auto;
+    }
+
+    .access-section h2 { margin-bottom: 0.75rem; }
+
+    .access-section .lead { margin: 0 auto 2.5rem; text-align: center; }
+
+    .access-form {
+      display: flex; gap: 0.75rem; flex-wrap: wrap;
+      justify-content: center; max-width: 30rem; margin: 0 auto;
+    }
+
+    .email-input {
+      flex: 1; min-width: 200px;
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-size: 0.95rem; padding: 0.75rem 1.25rem;
+      border-radius: 100px;
+      border: 1.5px solid var(--dusk-15);
+      background: #fff; color: var(--dusk);
+      outline: none; transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .email-input::placeholder { color: var(--dusk-50); }
+    .email-input:focus {
+      border-color: var(--amber);
+      box-shadow: 0 0 0 3px rgba(245, 166, 35, 0.22);
+    }
+
+    .fine-print {
+      font-size: 0.78rem; color: var(--dusk-50);
+      margin-top: 0.9rem; line-height: 1.5;
+    }
+
+    /* ── Footer ─────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--dusk-15);
+      padding: 2.25rem 2rem;
+      display: flex; align-items: flex-start;
+      justify-content: space-between; flex-wrap: wrap; gap: 1.25rem;
+      max-width: 100%;
+    }
+
+    .footer-brand {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 1rem; font-weight: 500; margin-bottom: 0.25rem;
+    }
+
+    .footer-copy { font-size: 0.78rem; color: var(--dusk-50); }
+
+    .footer-nav {
+      display: flex; gap: 1.75rem; flex-wrap: wrap; align-items: center;
+    }
+
+    .footer-nav a {
+      font-size: 0.85rem; color: var(--dusk-80);
+      text-decoration: none;
+    }
+    .footer-nav a:hover { color: var(--dusk); text-decoration: underline; text-underline-offset: 3px; }
+    .footer-nav a:focus-visible { outline: 3px solid var(--dusk); outline-offset: 3px; border-radius: 2px; }
+
+    /* ── Responsive ─────────────────────────────────────── */
+    @media (max-width: 640px) {
+      nav { padding: 1rem 1.25rem; }
+      .hero { padding: 4.5rem 1.25rem 4rem; }
+      .mockup-wrap { padding: 0 1.25rem; }
+      .section { padding: 4rem 1.25rem; }
+      .privacy-wrap { padding: 0 1.25rem; }
+      .privacy-block { padding: 2.75rem 1.75rem; border-radius: 20px; }
+      .access-section { padding: 4rem 1.25rem 5rem; }
+      footer { padding: 2rem 1.25rem; }
+      .phone-lg { display: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition: none !important; animation: none !important; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- Nav -->
+  <nav aria-label="Main navigation">
+    <a href="/" class="logo" aria-label="Health Flare — home">
+      <div class="logo-mark" aria-hidden="true">
+        <!-- Flame / dawn drop mark -->
+        <svg width="18" height="20" viewBox="0 0 18 20" fill="none" aria-hidden="true">
+          <path d="M9 1C9 1 3 7.5 3 12C3 15.314 5.686 18 9 18C12.314 18 15 15.314 15 12C15 7.5 9 1 9 1Z" fill="#2C2825" opacity="0.85"/>
+          <path d="M9 8C9 8 6.5 10.5 6.5 12.25C6.5 13.493 7.619 14.5 9 14.5C10.381 14.5 11.5 13.493 11.5 12.25C11.5 10.5 9 8 9 8Z" fill="#F4F1EC" opacity="0.75"/>
+        </svg>
+      </div>
+      <span class="logo-name">Health Flare</span>
+    </a>
+    <a href="#early-access" class="nav-pill">Request early access</a>
+  </nav>
+
+  <main id="main">
+
+    <!-- Hero -->
+    <header class="hero" aria-labelledby="hero-heading">
+      <div class="hero-badge" role="status">
+        <span class="badge-dot" aria-hidden="true"></span>
+        Active development &nbsp;·&nbsp; Pre-release
+      </div>
+
+      <h1 id="hero-heading">
+        Your health story,<br>
+        <em>kept close.</em>
+      </h1>
+
+      <p class="hero-sub">
+        Health Flare is a calm, private journal for people living with chronic illness.
+        Track symptoms, spot patterns, and share what matters — with everything staying on your device.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#early-access" class="btn-primary">
+          Request early access
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href="#features" class="btn-ghost">See how it works</a>
+      </div>
+    </header>
+
+    <!-- App preview (decorative mockup) -->
+    <div class="mockup-wrap" aria-hidden="true">
+      <div class="mockup-card">
+        <div class="phone-shells" role="img" aria-label="Illustration of Health Flare on two phones">
+          <!-- Secondary phone -->
+          <div class="phone phone-sm">
+            <div class="p-bar"></div>
+            <div class="p-lines">
+              <div class="p-line m"></div>
+              <div class="p-line s"></div>
+              <div class="p-line l"></div>
+            </div>
+            <div class="p-dots">
+              <div class="p-dot dot-a"></div>
+              <div class="p-dot dot-c"></div>
+              <div class="p-dot dot-s"></div>
+            </div>
+          </div>
+          <!-- Primary phone -->
+          <div class="phone phone-lg">
+            <div class="p-bar"></div>
+            <div class="p-lines">
+              <div class="p-line l"></div>
+              <div class="p-line m"></div>
+              <div class="p-line s"></div>
+              <div class="p-line l"></div>
+            </div>
+            <div class="p-chart">
+              <div class="p-bar-v" style="height:24px"></div>
+              <div class="p-bar-v" style="height:36px"></div>
+              <div class="p-bar-v hi" style="height:52px"></div>
+              <div class="p-bar-v" style="height:28px"></div>
+              <div class="p-bar-v" style="height:40px"></div>
+              <div class="p-bar-v hi" style="height:44px"></div>
+              <div class="p-bar-v" style="height:30px"></div>
+            </div>
+            <div class="p-dots">
+              <div class="p-dot dot-a"></div>
+              <div class="p-dot dot-c"></div>
+              <div class="p-dot dot-s"></div>
+              <div class="p-dot dot-g"></div>
+            </div>
+          </div>
+        </div>
+        <p class="mockup-label">Coming to iOS &amp; Android</p>
+      </div>
+    </div>
+
+    <!-- Features -->
+    <section class="section" id="features" aria-labelledby="features-heading">
+      <div class="inner">
+        <span class="eyebrow">How it works</span>
+        <h2 id="features-heading">Built for real days,<br>not ideal ones.</h2>
+        <p class="lead">
+          Chronic illness doesn't follow a clean schedule. Health Flare is designed for the full range —
+          the good days, the hard ones, and everything in between.
+        </p>
+        <div class="grid-4">
+
+          <article class="feature">
+            <div class="f-icon ic-amber" aria-hidden="true">
+              <!-- Sun rays / dawn -->
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                <circle cx="11" cy="11" r="4" fill="#2C2825" opacity="0.85"/>
+                <path d="M11 2v2M11 18v2M2 11h2M18 11h2M4.93 4.93l1.41 1.41M15.66 15.66l1.41 1.41M4.93 17.07l1.41-1.41M15.66 6.34l1.41-1.41"
+                  stroke="#2C2825" stroke-width="1.5" stroke-linecap="round" opacity="0.85"/>
+              </svg>
+            </div>
+            <h3>Track what matters</h3>
+            <p>Log symptoms, energy, sleep, and mood in a few taps. Add notes when you want to — skip them when you don't. No required fields, no friction.</p>
+          </article>
+
+          <article class="feature">
+            <div class="f-icon ic-sky" aria-hidden="true">
+              <!-- Wave / pattern -->
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                <path d="M2 14c1.5-2 3-4 5-3s3 3 5 2 3-3 5-1" stroke="#2C2825" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity="0.85"/>
+                <circle cx="7" cy="11.5" r="1.5" fill="#2C2825" opacity="0.6"/>
+                <circle cx="15" cy="12.5" r="1.5" fill="#2C2825" opacity="0.6"/>
+              </svg>
+            </div>
+            <h3>Spot your patterns</h3>
+            <p>Health Flare surfaces symptom cycles, sleep correlations, and treatment effects — connections that are impossible to spot when you're in the middle of it.</p>
+          </article>
+
+          <article class="feature">
+            <div class="f-icon ic-coral" aria-hidden="true">
+              <!-- Share / export arrow -->
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                <path d="M14 4h4v4" stroke="#2C2825" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity="0.85"/>
+                <path d="M18 4l-8 8" stroke="#2C2825" stroke-width="1.6" stroke-linecap="round" opacity="0.85"/>
+                <path d="M10 6H6a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-4" stroke="#2C2825" stroke-width="1.6" stroke-linecap="round" opacity="0.85"/>
+              </svg>
+            </div>
+            <h3>Share on your terms</h3>
+            <p>Create a shareable summary for your doctor or care team. You choose exactly what's included, how much detail to show, and when to revoke it.</p>
+          </article>
+
+          <article class="feature">
+            <div class="f-icon ic-sage" aria-hidden="true">
+              <!-- People / family -->
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                <circle cx="8" cy="7" r="3" stroke="#2C2825" stroke-width="1.6" opacity="0.85"/>
+                <path d="M2 18c0-3.314 2.686-5 6-5s6 1.686 6 5" stroke="#2C2825" stroke-width="1.6" stroke-linecap="round" opacity="0.85"/>
+                <circle cx="16" cy="8" r="2.5" stroke="#2C2825" stroke-width="1.4" opacity="0.65"/>
+                <path d="M19 18c0-2.761-1.343-4.5-3-5" stroke="#2C2825" stroke-width="1.4" stroke-linecap="round" opacity="0.65"/>
+              </svg>
+            </div>
+            <h3>Built for families too</h3>
+            <p>Caring for a child with a complex condition? Health Flare supports multiple profiles with the same privacy guarantees for every person in your care.</p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Privacy -->
+    <div class="privacy-wrap" role="region" aria-labelledby="privacy-heading">
+      <div class="privacy-block">
+        <span class="eyebrow">Privacy by design</span>
+        <h2 id="privacy-heading">No cloud. No accounts.<br>No compromises.</h2>
+        <p class="lead">
+          Your health data is some of the most sensitive information that exists.
+          We built Health Flare so it never has to leave your device.
+        </p>
+
+        <ul class="checks" role="list">
+          <li class="check-row">
+            <div class="check-icon" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M1.5 6l3 3 6-5.5" stroke="#2C2825" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="check-text">
+              <strong>Stored on-device, encrypted at rest</strong>
+              <span>Protected by your device's Secure Enclave (iOS) or StrongBox (Android) — hardware-level security.</span>
+            </div>
+          </li>
+          <li class="check-row">
+            <div class="check-icon" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M1.5 6l3 3 6-5.5" stroke="#2C2825" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="check-text">
+              <strong>No accounts required</strong>
+              <span>No sign-up, no profile, no identity tied to your data. Open the app and it's ready.</span>
+            </div>
+          </li>
+          <li class="check-row">
+            <div class="check-icon" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M1.5 6l3 3 6-5.5" stroke="#2C2825" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="check-text">
+              <strong>Zero analytics or telemetry</strong>
+              <span>No crash reporters that phone home. No advertising identifiers. No tracking of any kind.</span>
+            </div>
+          </li>
+          <li class="check-row">
+            <div class="check-icon" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M1.5 6l3 3 6-5.5" stroke="#2C2825" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="check-text">
+              <strong>Sharing is always optional</strong>
+              <span>When you share with a care provider, you control what's shared, in what form, and you can revoke it at any time.</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Early access -->
+    <section class="access-section" id="early-access" aria-labelledby="access-heading">
+      <span class="eyebrow" style="display:block; text-align:center;">Early access</span>
+      <h2 id="access-heading">Be among the first.</h2>
+      <p class="lead">
+        We're looking for people living with chronic illness — and families caring for them — to help shape the experience before public launch.
+      </p>
+
+      <form
+        class="access-form"
+        action="mailto:hello@healthflare.org"
+        method="GET"
+        enctype="text/plain"
+        aria-label="Request early access by email"
+        onsubmit="return handleSubmit(this)"
+      >
+        <label for="email-input" class="sr-only">Your email address</label>
+        <input
+          type="email"
+          id="email-input"
+          name="email"
+          class="email-input"
+          placeholder="your@email.com"
+          required
+          autocomplete="email"
+          aria-required="true"
+          aria-describedby="form-note"
+        >
+        <button type="submit" class="btn-primary">Join the waitlist</button>
+      </form>
+
+      <p class="fine-print" id="form-note">
+        No marketing. Unsubscribe any time. Your email is used only for beta updates.
+      </p>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer role="contentinfo">
+    <div>
+      <div class="footer-brand">Health Flare</div>
+      <p class="footer-copy">© 2026 AutomatedBytes &nbsp;·&nbsp; A calm companion for chronic illness.</p>
+    </div>
+    <nav class="footer-nav" aria-label="Footer links">
+      <a href="mailto:hello@healthflare.org">Contact</a>
+      <a href="https://automatedbytes.com" rel="noopener">AutomatedBytes</a>
+    </nav>
+  </footer>
+
+  <script>
+    // Graceful form: open mail client with prefilled subject + body
+    function handleSubmit(form) {
+      const email = form.email.value.trim();
+      if (!email) return false;
+      const subject = encodeURIComponent('Health Flare early access request');
+      const body = encodeURIComponent(
+        'Hi,\n\nI\'d love early access to Health Flare.\n\nMy email: ' + email
+      );
+      window.location.href = 'mailto:hello@healthflare.org?subject=' + subject + '&body=' + body;
+      return false;
+    }
+  </script>
+</body>
+</html>
