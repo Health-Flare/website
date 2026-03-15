@@ -10,26 +10,50 @@
   <meta property="og:url" content="https://healthflare.org">
   <meta name="theme-color" content="#F5A623">
 
+  <link rel="icon" type="image/png" href="assets/icon.png">
+  <meta property="og:image" content="https://healthflare.org/assets/banner.png">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
 
   <style>
     /* ── Reset & tokens ─────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --amber:  #F5A623;
-      --coral:  #F07560;
-      --sky:    #6BB8D4;
-      --dusk:   #2C2825;
-      --cloud:  #F4F1EC;
-      --peach:  #FDE8D8;
-      --sage:   #B8CCBF;
+      /* Brand colors */
+      --amber:      #F5A623;
+      --coral:      #F07560;
+      --sky:        #6BB8D4;
+      --dusk:       #2C2825;
+      --cloud:      #F4F1EC;
+      --peach:      #FDE8D8;
+      --sage:       #B8CCBF;
 
+      /* Extended palette */
+      --ash-white:  #FAFAF8;
+      --warm-linen: #EDE8DF;
+      --pale-sky:   #DFF0F7;
+
+      /* Semantic opacity */
       --dusk-80: rgba(44, 40, 37, 0.80);
+      --dusk-60: rgba(44, 40, 37, 0.60);
       --dusk-50: rgba(44, 40, 37, 0.50);
       --dusk-15: rgba(44, 40, 37, 0.15);
+      --dusk-08: rgba(44, 40, 37, 0.08);
+
+      /* Severity scale */
+      --sev-clear:       #B8CCBF;
+      --sev-mild:        #F5E6A3;
+      --sev-moderate:    #F5A623;
+      --sev-significant: #F07560;
+      --sev-severe:      #C94F3A;
+
+      /* Warm shadows */
+      --shadow-sm: 0 1px 3px rgba(44, 40, 37, 0.08);
+      --shadow-md: 0 4px 12px rgba(44, 40, 37, 0.10);
+      --shadow-lg: 0 8px 24px rgba(44, 40, 37, 0.12);
     }
 
     html { scroll-behavior: smooth; }
@@ -76,8 +100,11 @@
 
     .logo-mark {
       width: 34px; height: 34px; border-radius: 9px; flex-shrink: 0;
-      background: linear-gradient(145deg, var(--peach) 0%, var(--amber) 100%);
-      display: flex; align-items: center; justify-content: center;
+      overflow: hidden; display: block;
+    }
+
+    .logo-mark img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
     }
 
     .logo-name {
@@ -187,10 +214,11 @@
     }
 
     .mockup-card {
-      background: linear-gradient(155deg, var(--peach) 0%, rgba(255,255,255,0.8) 65%);
+      background: linear-gradient(155deg, var(--peach) 0%, var(--ash-white) 65%);
       border-radius: 28px;
-      border: 1px solid var(--dusk-15);
+      border: 1px solid var(--warm-linen);
       padding: 3rem 2rem;
+      box-shadow: var(--shadow-md);
       display: flex; flex-direction: column; align-items: center; gap: 2rem;
     }
 
@@ -200,38 +228,80 @@
 
     .phone {
       background: var(--dusk); border-radius: 22px;
-      padding: 1.25rem 1rem;
-      display: flex; flex-direction: column; gap: 0.6rem;
+      padding: 0.9rem 0.75rem;
+      display: flex; flex-direction: column; gap: 0.5rem;
     }
 
-    .phone-sm { width: 108px; height: 200px; }
-    .phone-lg { width: 128px; height: 240px; }
+    .phone-sm { width: 112px; height: 210px; }
+    .phone-lg { width: 132px; height: 252px; }
 
-    .p-bar {
-      height: 7px; border-radius: 3px;
-      background: var(--amber); opacity: 0.9;
+    /* Phone chrome */
+    .p-chrome {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 0.25rem;
     }
-
-    .p-lines { display: flex; flex-direction: column; gap: 0.45rem; flex: 1; }
-    .p-line { height: 5px; border-radius: 3px; background: rgba(255,255,255,0.14); }
-    .p-line.s { width: 55%; } .p-line.m { width: 78%; } .p-line.l { width: 96%; }
-
-    .p-dots { display: flex; gap: 0.35rem; margin-top: 0.5rem; }
-    .p-dot {
-      width: 11px; height: 11px; border-radius: 50%;
-      outline: 2px solid rgba(255,255,255,0.15);
+    .p-time {
+      font-family: 'DM Mono', monospace;
+      font-size: 8px; color: rgba(255,255,255,0.5); letter-spacing: 0.04em;
     }
-    .dot-a { background: var(--amber); }
-    .dot-c { background: var(--coral); }
-    .dot-s { background: var(--sky); }
-    .dot-g { background: var(--sage); }
+    .p-status-dots { display: flex; gap: 3px; align-items: center; }
+    .p-status-dot { width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,0.3); }
 
-    .p-chart { display: flex; align-items: flex-end; gap: 0.3rem; margin-top: 0.5rem; }
+    /* Journal entry card inside phone */
+    .p-card {
+      background: rgba(244, 241, 236, 0.08);
+      border-radius: 10px; padding: 0.55rem 0.6rem;
+      display: flex; flex-direction: column; gap: 0.35rem;
+    }
+    .p-card-header {
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .p-card-date {
+      font-family: 'DM Mono', monospace;
+      font-size: 7px; color: rgba(255,255,255,0.4); letter-spacing: 0.05em;
+    }
+    .p-card-badge {
+      width: 18px; height: 6px; border-radius: 3px; background: var(--amber); opacity: 0.7;
+    }
+    .p-card-title { height: 5px; border-radius: 3px; background: rgba(255,255,255,0.55); width: 80%; }
+    .p-card-body { height: 4px; border-radius: 2px; background: rgba(255,255,255,0.2); width: 95%; }
+    .p-card-body.s { width: 65%; }
+
+    /* Severity dots row */
+    .p-severity { display: flex; gap: 0.3rem; margin-top: 0.1rem; align-items: center; }
+    .p-sev-dot {
+      width: 9px; height: 9px; border-radius: 50%;
+      outline: 1.5px solid rgba(255,255,255,0.12);
+    }
+    .sev-clear    { background: var(--sev-clear); }
+    .sev-mild     { background: var(--sev-mild); }
+    .sev-moderate { background: var(--sev-moderate); }
+    .sev-sig      { background: var(--sev-significant); }
+    .sev-severe   { background: var(--sev-severe); }
+
+    /* Section label */
+    .p-label { height: 4px; border-radius: 2px; background: rgba(255,255,255,0.25); width: 40%; margin-top: 0.2rem; }
+
+    /* Chart bars */
+    .p-chart { display: flex; align-items: flex-end; gap: 0.28rem; margin-top: 0.25rem; }
     .p-bar-v {
-      width: 8px; border-radius: 3px 3px 0 0;
+      width: 7px; border-radius: 2px 2px 0 0;
+      background: rgba(255,255,255,0.18);
+    }
+    .p-bar-v.hi   { background: var(--amber); opacity: 0.85; }
+    .p-bar-v.mid  { background: var(--coral); opacity: 0.65; }
+
+    /* Bottom nav strip */
+    .p-nav {
+      display: flex; justify-content: space-around;
+      margin-top: auto; padding-top: 0.5rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .p-nav-dot {
+      width: 6px; height: 6px; border-radius: 50%;
       background: rgba(255,255,255,0.2);
     }
-    .p-bar-v.hi { background: var(--amber); opacity: 0.8; }
+    .p-nav-dot.active { background: var(--amber); }
 
     .mockup-label {
       font-size: 0.85rem; color: var(--dusk-50); font-style: italic;
@@ -270,8 +340,9 @@
 
     .feature {
       background: var(--peach);
-      border-radius: 20px; padding: 1.75rem;
-      border: 1px solid rgba(240, 117, 96, 0.1);
+      border-radius: 18px; padding: 1.75rem;
+      border: 1px solid var(--warm-linen);
+      box-shadow: var(--shadow-sm);
     }
 
     .f-icon {
@@ -353,8 +424,8 @@
       font-family: 'DM Sans', system-ui, sans-serif;
       font-size: 0.95rem; padding: 0.75rem 1.25rem;
       border-radius: 100px;
-      border: 1.5px solid var(--dusk-15);
-      background: #fff; color: var(--dusk);
+      border: 1.5px solid var(--warm-linen);
+      background: var(--ash-white); color: var(--dusk);
       outline: none; transition: border-color 0.15s, box-shadow 0.15s;
     }
     .email-input::placeholder { color: var(--dusk-50); }
@@ -422,11 +493,7 @@
   <nav aria-label="Main navigation">
     <a href="/" class="logo" aria-label="Health Flare — home">
       <div class="logo-mark" aria-hidden="true">
-        <!-- Flame / dawn drop mark -->
-        <svg width="18" height="20" viewBox="0 0 18 20" fill="none" aria-hidden="true">
-          <path d="M9 1C9 1 3 7.5 3 12C3 15.314 5.686 18 9 18C12.314 18 15 15.314 15 12C15 7.5 9 1 9 1Z" fill="#2C2825" opacity="0.85"/>
-          <path d="M9 8C9 8 6.5 10.5 6.5 12.25C6.5 13.493 7.619 14.5 9 14.5C10.381 14.5 11.5 13.493 11.5 12.25C11.5 10.5 9 8 9 8Z" fill="#F4F1EC" opacity="0.75"/>
-        </svg>
+        <img src="assets/icon.png" alt="" width="34" height="34">
       </div>
       <span class="logo-name">Health Flare</span>
     </a>
@@ -467,43 +534,88 @@
     <div class="mockup-wrap" aria-hidden="true">
       <div class="mockup-card">
         <div class="phone-shells" role="img" aria-label="Illustration of Health Flare on two phones">
-          <!-- Secondary phone -->
+          <!-- Secondary phone — symptom log view -->
           <div class="phone phone-sm">
-            <div class="p-bar"></div>
-            <div class="p-lines">
-              <div class="p-line m"></div>
-              <div class="p-line s"></div>
-              <div class="p-line l"></div>
+            <div class="p-chrome">
+              <span class="p-time">09:41</span>
+              <div class="p-status-dots">
+                <div class="p-status-dot"></div>
+                <div class="p-status-dot"></div>
+                <div class="p-status-dot"></div>
+              </div>
             </div>
-            <div class="p-dots">
-              <div class="p-dot dot-a"></div>
-              <div class="p-dot dot-c"></div>
-              <div class="p-dot dot-s"></div>
+            <div class="p-card">
+              <div class="p-card-header">
+                <span class="p-card-date">TODAY</span>
+                <div class="p-card-badge"></div>
+              </div>
+              <div class="p-card-title"></div>
+              <div class="p-card-body"></div>
+              <div class="p-severity">
+                <div class="p-sev-dot sev-clear"></div>
+                <div class="p-sev-dot sev-mild"></div>
+                <div class="p-sev-dot sev-moderate"></div>
+                <div class="p-sev-dot sev-sig"></div>
+                <div class="p-sev-dot sev-severe"></div>
+              </div>
+            </div>
+            <div class="p-card">
+              <div class="p-card-header">
+                <span class="p-card-date">YESTERDAY</span>
+              </div>
+              <div class="p-card-title"></div>
+              <div class="p-card-body s"></div>
+              <div class="p-severity">
+                <div class="p-sev-dot sev-clear"></div>
+                <div class="p-sev-dot sev-mild"></div>
+                <div class="p-sev-dot sev-clear"></div>
+              </div>
+            </div>
+            <div class="p-nav">
+              <div class="p-nav-dot active"></div>
+              <div class="p-nav-dot"></div>
+              <div class="p-nav-dot"></div>
             </div>
           </div>
-          <!-- Primary phone -->
+          <!-- Primary phone — patterns/chart view -->
           <div class="phone phone-lg">
-            <div class="p-bar"></div>
-            <div class="p-lines">
-              <div class="p-line l"></div>
-              <div class="p-line m"></div>
-              <div class="p-line s"></div>
-              <div class="p-line l"></div>
+            <div class="p-chrome">
+              <span class="p-time">09:41</span>
+              <div class="p-status-dots">
+                <div class="p-status-dot"></div>
+                <div class="p-status-dot"></div>
+                <div class="p-status-dot"></div>
+              </div>
             </div>
+            <div class="p-card">
+              <div class="p-card-header">
+                <span class="p-card-date">THIS WEEK</span>
+                <div class="p-card-badge"></div>
+              </div>
+              <div class="p-card-title"></div>
+              <div class="p-card-body"></div>
+              <div class="p-severity">
+                <div class="p-sev-dot sev-moderate"></div>
+                <div class="p-sev-dot sev-sig"></div>
+                <div class="p-sev-dot sev-moderate"></div>
+                <div class="p-sev-dot sev-mild"></div>
+              </div>
+            </div>
+            <div class="p-label"></div>
             <div class="p-chart">
+              <div class="p-bar-v" style="height:20px"></div>
+              <div class="p-bar-v" style="height:32px"></div>
+              <div class="p-bar-v hi" style="height:48px"></div>
+              <div class="p-bar-v mid" style="height:36px"></div>
               <div class="p-bar-v" style="height:24px"></div>
-              <div class="p-bar-v" style="height:36px"></div>
-              <div class="p-bar-v hi" style="height:52px"></div>
-              <div class="p-bar-v" style="height:28px"></div>
-              <div class="p-bar-v" style="height:40px"></div>
               <div class="p-bar-v hi" style="height:44px"></div>
-              <div class="p-bar-v" style="height:30px"></div>
+              <div class="p-bar-v" style="height:28px"></div>
             </div>
-            <div class="p-dots">
-              <div class="p-dot dot-a"></div>
-              <div class="p-dot dot-c"></div>
-              <div class="p-dot dot-s"></div>
-              <div class="p-dot dot-g"></div>
+            <div class="p-nav">
+              <div class="p-nav-dot"></div>
+              <div class="p-nav-dot active"></div>
+              <div class="p-nav-dot"></div>
+              <div class="p-nav-dot"></div>
             </div>
           </div>
         </div>
