@@ -1,8 +1,13 @@
 # Dependencies
 node_modules/
 
+# Build output
+dist/
+
 # Test reports and artifacts
 reports/
+playwright-report/
+test-results/
 *.log
 
 # OS files
@@ -14,10 +19,6 @@ Thumbs.db
 .vscode/
 *.swp
 *.swo
-
-# Playwright
-playwright-report/
-test-results/
 
 # npm
 npm-debug.log*

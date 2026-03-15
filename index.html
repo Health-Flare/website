@@ -13,9 +13,20 @@
   <link rel="icon" type="image/png" href="assets/icon.png">
   <meta property="og:image" content="https://healthflare.org/assets/banner.png">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <style>
+    /* ── Self-hosted fonts — no third-party requests ──────── */
+    @font-face { font-family: 'Fraunces'; src: url('assets/fonts/Fraunces-Medium.ttf') format('truetype'); font-weight: 500; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Fraunces'; src: url('assets/fonts/Fraunces-MediumItalic.ttf') format('truetype'); font-weight: 500; font-style: italic; font-display: swap; }
+    @font-face { font-family: 'Fraunces'; src: url('assets/fonts/Fraunces-SemiBold.ttf') format('truetype'); font-weight: 600; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Fraunces'; src: url('assets/fonts/Fraunces-SemiBoldItalic.ttf') format('truetype'); font-weight: 600; font-style: italic; font-display: swap; }
+    @font-face { font-family: 'DM Sans'; src: url('assets/fonts/DMSans-Regular.ttf') format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'DM Sans'; src: url('assets/fonts/DMSans-Italic.ttf') format('truetype'); font-weight: 400; font-style: italic; font-display: swap; }
+    @font-face { font-family: 'DM Sans'; src: url('assets/fonts/DMSans-Medium.ttf') format('truetype'); font-weight: 500; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'DM Sans'; src: url('assets/fonts/DMSans-MediumItalic.ttf') format('truetype'); font-weight: 500; font-style: italic; font-display: swap; }
+    @font-face { font-family: 'DM Sans'; src: url('assets/fonts/DMSans-SemiBold.ttf') format('truetype'); font-weight: 600; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'DM Mono'; src: url('assets/fonts/DMMono-Regular.ttf') format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'DM Mono'; src: url('assets/fonts/DMMono-Medium.ttf') format('truetype'); font-weight: 500; font-style: normal; font-display: swap; }
+  </style>
 
   <style>
     /* ── Reset & tokens ─────────────────────────────────── */
@@ -258,7 +269,7 @@
     }
     .p-card-date {
       font-family: 'DM Mono', monospace;
-      font-size: 7px; color: rgba(255,255,255,0.4); letter-spacing: 0.05em;
+      font-size: 7px; color: rgba(255,255,255,0.6); letter-spacing: 0.05em;
     }
     .p-card-badge {
       width: 18px; height: 6px; border-radius: 3px; background: var(--amber); opacity: 0.7;
@@ -315,7 +326,7 @@
     .eyebrow {
       font-size: 0.72rem; font-weight: 500;
       letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--dusk); opacity: 0.5;
+      color: #6B6560; /* ~5:1 on --cloud, avoids opacity trick */
       margin-bottom: 0.9rem; display: block;
     }
 
@@ -372,7 +383,7 @@
       padding: 4rem 3.5rem; color: var(--cloud);
     }
 
-    .privacy-block .eyebrow { color: var(--cloud); opacity: 0.45; }
+    .privacy-block .eyebrow { color: #B8B5B0; opacity: 1; } /* ~7:1 on --dusk */
 
     .privacy-block h2 { color: var(--cloud); }
 
@@ -435,7 +446,7 @@
     }
 
     .fine-print {
-      font-size: 0.78rem; color: var(--dusk-50);
+      font-size: 0.78rem; color: #6B6560; /* ~5:1 on --cloud */
       margin-top: 0.9rem; line-height: 1.5;
     }
 
@@ -453,7 +464,7 @@
       font-size: 1rem; font-weight: 500; margin-bottom: 0.25rem;
     }
 
-    .footer-copy { font-size: 0.78rem; color: var(--dusk-50); }
+    .footer-copy { font-size: 0.78rem; color: #6B6560; } /* ~5:1 on --cloud */
 
     .footer-nav {
       display: flex; gap: 1.75rem; flex-wrap: wrap; align-items: center;
@@ -493,14 +504,14 @@
   <nav aria-label="Main navigation">
     <a href="/" class="logo" aria-label="Health Flare — home">
       <div class="logo-mark" aria-hidden="true">
-        <img src="assets/icon.png" alt="" width="34" height="34">
+        <img src="assets/icon.png" alt="" width="34" height="34" aria-hidden="true">
       </div>
       <span class="logo-name">Health Flare</span>
     </a>
     <a href="#early-access" class="nav-pill">Request early access</a>
   </nav>
 
-  <main id="main">
+  <main id="main" tabindex="-1">
 
     <!-- Hero -->
     <header class="hero" aria-labelledby="hero-heading">
@@ -520,7 +531,7 @@
       </p>
 
       <div class="hero-actions">
-        <a href="#early-access" class="btn-primary">
+        <a href="#early-access" class="btn-primary cta">
           Request early access
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
             <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
@@ -802,6 +813,8 @@
 
   <script>
     // Graceful form: open mail client with prefilled subject + body
+    // Email assembled at runtime to avoid plain-text exposure in source
+    const _to = ['hello', 'healthflare.org'].join('\u0040');
     function handleSubmit(form) {
       const email = form.email.value.trim();
       if (!email) return false;
@@ -809,7 +822,7 @@
       const body = encodeURIComponent(
         'Hi,\n\nI\'d love early access to Health Flare.\n\nMy email: ' + email
       );
-      window.location.href = 'mailto:hello@healthflare.org?subject=' + subject + '&body=' + body;
+      window.location.href = 'mailto:' + _to + '?subject=' + subject + '&body=' + body;
       return false;
     }
   </script>

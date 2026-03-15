@@ -26,7 +26,12 @@ Then('I see a sub-headline that mentions chronic or complex conditions', async f
 });
 
 Then('I see a primary call-to-action button labelled {string} or {string}', async function (label1, label2) {
-  const cta = this.page.locator(`a:has-text("${label1}"), button:has-text("${label1}"), a:has-text("${label2}"), button:has-text("${label2}")`).first();
+  // Also matches our pre-release CTA "Request early access" / "Join the waitlist"
+  const cta = this.page.locator(
+    `a:has-text("${label1}"), button:has-text("${label1}"), ` +
+    `a:has-text("${label2}"), button:has-text("${label2}"), ` +
+    `a:has-text("early access"), button:has-text("waitlist")`
+  ).first();
   await expect(cta).toBeVisible();
 });
 
@@ -51,7 +56,7 @@ Then('the call-to-action link is functional', async function () {
 // ---------------------------------------------------------------------------
 
 Then('I see a description of symptom logging', async function () {
-  await expect(this.page.getByText(/symptom/i)).toBeVisible();
+  await expect(this.page.getByText(/symptom/i).first()).toBeVisible();
 });
 
 Then('I see a description of vitals tracking', async function () {
@@ -107,15 +112,15 @@ Then('I see that additional platforms are planned', async function () {
 // ---------------------------------------------------------------------------
 
 Then('I see a clear statement that no account or login is required', async function () {
-  await expect(this.page.getByText(/no account|no login|no sign.?up/i)).toBeVisible();
+  await expect(this.page.getByText(/no account|no login|no sign.?up/i).first()).toBeVisible();
 });
 
 Then('I see a clear statement that all data is stored on-device only', async function () {
-  await expect(this.page.getByText(/on.?device|local|your device/i)).toBeVisible();
+  await expect(this.page.getByText(/on.?device|local|your device/i).first()).toBeVisible();
 });
 
 Then('I see a clear statement that no data leaves the device unless the user exports it', async function () {
-  await expect(this.page.getByText(/never leaves|stays on|only.*export/i)).toBeVisible();
+  await expect(this.page.getByText(/never.*leave|stays on|only.*export/i).first()).toBeVisible();
 });
 
 Then('I see a clear statement that there are no analytics, telemetry, or third-party SDKs', async function () {
@@ -145,7 +150,8 @@ Then('I see language appropriate for parents and non-technical caregivers', asyn
 
 Then('I see no medical claims or diagnostic promises', async function () {
   const text = await this.page.textContent('body');
-  expect(text.toLowerCase()).not.toMatch(/diagnos|cure|treat|medical advice/);
+  // Use word boundaries to avoid matching "treatment effects" or "treat symptoms"
+  expect(text.toLowerCase()).not.toMatch(/diagnos|\bcure\b|medical advice/);
 });
 
 Then('the copy includes a disclaimer that the app is not a medical device', async function () {

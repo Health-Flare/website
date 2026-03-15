@@ -30,9 +30,10 @@ Given('the browser viewport is {int} pixels wide', async function (width) {
 });
 
 Given('JavaScript is disabled in the browser', async function () {
-  // Close current browser and relaunch with JS disabled
+  // Close current browser and relaunch with JS disabled, then re-navigate
   await this.closeBrowser();
   await this.launchBrowser({ javaScriptEnabled: false });
+  await this.navigateToLandingPage();
 });
 
 Given('the operating system is set to {string}', async function (preference) {
@@ -218,17 +219,19 @@ When('a screen reader encounters an image', async function () {
 });
 
 When('an icon-only button or link is encountered', async function () {
-  this.iconElements = await this.page.evaluate(() => {
-    const icons = document.querySelectorAll(
-      'button:not(:has-text), a:not(:has-text), [role="button"]:not(:has-text)'
-    );
-    return Array.from(icons).map((el) => ({
-      tagName: el.tagName,
-      ariaLabel: el.getAttribute('aria-label'),
-      ariaLabelledby: el.getAttribute('aria-labelledby'),
-      title: el.getAttribute('title'),
-    }));
-  });
+  // Use Playwright locator (supports :has-text) rather than querySelectorAll (does not)
+  const iconLocators = this.page.locator('button, a, [role="button"]').filter({ hasNotText: /\S/ });
+  const count = await iconLocators.count();
+  this.iconElements = [];
+  for (let i = 0; i < count; i++) {
+    const el = iconLocators.nth(i);
+    this.iconElements.push({
+      tagName: await el.evaluate((n) => n.tagName),
+      ariaLabel: await el.getAttribute('aria-label'),
+      ariaLabelledby: await el.getAttribute('aria-labelledby'),
+      title: await el.getAttribute('title'),
+    });
+  }
 });
 
 When('the heading structure of the page is inspected', async function () {
