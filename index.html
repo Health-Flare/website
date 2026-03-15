@@ -449,6 +449,17 @@
       font-size: 0.78rem; color: #6B6560; /* ~5:1 on --cloud */
       margin-top: 0.9rem; line-height: 1.5;
     }
+    .fine-print.error { color: var(--coral); }
+    .waitlist-success {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-size: 1rem; font-weight: 500;
+      color: var(--dusk); text-align: center;
+      padding: 0.85rem 1.5rem;
+      background: var(--ash-white);
+      border: 1.5px solid var(--warm-linen);
+      border-radius: 100px;
+      display: inline-block;
+    }
 
     /* ── Footer ─────────────────────────────────────────── */
     footer {
@@ -770,12 +781,10 @@
       </p>
 
       <form
+        id="waitlist-form"
         class="access-form"
-        action="mailto:hello@healthflare.org"
-        method="GET"
-        enctype="text/plain"
         aria-label="Request early access by email"
-        onsubmit="return handleSubmit(this)"
+        novalidate
       >
         <label for="email-input" class="sr-only">Your email address</label>
         <input
@@ -812,19 +821,50 @@
   </footer>
 
   <script>
-    // Graceful form: open mail client with prefilled subject + body
-    // Email assembled at runtime to avoid plain-text exposure in source
-    const _to = ['hello', 'healthflare.org'].join('\u0040');
-    function handleSubmit(form) {
-      const email = form.email.value.trim();
-      if (!email) return false;
-      const subject = encodeURIComponent('Health Flare early access request');
-      const body = encodeURIComponent(
-        'Hi,\n\nI\'d love early access to Health Flare.\n\nMy email: ' + email
-      );
-      window.location.href = 'mailto:' + _to + '?subject=' + subject + '&body=' + body;
-      return false;
-    }
+    (function () {
+      var LOOPS_URL = 'https://app.loops.so/api/newsletter-form/cmmrbabel65ux0jzs4ahxh2pq';
+
+      var form = document.getElementById('waitlist-form');
+      var note = document.getElementById('form-note');
+      if (!form) return;
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var email = form.email.value.trim();
+        if (!email) return;
+
+        var btn = form.querySelector('button[type="submit"]');
+        var originalLabel = btn.textContent;
+        btn.disabled = true;
+        btn.textContent = 'Joining\u2026';
+        note.textContent = 'No marketing. Unsubscribe any time. Your email is used only for beta updates.';
+        note.className = 'fine-print';
+
+        fetch(LOOPS_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams({ email: email })
+        })
+          .then(function (res) { return res.json(); })
+          .then(function (data) {
+            if (data.success) {
+              form.innerHTML = '<p class="waitlist-success" role="status" aria-live="polite">You\u2019re on the list \u2014 we\u2019ll be in touch!</p>';
+              note.textContent = 'Check your inbox for a confirmation email.';
+            } else {
+              btn.disabled = false;
+              btn.textContent = originalLabel;
+              note.textContent = data.message || 'Something went wrong \u2014 please try again.';
+              note.className = 'fine-print error';
+            }
+          })
+          .catch(function () {
+            btn.disabled = false;
+            btn.textContent = originalLabel;
+            note.textContent = 'Couldn\u2019t connect \u2014 please check your connection and try again.';
+            note.className = 'fine-print error';
+          });
+      });
+    }());
   </script>
 </body>
 </html>
