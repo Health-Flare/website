@@ -1,0 +1,30 @@
+{
+  "name": "healthflare-website",
+  "version": "0.1.0",
+  "description": "Landing page for HealthFlare health tracking app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "cucumber-js",
+    "test:headed": "HEADED=true cucumber-js",
+    "test:debug": "DEBUG=true HEADED=true cucumber-js --fail-fast",
+    "test:ci": "cucumber-js --format json:reports/cucumber-report.json --format html:reports/cucumber-report.html",
+    "serve": "npx serve -l 3000",
+    "lint:html": "html-validate index.html",
+    "lint:css": "stylelint '**/*.css'",
+    "lighthouse": "lighthouse http://localhost:3000 --output html --output-path ./reports/lighthouse.html"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.8.0",
+    "@cucumber/cucumber": "^10.3.0",
+    "@playwright/test": "^1.41.0",
+    "html-validate": "^8.9.0",
+    "lighthouse": "^11.5.0",
+    "serve": "^14.2.0",
+    "stylelint": "^16.2.0",
+    "stylelint-config-standard": "^36.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
