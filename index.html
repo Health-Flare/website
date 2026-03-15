@@ -415,6 +415,48 @@
       line-height: 1.5;
     }
 
+    /* ── About ──────────────────────────────────────────── */
+    .about-section {
+      background: var(--peach);
+      padding: 5rem 2rem;
+    }
+
+    .about-inner {
+      max-width: 42rem; margin: 0 auto; text-align: center;
+    }
+
+    .about-inner .lead { margin: 0 auto 1.75rem; }
+
+    .about-body {
+      text-align: left;
+      display: flex; flex-direction: column; gap: 1rem;
+      margin-bottom: 2.25rem;
+    }
+
+    .about-body p {
+      font-size: 0.95rem; line-height: 1.7; color: var(--dusk-80);
+    }
+
+    .about-link {
+      color: var(--dusk); font-weight: 500;
+      text-decoration: underline; text-underline-offset: 2px;
+    }
+    .about-link:hover { color: var(--coral); }
+
+    .about-github {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.9rem; font-weight: 500; color: var(--dusk);
+      text-decoration: none;
+      padding: 0.6rem 1.25rem;
+      border: 1.5px solid var(--warm-linen); border-radius: 100px;
+      background: var(--ash-white);
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .about-github:hover { border-color: var(--dusk); box-shadow: var(--shadow-sm); }
+    .about-github:focus-visible {
+      outline: 3px solid var(--dusk); outline-offset: 3px; border-radius: 100px;
+    }
+
     /* ── Early access ───────────────────────────────────── */
     .access-section {
       text-align: center; padding: 5rem 2rem 6rem;
@@ -772,6 +814,45 @@
       </div>
     </div>
 
+    <!-- About -->
+    <section class="about-section" id="about" aria-labelledby="about-heading">
+      <div class="about-inner">
+        <span class="eyebrow" style="display:block; text-align:center;">About</span>
+        <h2 id="about-heading">Built by someone who lives it.</h2>
+        <p class="lead">
+          I'm a parent of a child with a chronic illness, and a software developer with two
+          decades in tech. Health Flare exists because our family needed it.
+        </p>
+        <div class="about-body">
+          <p>
+            I was inspired by <a href="https://flaredown.com/" class="about-link" rel="noopener" target="_blank">Flaredown</a> —
+            a pioneering open-source symptom tracker — and built Health Flare to carry that mission
+            forward with a modern application that supports people living with chronic illness and the
+            families and dependants caring alongside them.
+          </p>
+          <p>
+            I value privacy, transparency, and visibility in everything I build. I'm using AI and
+            LLMs extensively in this project — not to cut corners, but to give a solo developer the
+            capacity to properly serve an underserved community. Every line of code not written by
+            me is reviewed and tested by me, held to the same standard I expect as both the app's
+            author and one of its users.
+          </p>
+        </div>
+        <a
+          href="https://github.com/ahosking"
+          class="about-github"
+          rel="noopener"
+          target="_blank"
+          aria-label="View project on GitHub"
+        >
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z" fill="currentColor"/>
+          </svg>
+          View on GitHub
+        </a>
+      </div>
+    </section>
+
     <!-- Early access -->
     <section class="access-section" id="early-access" aria-labelledby="access-heading">
       <span class="eyebrow" style="display:block; text-align:center;">Early access</span>
@@ -816,7 +897,6 @@
     </div>
     <nav class="footer-nav" aria-label="Footer links">
       <a href="mailto:hello@healthflare.org">Contact</a>
-      <a href="https://automatedbytes.com" rel="noopener">AutomatedBytes</a>
     </nav>
   </footer>
 
