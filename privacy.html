@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — Health Flare</title>
+  <meta name="description" content="Health Flare does not collect, transmit, or share any of your data. Everything you enter stays on your device.">
+  <meta property="og:title" content="Privacy Policy — Health Flare">
+  <meta property="og:url" content="https://healthflare.org/privacy">
+  <meta name="theme-color" content="#F5A623">
+
+  <link rel="icon" type="image/png" href="assets/icon.png">
+
+  <style>
+    /* ── Self-hosted fonts — no third-party requests ──────── */
+    @font-face { font-family: 'Fraunces'; src: url('assets/fonts/Fraunces-Medium.ttf') format('truetype'); font-weight: 500; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Fraunces'; src: url('assets/fonts/Fraunces-MediumItalic.ttf') format('truetype'); font-weight: 500; font-style: italic; font-display: swap; }
+    @font-face { font-family: 'Fraunces'; src: url('assets/fonts/Fraunces-SemiBold.ttf') format('truetype'); font-weight: 600; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'DM Sans'; src: url('assets/fonts/DMSans-Regular.ttf') format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'DM Sans'; src: url('assets/fonts/DMSans-Italic.ttf') format('truetype'); font-weight: 400; font-style: italic; font-display: swap; }
+    @font-face { font-family: 'DM Sans'; src: url('assets/fonts/DMSans-Medium.ttf') format('truetype'); font-weight: 500; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'DM Sans'; src: url('assets/fonts/DMSans-SemiBold.ttf') format('truetype'); font-weight: 600; font-style: normal; font-display: swap; }
+  </style>
+
+  <style>
+    /* ── Reset & tokens ─────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --amber:      #F5A623;
+      --coral:      #F07560;
+      --sky:        #6BB8D4;
+      --dusk:       #2C2825;
+      --cloud:      #F4F1EC;
+      --peach:      #FDE8D8;
+      --sage:       #B8CCBF;
+      --ash-white:  #FAFAF8;
+      --warm-linen: #EDE8DF;
+      --pale-sky:   #DFF0F7;
+      --dusk-80: rgba(44, 40, 37, 0.80);
+      --dusk-60: rgba(44, 40, 37, 0.60);
+      --dusk-15: rgba(44, 40, 37, 0.15);
+      --dusk-08: rgba(44, 40, 37, 0.08);
+      --shadow-sm: 0 1px 3px rgba(44, 40, 37, 0.08);
+      --shadow-md: 0 4px 12px rgba(44, 40, 37, 0.10);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--dusk);
+      background: var(--cloud);
+    }
+
+    /* ── Accessibility helpers ──────────────────────────── */
+    .sr-only {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+
+    .skip-link {
+      position: absolute; top: -99px; left: 1rem;
+      background: var(--dusk); color: var(--cloud);
+      padding: 0.5rem 1rem; border-radius: 0 0 8px 8px;
+      font-size: 0.875rem; z-index: 999;
+      transition: top 0.15s;
+    }
+    .skip-link:focus { top: 0; }
+
+    /* ── Nav ────────────────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2rem;
+      background: rgba(244, 241, 236, 0.88);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--dusk-15);
+    }
+
+    .logo {
+      display: flex; align-items: center; gap: 0.55rem;
+      text-decoration: none; color: var(--dusk);
+    }
+
+    .logo-mark {
+      width: 34px; height: 34px; border-radius: 9px; flex-shrink: 0;
+      overflow: hidden; display: block;
+    }
+
+    .logo-mark img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+
+    .logo-name {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 1.1rem; font-weight: 600; letter-spacing: -0.01em;
+    }
+
+    .nav-pill {
+      display: inline-flex; align-items: center;
+      background: var(--amber); color: var(--dusk);
+      font-size: 0.875rem; font-weight: 500;
+      padding: 0.5rem 1.2rem; border-radius: 100px;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: opacity 0.15s, box-shadow 0.15s;
+    }
+    .nav-pill:hover { opacity: 0.88; box-shadow: 0 2px 12px rgba(245,166,35,0.35); }
+    .nav-pill:focus-visible { outline: 3px solid var(--dusk); outline-offset: 3px; }
+
+    /* ── Page content ───────────────────────────────────── */
+    .page-wrap {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 4rem 2rem 6rem;
+    }
+
+    .page-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--dusk-60);
+      margin-bottom: 0.5rem;
+    }
+
+    h1 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 2.25rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 0.4rem;
+    }
+
+    .meta {
+      font-size: 0.875rem;
+      color: var(--dusk-60);
+      margin-bottom: 2.5rem;
+    }
+
+    .summary-box {
+      background: var(--pale-sky);
+      border-left: 3px solid var(--sky);
+      border-radius: 0 12px 12px 0;
+      padding: 1rem 1.25rem;
+      margin-bottom: 2.75rem;
+      font-weight: 500;
+      font-size: 0.975rem;
+    }
+
+    h2 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-top: 2.5rem;
+      margin-bottom: 0.65rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid var(--warm-linen);
+    }
+
+    p { margin-bottom: 0.9rem; }
+
+    ul {
+      margin: 0.4rem 0 0.9rem 1.5rem;
+    }
+
+    ul li { margin-bottom: 0.3rem; }
+
+    .contact-block {
+      margin-top: 0.5rem;
+      line-height: 1.7;
+    }
+
+    a { color: var(--dusk); text-underline-offset: 3px; }
+    a:hover { color: var(--coral); }
+
+    .page-footer-note {
+      margin-top: 3.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--warm-linen);
+      font-size: 0.8rem;
+      color: var(--dusk-60);
+    }
+
+    /* ── Footer ─────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--dusk-15);
+      padding: 2.25rem 2rem;
+      display: flex; align-items: flex-start;
+      justify-content: space-between; flex-wrap: wrap; gap: 1.25rem;
+    }
+
+    .footer-brand {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 1rem; font-weight: 500; margin-bottom: 0.25rem;
+    }
+
+    .footer-copy { font-size: 0.78rem; color: #6B6560; }
+
+    .footer-nav {
+      display: flex; gap: 1.75rem; flex-wrap: wrap; align-items: center;
+    }
+
+    .footer-nav a {
+      font-size: 0.85rem; color: var(--dusk-80);
+      text-decoration: none;
+    }
+    .footer-nav a:hover { color: var(--dusk); text-decoration: underline; text-underline-offset: 3px; }
+    .footer-nav a:focus-visible { outline: 3px solid var(--dusk); outline-offset: 3px; border-radius: 2px; }
+
+    /* ── Responsive ─────────────────────────────────────── */
+    @media (max-width: 640px) {
+      nav { padding: 1rem 1.25rem; }
+      .page-wrap { padding: 3rem 1.25rem 5rem; }
+      footer { padding: 2rem 1.25rem; }
+      h1 { font-size: 1.75rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <nav aria-label="Main navigation">
+    <a href="/" class="logo" aria-label="Health Flare — home">
+      <div class="logo-mark" aria-hidden="true">
+        <img src="assets/icon.png" alt="" width="34" height="34" aria-hidden="true">
+      </div>
+      <span class="logo-name">Health Flare</span>
+    </a>
+    <a href="/#early-access" class="nav-pill">Request early access</a>
+  </nav>
+
+  <main id="main" tabindex="-1">
+    <div class="page-wrap">
+
+      <p class="page-label">Health Flare</p>
+      <h1>Privacy Policy</h1>
+      <p class="meta">Last updated: 29 March 2026</p>
+
+      <div class="summary-box">
+        Health Flare does not collect, transmit, or share any of your data.
+        Everything you enter stays on your device. There are no accounts, no
+        servers, no analytics, and no third parties involved in any way.
+      </div>
+
+      <h2>Who we are</h2>
+      <p>
+        Health Flare is developed and maintained by Automated Bytes Incorporated.
+        References to "we", "us", or "our" in this policy refer to Automated
+        Bytes Incorporated as the developer of Health Flare.
+      </p>
+
+      <h2>What data Health Flare stores</h2>
+      <p>
+        Health Flare stores the following data <strong>locally on your device
+        only</strong>:
+      </p>
+      <ul>
+        <li>Health entries you create: symptoms, vitals, medications, doses, meals, sleep, flares, daily check-ins, appointments, activity logs, and journal entries</li>
+        <li>Profile information you enter: names, dates of birth, and optional profile photos</li>
+        <li>App preferences and settings</li>
+      </ul>
+      <p>
+        This data is stored in a private, sandboxed database on your device. It
+        is not accessible to other apps, and it never leaves your device unless
+        you explicitly choose to export it (see Backups below).
+      </p>
+
+      <h2>What data Health Flare does NOT collect</h2>
+      <ul>
+        <li>We do not collect any personal information</li>
+        <li>We do not collect any health or medical data</li>
+        <li>We do not use analytics or crash reporting tools</li>
+        <li>We do not use advertising networks or tracking tools</li>
+        <li>We do not collect device identifiers, IP addresses, or location data</li>
+        <li>We do not have any servers that receive data from the app</li>
+        <li>We do not require an account or login of any kind</li>
+      </ul>
+
+      <h2>Backups</h2>
+      <p>
+        Health Flare includes an optional backup feature that lets you export a
+        copy of your data as a file. This export happens <strong>only when you
+        explicitly request it</strong>, and the resulting file goes only where
+        you choose to send it — for example, saving it to your Files app, sending
+        it to yourself via AirDrop, or attaching it to an email.
+      </p>
+      <p>
+        We never receive, process, or have access to any backup files you create.
+      </p>
+
+      <h2>Camera and photo library access</h2>
+      <p>
+        Health Flare may request access to your camera and photo library to allow
+        you to set a profile photo. Any photo you select or capture is stored
+        locally on your device as part of the app's private data. Photos are
+        never uploaded, transmitted, or shared with anyone.
+      </p>
+
+      <h2>Children's privacy</h2>
+      <p>
+        Health Flare does not knowingly collect any information from anyone,
+        including children under 13. Because the app collects no data whatsoever,
+        it presents no special risk to children.
+      </p>
+
+      <h2>Changes to this policy</h2>
+      <p>
+        If we make material changes to this policy, we will update the "Last
+        updated" date at the top of this page. Because the app collects no data,
+        any changes are unlikely to affect your privacy in any meaningful way.
+      </p>
+
+      <h2>Contact</h2>
+      <div class="contact-block">
+        <strong>Automated Bytes Incorporated</strong><br>
+        <a href="mailto:privacy@healthflare.org">privacy@healthflare.org</a>
+      </div>
+
+      <p class="page-footer-note">
+        Health Flare is a product of Automated Bytes Incorporated. This privacy
+        policy applies to the Health Flare application on iOS, macOS, and Android.
+      </p>
+
+    </div>
+  </main>
+
+  <footer role="contentinfo">
+    <div>
+      <div class="footer-brand">Health Flare</div>
+      <p class="footer-copy">© 2026 AutomatedBytes &nbsp;·&nbsp; A calm companion for chronic illness.</p>
+    </div>
+    <nav class="footer-nav" aria-label="Footer links">
+      <a href="mailto:hello@healthflare.org">Contact</a>
+      <a href="/privacy">Privacy</a>
+    </nav>
+  </footer>
+
+</body>
+</html>
