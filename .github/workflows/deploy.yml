@@ -31,6 +31,7 @@ jobs:
         run: |
           mkdir -p dist
           cp index.html dist/
+          cp -f *.html dist/
           [ -d assets ] && cp -r assets dist/
           touch dist/.nojekyll
 
