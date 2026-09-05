@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Health Flare — Your private health companion</title>
-  <meta name="description" content="A calm, private health journal for people living with chronic illness. Track symptoms, spot patterns, and share with your care team — all on your device.">
+  <meta name="description" content="A calm, private health journal for people living with chronic illness. Live now on Google Play, with the App Store on the way. Track symptoms, spot patterns, and share with your care team — all on your device.">
   <meta property="og:title" content="Health Flare — Your private health companion">
-  <meta property="og:description" content="Track symptoms, spot patterns, share what matters. Everything stays on your device.">
+  <meta property="og:description" content="Live now on Google Play, with the App Store on the way. Track symptoms, spot patterns, share what matters. Everything stays on your device.">
   <meta property="og:url" content="https://healthflare.org">
   <meta name="theme-color" content="#F5A623">
 
@@ -195,6 +195,21 @@
       gap: 1rem; flex-wrap: wrap;
     }
 
+    .hero-note {
+      display: flex; align-items: center; justify-content: center;
+      gap: 0.4rem;
+      margin-top: 1.5rem;
+      font-size: 0.85rem; color: var(--dusk-60);
+    }
+    .hero-note svg, .hero-note-icon { flex-shrink: 0; }
+    .hero-note-link {
+      color: var(--dusk-80); font-weight: 500;
+      text-decoration: underline; text-underline-offset: 2px;
+      text-decoration-color: var(--dusk-50);
+    }
+    .hero-note-link:hover { color: var(--dusk); }
+    .hero-note-link:focus-visible { outline: 3px solid var(--dusk); outline-offset: 3px; border-radius: 2px; }
+
     .btn-primary {
       display: inline-flex; align-items: center; gap: 0.5rem;
       background: var(--amber); color: var(--dusk);
@@ -218,106 +233,6 @@
     }
     .btn-ghost:hover { color: var(--dusk); }
     .btn-ghost:focus-visible { outline: 3px solid var(--dusk); outline-offset: 3px; border-radius: 3px; }
-
-    /* ── Mockup strip ───────────────────────────────────── */
-    .mockup-wrap {
-      max-width: 56rem; margin: 0 auto 5rem; padding: 0 2rem;
-    }
-
-    .mockup-card {
-      background: linear-gradient(155deg, var(--peach) 0%, var(--ash-white) 65%);
-      border-radius: 28px;
-      border: 1px solid var(--warm-linen);
-      padding: 3rem 2rem;
-      box-shadow: var(--shadow-md);
-      display: flex; flex-direction: column; align-items: center; gap: 2rem;
-    }
-
-    .phone-shells {
-      display: flex; gap: 1.25rem; align-items: flex-end;
-    }
-
-    .phone {
-      background: var(--dusk); border-radius: 22px;
-      padding: 0.9rem 0.75rem;
-      display: flex; flex-direction: column; gap: 0.5rem;
-    }
-
-    .phone-sm { width: 112px; height: 210px; }
-    .phone-lg { width: 132px; height: 252px; }
-
-    /* Phone chrome */
-    .p-chrome {
-      display: flex; align-items: center; justify-content: space-between;
-      margin-bottom: 0.25rem;
-    }
-    .p-time {
-      font-family: 'DM Mono', monospace;
-      font-size: 8px; color: rgba(255,255,255,0.5); letter-spacing: 0.04em;
-    }
-    .p-status-dots { display: flex; gap: 3px; align-items: center; }
-    .p-status-dot { width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,0.3); }
-
-    /* Journal entry card inside phone */
-    .p-card {
-      background: rgba(244, 241, 236, 0.08);
-      border-radius: 10px; padding: 0.55rem 0.6rem;
-      display: flex; flex-direction: column; gap: 0.35rem;
-    }
-    .p-card-header {
-      display: flex; justify-content: space-between; align-items: center;
-    }
-    .p-card-date {
-      font-family: 'DM Mono', monospace;
-      font-size: 7px; color: rgba(255,255,255,0.6); letter-spacing: 0.05em;
-    }
-    .p-card-badge {
-      width: 18px; height: 6px; border-radius: 3px; background: var(--amber); opacity: 0.7;
-    }
-    .p-card-title { height: 5px; border-radius: 3px; background: rgba(255,255,255,0.55); width: 80%; }
-    .p-card-body { height: 4px; border-radius: 2px; background: rgba(255,255,255,0.2); width: 95%; }
-    .p-card-body.s { width: 65%; }
-
-    /* Severity dots row */
-    .p-severity { display: flex; gap: 0.3rem; margin-top: 0.1rem; align-items: center; }
-    .p-sev-dot {
-      width: 9px; height: 9px; border-radius: 50%;
-      outline: 1.5px solid rgba(255,255,255,0.12);
-    }
-    .sev-clear    { background: var(--sev-clear); }
-    .sev-mild     { background: var(--sev-mild); }
-    .sev-moderate { background: var(--sev-moderate); }
-    .sev-sig      { background: var(--sev-significant); }
-    .sev-severe   { background: var(--sev-severe); }
-
-    /* Section label */
-    .p-label { height: 4px; border-radius: 2px; background: rgba(255,255,255,0.25); width: 40%; margin-top: 0.2rem; }
-
-    /* Chart bars */
-    .p-chart { display: flex; align-items: flex-end; gap: 0.28rem; margin-top: 0.25rem; }
-    .p-bar-v {
-      width: 7px; border-radius: 2px 2px 0 0;
-      background: rgba(255,255,255,0.18);
-    }
-    .p-bar-v.hi   { background: var(--amber); opacity: 0.85; }
-    .p-bar-v.mid  { background: var(--coral); opacity: 0.65; }
-
-    /* Bottom nav strip */
-    .p-nav {
-      display: flex; justify-content: space-around;
-      margin-top: auto; padding-top: 0.5rem;
-      border-top: 1px solid rgba(255,255,255,0.08);
-    }
-    .p-nav-dot {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: rgba(255,255,255,0.2);
-    }
-    .p-nav-dot.active { background: var(--amber); }
-
-    .mockup-label {
-      font-size: 0.85rem; color: var(--dusk-50); font-style: italic;
-      letter-spacing: 0.01em;
-    }
 
     /* ── Section base ───────────────────────────────────── */
     .section { padding: 5rem 2rem; }
@@ -457,7 +372,7 @@
       outline: 3px solid var(--dusk); outline-offset: 3px; border-radius: 100px;
     }
 
-    /* ── Early access ───────────────────────────────────── */
+    /* ── Notify (iOS) ───────────────────────────────────── */
     .access-section {
       text-align: center; padding: 5rem 2rem 6rem;
       max-width: 44rem; margin: 0 auto;
@@ -573,6 +488,7 @@
     }
 
     .screenshot-phone {
+      position: relative;
       width: 158px;
       height: 342px;
       background: var(--dusk);
@@ -580,7 +496,16 @@
       overflow: hidden;
       box-shadow: var(--shadow-lg), 0 0 0 1px rgba(44,40,37,0.12);
       flex-shrink: 0;
+      padding: 0; border: none; margin: 0;
+      font: inherit; cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
     }
+    .screenshot-phone:hover,
+    .screenshot-phone:focus-visible {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg), 0 0 0 1px rgba(44,40,37,0.12), 0 10px 26px rgba(44,40,37,0.18);
+    }
+    .screenshot-phone:focus-visible { outline: 3px solid var(--amber); outline-offset: 3px; }
 
     .screenshot-phone img {
       width: 100%;
@@ -590,6 +515,24 @@
       display: block;
     }
 
+    .screenshot-zoom {
+      position: absolute; right: 8px; bottom: 8px;
+      width: 26px; height: 26px; border-radius: 50%;
+      background: rgba(44, 40, 37, 0.55);
+      backdrop-filter: blur(2px);
+      color: var(--cloud);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transform: scale(0.85);
+      transition: opacity 0.15s, transform 0.15s;
+    }
+    .screenshot-phone:hover .screenshot-zoom,
+    .screenshot-phone:focus-visible .screenshot-zoom {
+      opacity: 1; transform: scale(1);
+    }
+    @media (hover: none) {
+      .screenshot-zoom { opacity: 1; transform: scale(1); }
+    }
+
     .screenshot-item figcaption {
       font-size: 0.78rem;
       font-weight: 500;
@@ -597,17 +540,82 @@
       letter-spacing: 0.01em;
     }
 
+    /* ── Screenshot lightbox ────────────────────────────── */
+    .lightbox {
+      position: fixed; inset: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .lightbox[hidden] { display: none; }
+
+    .lightbox-backdrop {
+      position: absolute; inset: 0;
+      background: rgba(26, 23, 20, 0.86);
+    }
+
+    .lightbox-figure {
+      position: relative; z-index: 1;
+      display: flex; flex-direction: column; align-items: center; gap: 1rem;
+      max-width: min(92vw, 460px);
+      max-height: 90vh;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    .lightbox-img {
+      max-width: 100%;
+      max-height: 76vh;
+      border-radius: 22px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+      background: var(--dusk);
+      display: block;
+    }
+
+    .lightbox-caption {
+      color: rgba(244, 241, 236, 0.85);
+      font-size: 0.9rem; font-weight: 500;
+      text-align: center;
+    }
+
+    .lightbox-close {
+      position: absolute; top: 1.25rem; right: 1.25rem; z-index: 2;
+      width: 42px; height: 42px; border-radius: 50%;
+      background: rgba(244, 241, 236, 0.12);
+      color: var(--cloud); border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.15s;
+    }
+    .lightbox-close:hover { background: rgba(244, 241, 236, 0.22); }
+    .lightbox-close:focus-visible { outline: 3px solid var(--amber); outline-offset: 2px; }
+
+    .lightbox-nav {
+      position: absolute; top: 50%; transform: translateY(-50%); z-index: 2;
+      width: 46px; height: 46px; border-radius: 50%;
+      background: rgba(244, 241, 236, 0.12);
+      color: var(--cloud); border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.15s;
+    }
+    .lightbox-nav:hover { background: rgba(244, 241, 236, 0.22); }
+    .lightbox-nav:focus-visible { outline: 3px solid var(--amber); outline-offset: 2px; }
+    .lightbox-prev { left: 1rem; }
+    .lightbox-next { right: 1rem; }
+
+    @media (max-width: 640px) {
+      .lightbox-nav { width: 40px; height: 40px; }
+      .lightbox-prev { left: 0.5rem; }
+      .lightbox-next { right: 0.5rem; }
+      .lightbox-close { top: 0.75rem; right: 0.75rem; }
+    }
+
     /* ── Responsive ─────────────────────────────────────── */
     @media (max-width: 640px) {
       nav { padding: 1rem 1.25rem; }
       .hero { padding: 4.5rem 1.25rem 4rem; }
-      .mockup-wrap { padding: 0 1.25rem; }
       .section { padding: 4rem 1.25rem; }
       .privacy-wrap { padding: 0 1.25rem; }
       .privacy-block { padding: 2.75rem 1.75rem; border-radius: 20px; }
       .access-section { padding: 4rem 1.25rem 5rem; }
       footer { padding: 2rem 1.25rem; }
-      .phone-lg { display: none; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -628,16 +636,16 @@
       </div>
       <span class="logo-name">Health Flare</span>
     </a>
-    <a href="#early-access" class="nav-pill">Request early access</a>
+    <a href="https://play.google.com/store/apps/details?id=org.healthflare.app.healthflare&hl=en" class="nav-pill" target="_blank" rel="noopener" aria-label="Download Health Flare on Google Play">Download on Google Play</a>
   </nav>
 
   <main id="main" tabindex="-1">
 
     <!-- Hero -->
     <header class="hero" aria-labelledby="hero-heading">
-      <div class="hero-badge" role="status">
+      <div class="hero-badge" role="status" data-section="availability">
         <span class="badge-dot" aria-hidden="true"></span>
-        Active development &nbsp;·&nbsp; Pre-release
+        Live on Android via Google Play &nbsp;·&nbsp; Apple App Store: submission underway
       </div>
 
       <h1 id="hero-heading">
@@ -650,109 +658,25 @@
         Track symptoms, spot patterns, and share what matters — with everything staying on your device.
       </p>
 
-      <div class="hero-actions">
-        <a href="#early-access" class="btn-primary cta">
-          Request early access
+      <div class="hero-actions" data-section="download">
+        <a href="https://play.google.com/store/apps/details?id=org.healthflare.app.healthflare&hl=en" class="btn-primary cta" target="_blank" rel="noopener" aria-label="Download Health Flare on Google Play">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M2.5 1.2c-.25.25-.4.62-.4 1.1v11.4c0 .48.15.85.4 1.1l.09.08 6.4-6.4v-.16l-6.4-6.4-.09.28z" fill="currentColor"/>
+            <path d="M11.1 9.6l-2.1-2.1v-.16l2.1-2.1 4.75 2.7c.36.2.58.48.58.76s-.22.56-.58.76l-4.75 2.7-.01-.5z" fill="currentColor" opacity="0.7"/>
+            <path d="M9 7.5l2.1-2.1L4.7 1.9c-.3-.17-.58-.2-.8-.1L9 7.5z" fill="currentColor" opacity="0.85"/>
+            <path d="M9 8.5l-5.1 5.7c.22.1.5.07.8-.1l6.4-3.64L9 8.5z" fill="currentColor"/>
           </svg>
+          Download on Google Play
         </a>
         <a href="#features" class="btn-ghost">See how it works</a>
       </div>
-    </header>
 
-    <!-- App preview (decorative mockup) -->
-    <div class="mockup-wrap" aria-hidden="true">
-      <div class="mockup-card">
-        <div class="phone-shells" role="img" aria-label="Illustration of Health Flare on two phones">
-          <!-- Secondary phone — symptom log view -->
-          <div class="phone phone-sm">
-            <div class="p-chrome">
-              <span class="p-time">09:41</span>
-              <div class="p-status-dots">
-                <div class="p-status-dot"></div>
-                <div class="p-status-dot"></div>
-                <div class="p-status-dot"></div>
-              </div>
-            </div>
-            <div class="p-card">
-              <div class="p-card-header">
-                <span class="p-card-date">TODAY</span>
-                <div class="p-card-badge"></div>
-              </div>
-              <div class="p-card-title"></div>
-              <div class="p-card-body"></div>
-              <div class="p-severity">
-                <div class="p-sev-dot sev-clear"></div>
-                <div class="p-sev-dot sev-mild"></div>
-                <div class="p-sev-dot sev-moderate"></div>
-                <div class="p-sev-dot sev-sig"></div>
-                <div class="p-sev-dot sev-severe"></div>
-              </div>
-            </div>
-            <div class="p-card">
-              <div class="p-card-header">
-                <span class="p-card-date">YESTERDAY</span>
-              </div>
-              <div class="p-card-title"></div>
-              <div class="p-card-body s"></div>
-              <div class="p-severity">
-                <div class="p-sev-dot sev-clear"></div>
-                <div class="p-sev-dot sev-mild"></div>
-                <div class="p-sev-dot sev-clear"></div>
-              </div>
-            </div>
-            <div class="p-nav">
-              <div class="p-nav-dot active"></div>
-              <div class="p-nav-dot"></div>
-              <div class="p-nav-dot"></div>
-            </div>
-          </div>
-          <!-- Primary phone — patterns/chart view -->
-          <div class="phone phone-lg">
-            <div class="p-chrome">
-              <span class="p-time">09:41</span>
-              <div class="p-status-dots">
-                <div class="p-status-dot"></div>
-                <div class="p-status-dot"></div>
-                <div class="p-status-dot"></div>
-              </div>
-            </div>
-            <div class="p-card">
-              <div class="p-card-header">
-                <span class="p-card-date">THIS WEEK</span>
-                <div class="p-card-badge"></div>
-              </div>
-              <div class="p-card-title"></div>
-              <div class="p-card-body"></div>
-              <div class="p-severity">
-                <div class="p-sev-dot sev-moderate"></div>
-                <div class="p-sev-dot sev-sig"></div>
-                <div class="p-sev-dot sev-moderate"></div>
-                <div class="p-sev-dot sev-mild"></div>
-              </div>
-            </div>
-            <div class="p-label"></div>
-            <div class="p-chart">
-              <div class="p-bar-v" style="height:20px"></div>
-              <div class="p-bar-v" style="height:32px"></div>
-              <div class="p-bar-v hi" style="height:48px"></div>
-              <div class="p-bar-v mid" style="height:36px"></div>
-              <div class="p-bar-v" style="height:24px"></div>
-              <div class="p-bar-v hi" style="height:44px"></div>
-              <div class="p-bar-v" style="height:28px"></div>
-            </div>
-            <div class="p-nav">
-              <div class="p-nav-dot"></div>
-              <div class="p-nav-dot active"></div>
-              <div class="p-nav-dot"></div>
-              <div class="p-nav-dot"></div>
-            </div>
-          </div>
-        </div>
-        <p class="mockup-label">Coming to iOS &amp; Android</p>
-      </div>
-    </div>
+      <p class="hero-note">
+        <img class="hero-note-icon" alt="Apple App Store" width="13" height="13" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 384 512'%3E%3Cpath fill='%236B6560' d='M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141 4 184.8 4 273.9c0 26.5 4.9 54 14.6 82.4 13 37.7 59.6 130.1 108.2 128.5 25.5-.6 43.5-18.1 76.7-18.1 32.2 0 48.9 18.1 76.4 18.1 49 .7 91.1-83.7 103.5-121.5-65.9-31.1-64.7-91.2-64.7-94.6zM255.1 66.4c26.9-32 24.5-61.2 23.7-71.7-23.8 1.4-51.4 16.4-67.1 34.9-17.3 19.7-27.5 44.1-25.4 71.4 25.9 2 49.5-11 68.8-34.6z'/%3E%3C/svg%3E">
+        On iPhone? The App Store version has been submitted to Apple —
+        <a href="#notify" class="hero-note-link">let me know when it's live</a>.
+      </p>
+    </header>
 
     <!-- Features -->
     <section class="section" id="features" aria-labelledby="features-heading">
@@ -827,56 +751,112 @@
       <div class="screenshots-header">
         <span class="eyebrow">The app</span>
         <h2 id="screenshots-heading">A look inside.</h2>
-        <p class="lead">Real screenshots from the app as it's being built.</p>
+        <p class="lead">Real screenshots from Health Flare, live now on Google Play.</p>
       </div>
       <div class="screenshot-scroll">
-        <div class="screenshot-track">
+        <div class="screenshot-track" id="screenshot-track">
 
           <figure class="screenshot-item">
-            <div class="screenshot-phone">
-              <img src="assets/screenshots/01_onboarding.png" alt="Onboarding screen reading 'Your health story, in your hands'" loading="lazy" width="158" height="342">
-            </div>
+            <button type="button" class="screenshot-phone screenshot-trigger" data-index="0" aria-haspopup="dialog" aria-label="View larger: Onboarding screen reading 'Your health story, in your hands'">
+              <img src="assets/screenshots/01_onboarding.png" alt="" loading="lazy" width="158" height="342">
+              <span class="screenshot-zoom" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </span>
+            </button>
             <figcaption>Welcome</figcaption>
           </figure>
 
           <figure class="screenshot-item">
-            <div class="screenshot-phone">
-              <img src="assets/screenshots/02_dashboard.png" alt="Dashboard showing recent journal entries and an upcoming rheumatology appointment" loading="lazy" width="158" height="342">
-            </div>
+            <button type="button" class="screenshot-phone screenshot-trigger" data-index="1" aria-haspopup="dialog" aria-label="View larger: Dashboard showing recent journal entries and an upcoming rheumatology follow-up">
+              <img src="assets/screenshots/02_dashboard.png" alt="" loading="lazy" width="158" height="342">
+              <span class="screenshot-zoom" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </span>
+            </button>
             <figcaption>Dashboard</figcaption>
           </figure>
 
           <figure class="screenshot-item">
-            <div class="screenshot-phone">
-              <img src="assets/screenshots/04_symptoms.png" alt="Symptoms screen listing fatigue and joint pain entries" loading="lazy" width="158" height="342">
-            </div>
+            <button type="button" class="screenshot-phone screenshot-trigger" data-index="2" aria-haspopup="dialog" aria-label="View larger: Symptoms screen listing fatigue, joint pain, and brain fog with severity scores">
+              <img src="assets/screenshots/03_symptoms.png" alt="" loading="lazy" width="158" height="342">
+              <span class="screenshot-zoom" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </span>
+            </button>
             <figcaption>Symptoms</figcaption>
           </figure>
 
           <figure class="screenshot-item">
-            <div class="screenshot-phone">
-              <img src="assets/screenshots/05_medications.png" alt="Medications screen showing Hydroxychloroquine, Tramadol, and Vitamin D" loading="lazy" width="158" height="342">
-            </div>
+            <button type="button" class="screenshot-phone screenshot-trigger" data-index="3" aria-haspopup="dialog" aria-label="View larger: Conditions screen showing active and in-recovery illnesses like lupus and fibromyalgia">
+              <img src="assets/screenshots/04_illnesses.png" alt="" loading="lazy" width="158" height="342">
+              <span class="screenshot-zoom" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </span>
+            </button>
+            <figcaption>Conditions</figcaption>
+          </figure>
+
+          <figure class="screenshot-item">
+            <button type="button" class="screenshot-phone screenshot-trigger" data-index="4" aria-haspopup="dialog" aria-label="View larger: Medications screen showing Hydroxychloroquine, Tramadol, and Vitamin D with dosages">
+              <img src="assets/screenshots/05_medications.png" alt="" loading="lazy" width="158" height="342">
+              <span class="screenshot-zoom" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </span>
+            </button>
             <figcaption>Medications</figcaption>
           </figure>
 
           <figure class="screenshot-item">
-            <div class="screenshot-phone">
-              <img src="assets/screenshots/06_meals.png" alt="Meals log showing oat porridge, gluten-free pasta, and green smoothie entries" loading="lazy" width="158" height="342">
-            </div>
+            <button type="button" class="screenshot-phone screenshot-trigger" data-index="5" aria-haspopup="dialog" aria-label="View larger: Meals log showing oat porridge, gluten-free pasta, and a green smoothie entry">
+              <img src="assets/screenshots/06_meals.png" alt="" loading="lazy" width="158" height="342">
+              <span class="screenshot-zoom" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </span>
+            </button>
             <figcaption>Meals</figcaption>
           </figure>
 
           <figure class="screenshot-item">
-            <div class="screenshot-phone">
-              <img src="assets/screenshots/07_journal.png" alt="Journal screen showing entries titled 'Rough Tuesday' and 'A good day'" loading="lazy" width="158" height="342">
-            </div>
+            <button type="button" class="screenshot-phone screenshot-trigger" data-index="6" aria-haspopup="dialog" aria-label="View larger: Journal screen showing entries titled 'Rough Saturday' and 'A good day'">
+              <img src="assets/screenshots/07_journal.png" alt="" loading="lazy" width="158" height="342">
+              <span class="screenshot-zoom" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </span>
+            </button>
             <figcaption>Journal</figcaption>
+          </figure>
+
+          <figure class="screenshot-item">
+            <button type="button" class="screenshot-phone screenshot-trigger" data-index="7" aria-haspopup="dialog" aria-label="View larger: Journal entry detail showing weather, mood, and energy level alongside the day's notes">
+              <img src="assets/screenshots/08_journal_detail.png" alt="" loading="lazy" width="158" height="342">
+              <span class="screenshot-zoom" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </span>
+            </button>
+            <figcaption>Journal detail</figcaption>
           </figure>
 
         </div>
       </div>
     </section>
+
+    <!-- Screenshot lightbox -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Screenshot viewer" hidden>
+      <div class="lightbox-backdrop" data-close="true"></div>
+      <button type="button" class="lightbox-close" data-close="true" aria-label="Close">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 4l12 12M16 4L4 16" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+      </button>
+      <button type="button" class="lightbox-nav lightbox-prev" aria-label="Previous screenshot">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M12 4l-6 6 6 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <figure class="lightbox-figure">
+        <img class="lightbox-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBTAA7" alt="">
+        <figcaption class="lightbox-caption"></figcaption>
+      </figure>
+      <button type="button" class="lightbox-nav lightbox-next" aria-label="Next screenshot">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M8 4l6 6-6 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
 
     <!-- Privacy -->
     <div class="privacy-wrap" role="region" aria-labelledby="privacy-heading">
@@ -976,18 +956,18 @@
       </div>
     </section>
 
-    <!-- Early access -->
-    <section class="access-section" id="early-access" aria-labelledby="access-heading">
-      <span class="eyebrow" style="display:block; text-align:center;">Early access</span>
-      <h2 id="access-heading">Be among the first.</h2>
+    <!-- Notify me for iOS -->
+    <section class="access-section" id="notify" aria-labelledby="access-heading">
+      <span class="eyebrow" style="display:block; text-align:center;">Apple App Store</span>
+      <h2 id="access-heading">Coming soon to iPhone.</h2>
       <p class="lead">
-        We're looking for people living with chronic illness — and families caring for them — to help shape the experience before public launch.
+        Health Flare is live on Google Play today. The iOS build has been submitted to Apple and is working through review — pop in your email and I'll let you know the moment it's live on the App Store.
       </p>
 
       <form
-        id="waitlist-form"
+        id="notify-form"
         class="access-form"
-        aria-label="Request early access by email"
+        aria-label="Let me know when App Store is live, by email"
         novalidate
       >
         <label for="email-input" class="sr-only">Your email address</label>
@@ -1002,11 +982,11 @@
           aria-required="true"
           aria-describedby="form-note"
         >
-        <button type="submit" class="btn-primary">Join the waitlist</button>
+        <button type="submit" class="btn-primary">Notify me</button>
       </form>
 
       <p class="fine-print" id="form-note">
-        No marketing. Unsubscribe any time. Your email is used only for beta updates.
+        No marketing. Unsubscribe any time. Your email is used only to tell you when iOS launches.
       </p>
     </section>
 
@@ -1019,6 +999,7 @@
       <p class="footer-copy">© 2026 AutomatedBytes &nbsp;·&nbsp; A calm companion for chronic illness.</p>
     </div>
     <nav class="footer-nav" aria-label="Footer links">
+      <a href="https://play.google.com/store/apps/details?id=org.healthflare.app.healthflare&hl=en" target="_blank" rel="noopener">Google Play ↗</a>
       <a href="mailto:hello@healthflare.org">Contact</a>
       <a href="/privacy">Privacy</a>
     </nav>
@@ -1028,7 +1009,7 @@
     (function () {
       var LOOPS_URL = 'https://app.loops.so/api/newsletter-form/cmmrbabel65ux0jzs4ahxh2pq';
 
-      var form = document.getElementById('waitlist-form');
+      var form = document.getElementById('notify-form');
       var note = document.getElementById('form-note');
       if (!form) return;
 
@@ -1040,8 +1021,8 @@
         var btn = form.querySelector('button[type="submit"]');
         var originalLabel = btn.textContent;
         btn.disabled = true;
-        btn.textContent = 'Joining\u2026';
-        note.textContent = 'No marketing. Unsubscribe any time. Your email is used only for beta updates.';
+        btn.textContent = 'Saving\u2026';
+        note.textContent = 'No marketing. Unsubscribe any time. Your email is used only to tell you when iOS launches.';
         note.className = 'fine-print';
 
         fetch(LOOPS_URL, {
@@ -1052,7 +1033,7 @@
           .then(function (res) { return res.json(); })
           .then(function (data) {
             if (data.success) {
-              form.innerHTML = '<p class="waitlist-success" role="status" aria-live="polite">You\u2019re on the list \u2014 we\u2019ll be in touch!</p>';
+              form.innerHTML = '<p class="waitlist-success" role="status" aria-live="polite">You\u2019re on the list \u2014 I\u2019ll email you the moment iOS launches!</p>';
               note.textContent = 'Check your inbox for a confirmation email.';
             } else {
               btn.disabled = false;
@@ -1067,6 +1048,87 @@
             note.textContent = 'Couldn\u2019t connect \u2014 please check your connection and try again.';
             note.className = 'fine-print error';
           });
+      });
+    }());
+  </script>
+
+  <script>
+    (function () {
+      var track = document.getElementById('screenshot-track');
+      var lightbox = document.getElementById('lightbox');
+      if (!track || !lightbox) return;
+
+      var triggers = Array.prototype.slice.call(track.querySelectorAll('.screenshot-trigger'));
+      var items = triggers.map(function (btn) {
+        var img = btn.querySelector('img');
+        return {
+          src: img.getAttribute('src'),
+          caption: btn.closest('.screenshot-item').querySelector('figcaption').textContent,
+          alt: btn.getAttribute('aria-label').replace(/^View larger: /, '')
+        };
+      });
+
+      var lightboxImg = lightbox.querySelector('.lightbox-img');
+      var lightboxCaption = lightbox.querySelector('.lightbox-caption');
+      var prevBtn = lightbox.querySelector('.lightbox-prev');
+      var nextBtn = lightbox.querySelector('.lightbox-next');
+      var closeBtn = lightbox.querySelector('.lightbox-close');
+      var currentIndex = 0;
+      var lastFocused = null;
+
+      function render() {
+        var item = items[currentIndex];
+        lightboxImg.src = item.src;
+        lightboxImg.alt = item.alt;
+        lightboxCaption.textContent = item.caption;
+      }
+
+      function open(index) {
+        currentIndex = index;
+        lastFocused = document.activeElement;
+        render();
+        lightbox.hidden = false;
+        document.body.style.overflow = 'hidden';
+        closeBtn.focus();
+      }
+
+      function close() {
+        lightbox.hidden = true;
+        document.body.style.overflow = '';
+        lightboxImg.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBTAA7';
+        if (lastFocused) lastFocused.focus();
+      }
+
+      function show(delta) {
+        currentIndex = (currentIndex + delta + items.length) % items.length;
+        render();
+      }
+
+      triggers.forEach(function (btn, index) {
+        btn.addEventListener('click', function () { open(index); });
+      });
+
+      lightbox.querySelectorAll('[data-close]').forEach(function (el) {
+        el.addEventListener('click', close);
+      });
+      prevBtn.addEventListener('click', function () { show(-1); });
+      nextBtn.addEventListener('click', function () { show(1); });
+
+      document.addEventListener('keydown', function (e) {
+        if (lightbox.hidden) return;
+        if (e.key === 'Escape') close();
+        else if (e.key === 'ArrowLeft') show(-1);
+        else if (e.key === 'ArrowRight') show(1);
+        else if (e.key === 'Tab') {
+          var focusable = [closeBtn, prevBtn, nextBtn];
+          var idx = focusable.indexOf(document.activeElement);
+          e.preventDefault();
+          if (e.shiftKey) {
+            focusable[(idx <= 0 ? focusable.length : idx) - 1].focus();
+          } else {
+            focusable[(idx + 1) % focusable.length].focus();
+          }
+        }
       });
     }());
   </script>
