@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Privacy Policy — Health Flare</title>
-  <meta name="description" content="Health Flare does not collect, transmit, or share any of your data. Everything you enter stays on your device.">
+  <meta name="description" content="Health Flare does not collect, transmit, or share any of your data. Everything you enter stays on your device, with one optional exception for weather lookups.">
   <meta property="og:title" content="Privacy Policy — Health Flare">
   <meta property="og:url" content="https://healthflare.org/privacy">
   <meta name="theme-color" content="#F5A623">
@@ -241,12 +241,15 @@
 
       <p class="page-label">Health Flare</p>
       <h1>Privacy Policy</h1>
-      <p class="meta">Last updated: 29 March 2026</p>
+      <p class="meta">Last updated: 5 September 2026</p>
 
       <div class="summary-box">
         Health Flare does not collect, transmit, or share any of your data.
         Everything you enter stays on your device. There are no accounts, no
-        servers, no analytics, and no third parties involved in any way.
+        servers of ours, no analytics, and no advertising or tracking of any
+        kind. The one exception is an optional weather feature — if you turn
+        it on, your device's location is sent to a third-party weather
+        provider to look up current conditions. See Weather below.
       </div>
 
       <h2>Who we are</h2>
@@ -278,7 +281,8 @@
         <li>We do not collect any health or medical data</li>
         <li>We do not use analytics or crash reporting tools</li>
         <li>We do not use advertising networks or tracking tools</li>
-        <li>We do not collect device identifiers, IP addresses, or location data</li>
+        <li>We do not collect device identifiers or IP addresses</li>
+        <li>We do not collect location data, unless you opt into the optional weather feature (see Weather below)</li>
         <li>We do not have any servers that receive data from the app</li>
         <li>We do not require an account or login of any kind</li>
       </ul>
@@ -301,6 +305,32 @@
         you to set a profile photo. Any photo you select or capture is stored
         locally on your device as part of the app's private data. Photos are
         never uploaded, transmitted, or shared with anyone.
+      </p>
+
+      <h2>Weather (optional)</h2>
+      <p>
+        Health Flare has an optional weather-tracking feature, which is
+        <strong>off by default</strong>. If you turn it on for a profile, the
+        app attaches current weather conditions to journal entries you create.
+      </p>
+      <p>
+        When weather tracking is enabled and you log a journal entry, Health
+        Flare:
+      </p>
+      <ul>
+        <li>Requests a one-time, low-accuracy (city-level) location reading from your device</li>
+        <li>Sends only that latitude and longitude to <a href="https://open-meteo.com" target="_blank" rel="noopener">Open-Meteo</a>, a third-party weather data provider, to fetch the current temperature, humidity, pressure, wind speed, and general conditions</li>
+        <li>Saves the resulting weather snapshot locally with that journal entry, in the same private, on-device database as the rest of your data</li>
+      </ul>
+      <p>
+        Your coordinates are used only to make that one request to Open-Meteo
+        and are not stored by Health Flare, either with the journal entry or
+        anywhere else. Open-Meteo is a separate service with its own privacy
+        practices, which we don't control; we send it only a latitude and
+        longitude, with no account, device identifier, or other personal
+        information attached. You can turn weather tracking off at any time in
+        profile settings, and you can deny or revoke location permission from
+        your device's system settings.
       </p>
 
       <h2>Children's privacy</h2>
