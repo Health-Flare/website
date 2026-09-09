@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inner Flare: Your cycle, entirely yours</title>
+  <meta name="description" content="A free, open-source cycle tracker that never leaves your device. No accounts, no cloud, no tracking, just your data and your patterns, from the Health Flare family.">
+  <meta property="og:title" content="Inner Flare: Your cycle, entirely yours">
+  <meta property="og:description" content="Free, open-source, offline-only cycle tracking. Your device, your data, zero tracking.">
+  <meta property="og:url" content="https://healthflare.org/inner-flare">
+  <meta name="theme-color" content="#E0834A">
+
+  <link rel="icon" type="image/png" href="../assets/inner-flare-icon.png">
+  <meta property="og:image" content="https://healthflare.org/assets/inner-flare-icon.png">
+
+  <style>
+    /* ── Self-hosted fonts, no third-party requests ──────── */
+    @font-face { font-family: 'Fraunces'; src: url('../assets/fonts/Fraunces-Medium.ttf') format('truetype'); font-weight: 500; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Fraunces'; src: url('../assets/fonts/Fraunces-MediumItalic.ttf') format('truetype'); font-weight: 500; font-style: italic; font-display: swap; }
+    @font-face { font-family: 'Fraunces'; src: url('../assets/fonts/Fraunces-SemiBold.ttf') format('truetype'); font-weight: 600; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Fraunces'; src: url('../assets/fonts/Fraunces-SemiBoldItalic.ttf') format('truetype'); font-weight: 600; font-style: italic; font-display: swap; }
+    @font-face { font-family: 'DM Sans'; src: url('../assets/fonts/DMSans-Regular.ttf') format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'DM Sans'; src: url('../assets/fonts/DMSans-Italic.ttf') format('truetype'); font-weight: 400; font-style: italic; font-display: swap; }
+    @font-face { font-family: 'DM Sans'; src: url('../assets/fonts/DMSans-Medium.ttf') format('truetype'); font-weight: 500; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'DM Sans'; src: url('../assets/fonts/DMSans-MediumItalic.ttf') format('truetype'); font-weight: 500; font-style: italic; font-display: swap; }
+    @font-face { font-family: 'DM Sans'; src: url('../assets/fonts/DMSans-SemiBold.ttf') format('truetype'); font-weight: 600; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'DM Mono'; src: url('../assets/fonts/DMMono-Regular.ttf') format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'DM Mono'; src: url('../assets/fonts/DMMono-Medium.ttf') format('truetype'); font-weight: 500; font-style: normal; font-display: swap; }
+  </style>
+
+  <style>
+    /* ── Reset & tokens ─────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      /* Inner Flare brand colors (from the app's own theme) */
+      --ember:      #E0834A;
+      --soft-orange:#F2B183;
+      --teal:       #17272C;
+      --mid-teal:   #2B4249;
+      --cream:      #F3E9DB;
+      --card:       #FBF5EC;
+      --linen:      #E8DCC8;
+      --ash-white:  #FFFDF9;
+      --pale-teal:  #DCE7E9;
+
+      /* Semantic opacity, based on --teal */
+      --teal-80: rgba(23, 39, 44, 0.80);
+      --teal-60: rgba(23, 39, 44, 0.60);
+      --teal-50: rgba(23, 39, 44, 0.50);
+      --teal-15: rgba(23, 39, 44, 0.15);
+      --teal-08: rgba(23, 39, 44, 0.08);
+
+      /* Flow intensity scale */
+      --flow-none:   #DCE7E9;
+      --flow-light:  #F2B183;
+      --flow-medium: #E0834A;
+      --flow-heavy:  #B85A2C;
+
+      --shadow-sm: 0 1px 3px rgba(23, 39, 44, 0.08);
+      --shadow-md: 0 4px 12px rgba(23, 39, 44, 0.10);
+      --shadow-lg: 0 8px 24px rgba(23, 39, 44, 0.12);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-size: 1rem;
+      line-height: 1.65;
+      color: var(--teal);
+      background: var(--cream);
+    }
+
+    /* ── Accessibility helpers ──────────────────────────── */
+    .sr-only {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+
+    .skip-link {
+      position: absolute; top: -99px; left: 1rem;
+      background: var(--teal); color: var(--cream);
+      padding: 0.5rem 1rem; border-radius: 0 0 8px 8px;
+      font-size: 0.875rem; z-index: 999;
+      transition: top 0.15s;
+    }
+    .skip-link:focus { top: 0; }
+
+    /* ── Nav ────────────────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2rem;
+      background: rgba(243, 233, 219, 0.88);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--teal-15);
+      gap: 1rem; flex-wrap: wrap;
+    }
+
+    .nav-left { display: flex; align-items: center; gap: 0.85rem; flex-wrap: wrap; }
+
+    .logo {
+      display: flex; align-items: center; gap: 0.55rem;
+      text-decoration: none; color: var(--teal);
+    }
+
+    .logo-mark {
+      width: 34px; height: 34px; border-radius: 9px; flex-shrink: 0;
+      overflow: hidden; display: block;
+    }
+
+    .logo-mark img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+
+    .logo-name {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 1.1rem; font-weight: 600; letter-spacing: -0.01em;
+    }
+
+    .family-tag {
+      font-size: 0.8rem; color: var(--teal-60);
+      text-decoration: none;
+      padding-left: 0.85rem; border-left: 1px solid var(--teal-15);
+    }
+    .family-tag:hover { color: var(--teal); text-decoration: underline; text-underline-offset: 3px; }
+    .family-tag:focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; border-radius: 2px; }
+
+    .nav-pill {
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      background: var(--ember); color: var(--ash-white);
+      font-size: 0.875rem; font-weight: 500;
+      padding: 0.5rem 1.2rem; border-radius: 100px;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: opacity 0.15s, box-shadow 0.15s;
+    }
+    .nav-pill:hover { opacity: 0.9; box-shadow: 0 2px 12px rgba(224,131,74,0.35); }
+    .nav-pill:focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; }
+
+    /* ── Hero ───────────────────────────────────────────── */
+    .hero {
+      position: relative; overflow: hidden;
+      padding: 5.5rem 2rem 5rem;
+      text-align: center;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 900px; height: 500px;
+      background: radial-gradient(ellipse at 50% 20%,
+        rgba(242, 177, 131, 0.55) 0%,
+        rgba(224, 131, 74, 0.10) 55%,
+        transparent 75%);
+      pointer-events: none; z-index: 0;
+    }
+
+    .hero > * { position: relative; z-index: 1; }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      background: var(--soft-orange);
+      border: 1px solid rgba(224, 131, 74, 0.3);
+      color: var(--teal); font-size: 0.8rem; font-weight: 500;
+      padding: 0.3rem 0.9rem; border-radius: 100px;
+      margin-bottom: 2rem;
+    }
+
+    .badge-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--ember); flex-shrink: 0;
+    }
+
+    h1 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(2.6rem, 6vw, 4.5rem);
+      font-weight: 700; line-height: 1.1; letter-spacing: -0.03em;
+      max-width: 18ch; margin: 0 auto 1.25rem;
+    }
+
+    h1 em {
+      font-style: italic; color: var(--ember);
+      text-decoration: underline wavy;
+      text-decoration-color: rgba(224, 131, 74, 0.3);
+      text-underline-offset: 4px;
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2.2vw, 1.175rem);
+      color: var(--teal-80);
+      max-width: 38rem; margin: 0 auto 2.75rem;
+    }
+
+    .hero-actions {
+      display: flex; align-items: center; justify-content: center;
+      gap: 1rem; flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--ember); color: var(--ash-white);
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-size: 1rem; font-weight: 500;
+      padding: 0.8rem 1.75rem; border-radius: 100px;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 22px rgba(224, 131, 74, 0.4);
+    }
+    .btn-primary:focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; }
+
+    .btn-ghost {
+      font-size: 0.9rem; font-family: 'DM Sans', system-ui, sans-serif;
+      color: var(--teal-80); background: none; border: none; cursor: pointer;
+      text-decoration: underline; text-underline-offset: 3px;
+      text-decoration-color: var(--teal-50);
+    }
+    .btn-ghost:hover { color: var(--teal); }
+    .btn-ghost:focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; border-radius: 3px; }
+
+    /* ── Mockup strip ───────────────────────────────────── */
+    .mockup-wrap {
+      max-width: 40rem; margin: 0 auto 5rem; padding: 0 2rem;
+    }
+
+    .mockup-card {
+      background: linear-gradient(155deg, var(--soft-orange) 0%, var(--ash-white) 65%);
+      border-radius: 28px;
+      border: 1px solid var(--linen);
+      padding: 3rem 2rem;
+      box-shadow: var(--shadow-md);
+      display: flex; flex-direction: column; align-items: center; gap: 2rem;
+    }
+
+    .phone {
+      background: var(--teal); border-radius: 22px;
+      padding: 0.9rem 0.75rem; width: 150px;
+      display: flex; flex-direction: column; gap: 0.55rem;
+    }
+
+    .p-chrome {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 0.15rem;
+    }
+    .p-time {
+      font-family: 'DM Mono', monospace;
+      font-size: 8px; color: rgba(255,255,255,0.5); letter-spacing: 0.04em;
+    }
+    .p-status-dots { display: flex; gap: 3px; align-items: center; }
+    .p-status-dot { width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,0.3); }
+
+    .p-label { height: 4px; border-radius: 2px; background: rgba(255,255,255,0.25); width: 45%; margin-bottom: 0.15rem; }
+
+    /* Mini calendar grid */
+    .p-cal { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; }
+    .p-cal-dot {
+      width: 100%; aspect-ratio: 1; border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+    }
+    .p-cal-dot.period  { background: var(--flow-medium); }
+    .p-cal-dot.period.heavy { background: var(--flow-heavy); }
+    .p-cal-dot.period.light { background: var(--flow-light); }
+    .p-cal-dot.fertile { background: rgba(242,177,131,0.4); outline: 1px solid rgba(242,177,131,0.6); }
+    .p-cal-dot.today   { outline: 1.5px solid #fff; }
+
+    /* Flow chip row */
+    .p-chips { display: flex; gap: 0.3rem; margin-top: 0.1rem; }
+    .p-chip {
+      flex: 1; height: 16px; border-radius: 100px;
+      background: rgba(255,255,255,0.08);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .p-chip.active { background: var(--ember); }
+    .p-chip-mark { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.3); }
+    .p-chip.active .p-chip-mark { background: #fff; }
+
+    .p-predict {
+      background: rgba(255,255,255,0.08); border-radius: 10px;
+      padding: 0.5rem 0.6rem;
+      display: flex; flex-direction: column; gap: 0.3rem;
+    }
+    .p-predict-title { height: 5px; border-radius: 3px; background: rgba(255,255,255,0.55); width: 75%; }
+    .p-predict-sub { height: 4px; border-radius: 2px; background: rgba(255,255,255,0.22); width: 50%; }
+
+    .p-nav {
+      display: flex; justify-content: space-around;
+      margin-top: 0.2rem; padding-top: 0.5rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .p-nav-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+    }
+    .p-nav-dot.active { background: var(--ember); }
+
+    .mockup-label {
+      font-size: 0.85rem; color: var(--teal-50); font-style: italic;
+      letter-spacing: 0.01em;
+    }
+
+    /* ── Section base ───────────────────────────────────── */
+    .section { padding: 5rem 2rem; }
+    .inner { max-width: 56rem; margin: 0 auto; }
+
+    .eyebrow {
+      font-size: 0.72rem; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: #6B6255;
+      margin-bottom: 0.9rem; display: block;
+    }
+
+    h2 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(1.8rem, 4vw, 2.75rem);
+      font-weight: 600; line-height: 1.2; letter-spacing: -0.025em;
+      margin-bottom: 1rem;
+    }
+
+    .lead {
+      font-size: 1.05rem; color: var(--teal-80);
+      max-width: 40rem; margin-bottom: 3rem;
+    }
+
+    /* ── Feature grid ───────────────────────────────────── */
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .feature {
+      background: var(--card);
+      border-radius: 18px; padding: 1.75rem;
+      border: 1px solid var(--linen);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .f-icon {
+      width: 42px; height: 42px; border-radius: 11px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.25rem; flex-shrink: 0;
+    }
+    .ic-ember { background: var(--ember); }
+    .ic-teal  { background: var(--mid-teal); }
+    .ic-soft  { background: var(--soft-orange); }
+    .ic-pale  { background: var(--pale-teal); }
+
+    .feature h3 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 1.15rem; font-weight: 600;
+      letter-spacing: -0.01em; margin-bottom: 0.5rem;
+    }
+
+    .feature p { font-size: 0.9rem; color: var(--teal-80); line-height: 1.65; }
+
+    /* ── Priority list ──────────────────────────────────── */
+    .priority-list { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2.5rem; }
+
+    .priority-row {
+      display: flex; gap: 1.25rem; align-items: flex-start;
+      background: var(--card); border: 1px solid var(--linen);
+      border-radius: 18px; padding: 1.5rem 1.75rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .priority-num {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 1.75rem; font-weight: 600; color: var(--ember);
+      flex-shrink: 0; width: 2ch; line-height: 1.3;
+    }
+
+    .priority-text strong {
+      display: block; font-size: 1.02rem; margin-bottom: 0.3rem;
+    }
+    .priority-text span {
+      font-size: 0.9rem; color: var(--teal-80); line-height: 1.6;
+    }
+
+    /* ── Privacy block ──────────────────────────────────── */
+    .privacy-wrap { padding: 0 2rem; margin-bottom: 5rem; }
+
+    .privacy-block {
+      max-width: 56rem; margin: 0 auto;
+      background: var(--teal); border-radius: 28px;
+      padding: 4rem 3.5rem; color: var(--cream);
+    }
+
+    .privacy-block .eyebrow { color: #A9B7BA; opacity: 1; }
+
+    .privacy-block h2 { color: var(--cream); }
+
+    .privacy-block .lead {
+      color: rgba(243, 233, 219, 0.72);
+      margin-bottom: 2.5rem;
+    }
+
+    .checks { display: flex; flex-direction: column; gap: 1.1rem; }
+
+    .check-row {
+      display: flex; align-items: flex-start; gap: 0.9rem;
+    }
+
+    .check-icon {
+      width: 22px; height: 22px; border-radius: 50%;
+      background: var(--soft-orange); flex-shrink: 0; margin-top: 0.15rem;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .check-text strong {
+      display: block; color: var(--cream);
+      font-size: 0.95rem; font-weight: 500; margin-bottom: 0.15rem;
+    }
+
+    .check-text span {
+      font-size: 0.865rem;
+      color: rgba(243, 233, 219, 0.6);
+      line-height: 1.5;
+    }
+
+    /* ── About / mission ────────────────────────────────── */
+    .about-section {
+      background: var(--soft-orange);
+      padding: 5rem 2rem;
+    }
+
+    .about-inner {
+      max-width: 42rem; margin: 0 auto; text-align: center;
+    }
+
+    .about-inner .lead { margin: 0 auto 1.75rem; }
+
+    .about-body {
+      text-align: left;
+      display: flex; flex-direction: column; gap: 1rem;
+      margin-bottom: 2.25rem;
+    }
+
+    .about-body p {
+      font-size: 0.95rem; line-height: 1.7; color: var(--teal-80);
+    }
+
+    .about-link {
+      color: var(--teal); font-weight: 500;
+      text-decoration: underline; text-underline-offset: 2px;
+    }
+    .about-link:hover { color: var(--ember); }
+
+    .about-github {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.9rem; font-weight: 500; color: var(--teal);
+      text-decoration: none;
+      padding: 0.6rem 1.25rem;
+      border: 1.5px solid var(--linen); border-radius: 100px;
+      background: var(--ash-white);
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .about-github:hover { border-color: var(--teal); box-shadow: var(--shadow-sm); }
+    .about-github:focus-visible {
+      outline: 3px solid var(--teal); outline-offset: 3px; border-radius: 100px;
+    }
+
+    /* ── Get involved (CTA) ─────────────────────────────── */
+    .access-section {
+      text-align: center; padding: 5rem 2rem 6rem;
+      max-width: 44rem; margin: 0 auto;
+    }
+
+    .access-section h2 { margin-bottom: 0.75rem; }
+
+    .access-section .lead { margin: 0 auto 2.5rem; text-align: center; }
+
+    .access-actions {
+      display: flex; align-items: center; justify-content: center;
+      gap: 1rem; flex-wrap: wrap;
+    }
+
+    .fine-print {
+      font-size: 0.78rem; color: #6B6255;
+      margin-top: 1.25rem; line-height: 1.5;
+    }
+
+    /* ── Footer ─────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--teal-15);
+      padding: 2.25rem 2rem;
+      display: flex; align-items: flex-start;
+      justify-content: space-between; flex-wrap: wrap; gap: 1.25rem;
+      max-width: 100%;
+    }
+
+    .footer-brand {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 1rem; font-weight: 500; margin-bottom: 0.25rem;
+    }
+
+    .footer-copy { font-size: 0.78rem; color: #6B6255; }
+
+    .footer-nav {
+      display: flex; gap: 1.75rem; flex-wrap: wrap; align-items: center;
+    }
+
+    .footer-nav a {
+      font-size: 0.85rem; color: var(--teal-80);
+      text-decoration: none;
+    }
+    .footer-nav a:hover { color: var(--teal); text-decoration: underline; text-underline-offset: 3px; }
+    .footer-nav a:focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; border-radius: 2px; }
+
+    /* ── Responsive ─────────────────────────────────────── */
+    @media (max-width: 640px) {
+      nav { padding: 1rem 1.25rem; }
+      .hero { padding: 4.5rem 1.25rem 4rem; }
+      .mockup-wrap { padding: 0 1.25rem; }
+      .section { padding: 4rem 1.25rem; }
+      .privacy-wrap { padding: 0 1.25rem; }
+      .privacy-block { padding: 2.75rem 1.75rem; border-radius: 20px; }
+      .access-section { padding: 4rem 1.25rem 5rem; }
+      footer { padding: 2rem 1.25rem; }
+      .priority-row { flex-direction: column; gap: 0.5rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition: none !important; animation: none !important; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- Nav -->
+  <nav aria-label="Main navigation">
+    <div class="nav-left">
+      <a href="/inner-flare/" class="logo" aria-label="Inner Flare home">
+        <div class="logo-mark" aria-hidden="true">
+          <img src="../assets/inner-flare-icon.png" alt="" width="34" height="34" aria-hidden="true">
+        </div>
+        <span class="logo-name">Inner Flare</span>
+      </a>
+      <a href="/" class="family-tag">Part of the Health Flare family</a>
+    </div>
+    <a href="https://github.com/Health-Flare/InnerFlare" class="nav-pill" rel="noopener" target="_blank">
+      View on GitHub
+    </a>
+  </nav>
+
+  <main id="main" tabindex="-1">
+
+    <!-- Hero -->
+    <header class="hero" aria-labelledby="hero-heading">
+      <div class="hero-badge" role="status">
+        <span class="badge-dot" aria-hidden="true"></span>
+        Free &amp; open source &nbsp;·&nbsp; In development
+      </div>
+
+      <h1 id="hero-heading">
+        Your cycle,<br>
+        <em>entirely yours.</em>
+      </h1>
+
+      <p class="hero-sub">
+        Inner Flare is a free, open-source cycle tracker that never leaves your device.
+        No accounts, no cloud, no ads, no tracking of any kind. Just your data and your patterns.
+      </p>
+
+      <div class="hero-actions">
+        <a href="https://github.com/Health-Flare/InnerFlare" class="btn-primary" rel="noopener" target="_blank">
+          View on GitHub
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href="#features" class="btn-ghost">See how it works</a>
+      </div>
+    </header>
+
+    <!-- App preview (decorative mockup) -->
+    <div class="mockup-wrap" aria-hidden="true">
+      <div class="mockup-card">
+        <div class="phone" role="img" aria-label="Illustration of Inner Flare's calendar and logging screen">
+          <div class="p-chrome">
+            <span class="p-time">09:41</span>
+            <div class="p-status-dots">
+              <div class="p-status-dot"></div>
+              <div class="p-status-dot"></div>
+              <div class="p-status-dot"></div>
+            </div>
+          </div>
+          <div class="p-label"></div>
+          <div class="p-cal">
+            <div class="p-cal-dot"></div>
+            <div class="p-cal-dot"></div>
+            <div class="p-cal-dot period light"></div>
+            <div class="p-cal-dot period heavy"></div>
+            <div class="p-cal-dot period"></div>
+            <div class="p-cal-dot period light"></div>
+            <div class="p-cal-dot"></div>
+            <div class="p-cal-dot"></div>
+            <div class="p-cal-dot"></div>
+            <div class="p-cal-dot"></div>
+            <div class="p-cal-dot"></div>
+            <div class="p-cal-dot"></div>
+            <div class="p-cal-dot today"></div>
+            <div class="p-cal-dot"></div>
+            <div class="p-cal-dot"></div>
+            <div class="p-cal-dot"></div>
+            <div class="p-cal-dot fertile"></div>
+            <div class="p-cal-dot fertile"></div>
+            <div class="p-cal-dot fertile"></div>
+            <div class="p-cal-dot fertile"></div>
+            <div class="p-cal-dot"></div>
+          </div>
+          <div class="p-chips">
+            <div class="p-chip active"><div class="p-chip-mark"></div></div>
+            <div class="p-chip"><div class="p-chip-mark"></div></div>
+            <div class="p-chip"><div class="p-chip-mark"></div></div>
+            <div class="p-chip"><div class="p-chip-mark"></div></div>
+          </div>
+          <div class="p-predict">
+            <div class="p-predict-title"></div>
+            <div class="p-predict-sub"></div>
+          </div>
+          <div class="p-nav">
+            <div class="p-nav-dot active"></div>
+            <div class="p-nav-dot"></div>
+            <div class="p-nav-dot"></div>
+          </div>
+        </div>
+        <p class="mockup-label">Coming to iOS &amp; Android</p>
+      </div>
+    </div>
+
+    <!-- What matters most -->
+    <section class="section" aria-labelledby="priorities-heading">
+      <div class="inner">
+        <span class="eyebrow">What we build toward</span>
+        <h2 id="priorities-heading">Three things come before<br>anything else.</h2>
+        <p class="lead">
+          Every decision in Inner Flare (the database, the license, the roadmap) gets checked against
+          this order. Nothing else is allowed to come first.
+        </p>
+
+        <div class="priority-list" role="list">
+          <div class="priority-row" role="listitem">
+            <span class="priority-num" aria-hidden="true">1</span>
+            <div class="priority-text">
+              <strong>Secure data, on your device only.</strong>
+              <span>Your cycle data is encrypted at rest and never leaves your phone unless you explicitly export it. There is no server to breach because there is no server.</span>
+            </div>
+          </div>
+          <div class="priority-row" role="listitem">
+            <span class="priority-num" aria-hidden="true">2</span>
+            <div class="priority-text">
+              <strong>Free, forever, and open source.</strong>
+              <span>Inner Flare is FOSS-friendly by design: your device, your data, zero tracking, zero web access. The code is public so anyone can verify every claim on this page.</span>
+            </div>
+          </div>
+          <div class="priority-row" role="listitem">
+            <span class="priority-num" aria-hidden="true">3</span>
+            <div class="priority-text">
+              <strong>Reproductive health belongs to everyone.</strong>
+              <span>Understanding your own cycle shouldn't require trusting a company with it. We believe the whole world benefits when people are empowered to track and understand their own reproductive health, on their own terms.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="section" id="features" aria-labelledby="features-heading" style="padding-top:0;">
+      <div class="inner">
+        <span class="eyebrow">How it works</span>
+        <h2 id="features-heading">Built to be honest,<br>not clever.</h2>
+        <p class="lead">
+          No black-box AI, no dark patterns, no data model designed to be monetized later.
+          Just a calm, capable tracker that does exactly what it says.
+        </p>
+        <div class="grid-4">
+
+          <article class="feature">
+            <div class="f-icon ic-ember" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                <rect x="3" y="4" width="16" height="15" rx="2" stroke="#fff" stroke-width="1.6"/>
+                <path d="M3 8h16" stroke="#fff" stroke-width="1.6"/>
+                <path d="M7 2v3M15 2v3" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/>
+                <circle cx="11" cy="13" r="1.6" fill="#fff"/>
+              </svg>
+            </div>
+            <h3>Log a day in seconds</h3>
+            <p>Flow, symptoms, and notes are single-tap toggle chips, not dropdowns or forms. No required fields. A tap and you're done, and back-logging a missed day is just as fast.</p>
+          </article>
+
+          <article class="feature">
+            <div class="f-icon ic-teal" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                <path d="M3 17v-3a4 4 0 014-4h8a4 4 0 014 4v3" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/>
+                <circle cx="11" cy="6" r="3" stroke="#fff" stroke-width="1.6"/>
+              </svg>
+            </div>
+            <h3>Predictions you can check</h3>
+            <p>Cycle length, variability, and fertile-window estimates come from transparent statistics (the average of your own recent cycles), never an opaque AI model.</p>
+          </article>
+
+          <article class="feature">
+            <div class="f-icon ic-soft" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                <path d="M14 4h4v4" stroke="#2C2825" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity="0.85"/>
+                <path d="M18 4l-8 8" stroke="#2C2825" stroke-width="1.6" stroke-linecap="round" opacity="0.85"/>
+                <path d="M10 6H6a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-4" stroke="#2C2825" stroke-width="1.6" stroke-linecap="round" opacity="0.85"/>
+              </svg>
+            </div>
+            <h3>Your data, your file</h3>
+            <p>Export a single, standard file whenever you want, to move to a new phone or just keep your own backup. No account required to create it, none to read it back.</p>
+          </article>
+
+          <article class="feature">
+            <div class="f-icon ic-pale" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                <rect x="4" y="3" width="14" height="16" rx="2" stroke="#17272C" stroke-width="1.6"/>
+                <path d="M8 8h6M8 11h6M8 14h3" stroke="#17272C" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>Every card, your choice</h3>
+            <p>Show, hide, or reorder anything on your dashboard. There's no "default everyone sees this" layout that can't be turned off.</p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Privacy -->
+    <div class="privacy-wrap" role="region" aria-labelledby="privacy-heading">
+      <div class="privacy-block">
+        <span class="eyebrow">Privacy by design</span>
+        <h2 id="privacy-heading">No cloud. No accounts.<br>No web access at all.</h2>
+        <p class="lead">
+          Reproductive health data is some of the most sensitive information that exists.
+          Inner Flare doesn't have the option to leak it, because it has no way to send it anywhere.
+        </p>
+
+        <ul class="checks" role="list">
+          <li class="check-row">
+            <div class="check-icon" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M1.5 6l3 3 6-5.5" stroke="#17272C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="check-text">
+              <strong>Encrypted at rest, on-device only</strong>
+              <span>Your cycle data lives in an encrypted local database, unlocked with your device's biometrics where supported.</span>
+            </div>
+          </li>
+          <li class="check-row">
+            <div class="check-icon" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M1.5 6l3 3 6-5.5" stroke="#17272C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="check-text">
+              <strong>No network access, by design</strong>
+              <span>The app requests no internet permission at all: this is enforced in CI, not just promised in a policy.</span>
+            </div>
+          </li>
+          <li class="check-row">
+            <div class="check-icon" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M1.5 6l3 3 6-5.5" stroke="#17272C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="check-text">
+              <strong>Zero analytics or telemetry</strong>
+              <span>No crash reporters that phone home, no advertising identifiers, no tracking of any kind.</span>
+            </div>
+          </li>
+          <li class="check-row">
+            <div class="check-icon" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M1.5 6l3 3 6-5.5" stroke="#17272C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="check-text">
+              <strong>Open source, so you don't have to trust us</strong>
+              <span>Every line is public. If a claim on this page is wrong, anyone can find it in the code and say so.</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- About / mission -->
+    <section class="about-section" id="about" aria-labelledby="about-heading">
+      <div class="about-inner">
+        <span class="eyebrow" style="display:block; text-align:center;">Why this exists</span>
+        <h2 id="about-heading">Reproductive health, without the trade-off.</h2>
+        <p class="lead">
+          Cycle tracking is one of the most common (and most surveilled) forms of health tracking there is.
+          It shouldn't have to be a choice between understanding your body and keeping your data private.
+        </p>
+        <div class="about-body">
+          <p>
+            Inner Flare is a sibling project to <a href="/" class="about-link">Health Flare</a>, built on the
+            same principle: the people using an app for their most sensitive health information deserve total
+            control over where that information goes: for Inner Flare, that's nowhere but the device it's on.
+          </p>
+          <p>
+            We believe cycle and fertility awareness benefits everyone, not just the person tracking, and that
+            empowerment starts with a tool people can actually trust. Being free and open source isn't a marketing
+            line here; it's how that trust gets verified, by anyone, at any time.
+          </p>
+        </div>
+        <a
+          href="https://github.com/Health-Flare/InnerFlare"
+          class="about-github"
+          rel="noopener"
+          target="_blank"
+          aria-label="View Inner Flare source code on GitHub"
+        >
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z" fill="currentColor"/>
+          </svg>
+          View source on GitHub
+        </a>
+      </div>
+    </section>
+
+    <!-- Get involved -->
+    <section class="access-section" id="get-involved" aria-labelledby="access-heading">
+      <span class="eyebrow" style="display:block; text-align:center;">Get involved</span>
+      <h2 id="access-heading">Follow along, or dig in.</h2>
+      <p class="lead">
+        Inner Flare is under active development in the open. Star the repo to follow progress,
+        open an issue with an idea, or read the code yourself. There's nothing hidden to find.
+      </p>
+
+      <div class="access-actions">
+        <a href="https://github.com/Health-Flare/InnerFlare" class="btn-primary" rel="noopener" target="_blank">
+          View on GitHub
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href="/" class="btn-ghost">Back to Health Flare</a>
+      </div>
+
+      <p class="fine-print">
+        No accounts, no waitlist, no email required: the source is the invitation.
+      </p>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer role="contentinfo">
+    <div>
+      <div class="footer-brand">Inner Flare</div>
+      <p class="footer-copy">© 2026 AutomatedBytes &nbsp;·&nbsp; A free, open-source cycle tracker.</p>
+    </div>
+    <nav class="footer-nav" aria-label="Footer links">
+      <a href="https://github.com/Health-Flare/InnerFlare" rel="noopener" target="_blank">GitHub</a>
+      <a href="/inner-flare/privacy">Privacy</a>
+      <a href="/">Health Flare</a>
+    </nav>
+  </footer>
+
+</body>
+</html>
