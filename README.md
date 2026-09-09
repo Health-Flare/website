@@ -37,6 +37,69 @@ HealthFlare was built from personal experience to solve this problem; designed t
 
 ---
 
+## Working on this website locally
+
+This repository (the marketing site and blog) is a static site built with
+[Eleventy](https://www.11ty.dev/). The hand-written marketing pages
+(`src/index.html`, `src/privacy.html`, `src/inner-flare/`) are copied
+through untouched; only `src/blog/` is templated.
+
+Requires Node.js 18 or later.
+
+```bash
+# Install dependencies
+npm install
+
+# Build the site once, output goes to dist/
+npm run build
+
+# Build and start a live-reloading dev server (http://localhost:8080)
+npm run dev
+
+# Build and serve the built output the same way CI does (http://localhost:3000)
+npm run serve
+```
+
+Before committing a change, review it the same way CI will check it:
+
+```bash
+# Validate the built HTML
+npm run lint:html
+
+# Validate inline CSS (only runs if .css files exist)
+npm run lint:css
+
+# Run the Cucumber/Playwright end-to-end suite against a served build
+npm run build
+npx serve dist -l 3000 &
+BASE_URL=http://localhost:3000 npm run test:ci
+```
+
+### Adding a blog post
+
+Add a new Markdown file under `src/blog/posts/`, for example:
+
+```bash
+cat > src/blog/posts/my-new-post.md <<'EOF'
+---
+title: "Post title"
+date: 2026-01-01
+description: "One or two sentence summary shown on the blog index."
+---
+
+Post body in Markdown.
+EOF
+
+npm run dev
+```
+
+The file's `layout`, `permalink` (`/blog/<filename>/`), and `posts` tag are
+set automatically by `src/blog/posts/posts.json`, so a post only needs
+`title`, `date`, and `description` in its front matter. Preview it at
+`http://localhost:8080/blog/` before committing.
+
+---
+
 ## Status
 
 > 🚧 **Active development — pre-release.**
