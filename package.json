@@ -5,16 +5,19 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "build": "eleventy",
+    "dev": "eleventy --serve",
     "test": "cucumber-js",
     "test:headed": "HEADED=true cucumber-js",
     "test:debug": "DEBUG=true HEADED=true cucumber-js --fail-fast",
     "test:ci": "cucumber-js --format json:reports/cucumber-report.json --format html:reports/cucumber-report.html",
-    "serve": "npx serve -l 3000",
-    "lint:html": "html-validate index.html",
+    "serve": "npm run build && npx serve dist -l 3000",
+    "lint:html": "npm run build && html-validate \"dist/**/*.html\"",
     "lint:css": "stylelint '**/*.css'",
     "lighthouse": "lighthouse http://localhost:3000 --output html --output-path ./reports/lighthouse.html"
   },
   "devDependencies": {
+    "@11ty/eleventy": "^3.0.0",
     "@axe-core/playwright": "^4.8.0",
     "@cucumber/cucumber": "^10.3.0",
     "@playwright/test": "^1.41.0",

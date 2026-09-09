@@ -1,0 +1,22 @@
+---
+layout: layouts/base.njk
+title: Blog
+description: Notes on building a calm, private health companion — in the open.
+permalink: /blog/
+---
+<div class="blog-wrap">
+  <h1>Blog</h1>
+  <p class="blog-intro">Notes on building Health Flare in the open — product decisions, privacy engineering, and the occasional dev-log.</p>
+
+  <ul class="post-list">
+    {%- for post in collections.posts %}
+    <li class="post-card">
+      <a href="{{ post.url }}">
+        <p class="post-date">{{ post.data.date | readableDate }}</p>
+        <h2>{{ post.data.title }}</h2>
+        <p>{{ post.data.description }}</p>
+      </a>
+    </li>
+    {%- endfor %}
+  </ul>
+</div>
