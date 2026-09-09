@@ -33,6 +33,7 @@ jobs:
           cp index.html dist/
           cp -f *.html dist/
           [ -d assets ] && cp -r assets dist/
+          [ -d inner-flare ] && cp -r inner-flare dist/
           touch dist/.nojekyll
 
       - name: Configure Pages
