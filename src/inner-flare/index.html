@@ -51,12 +51,6 @@
       --teal-15: rgba(23, 39, 44, 0.15);
       --teal-08: rgba(23, 39, 44, 0.08);
 
-      /* Flow intensity scale */
-      --flow-none:   #DCE7E9;
-      --flow-light:  #F2B183;
-      --flow-medium: #E0834A;
-      --flow-heavy:  #B85A2C;
-
       --shadow-sm: 0 1px 3px rgba(23, 39, 44, 0.08);
       --shadow-md: 0 4px 12px rgba(23, 39, 44, 0.10);
       --shadow-lg: 0 8px 24px rgba(23, 39, 44, 0.12);
@@ -237,66 +231,16 @@
       display: flex; flex-direction: column; align-items: center; gap: 2rem;
     }
 
-    .phone {
-      background: var(--teal); border-radius: 22px;
-      padding: 0.9rem 0.75rem; width: 150px;
-      display: flex; flex-direction: column; gap: 0.55rem;
+    .phone-frame {
+      background: var(--teal); border-radius: 28px;
+      padding: 0.6rem; width: 220px;
+      box-shadow: var(--shadow-lg), 0 0 0 1px rgba(23,39,44,0.12);
     }
 
-    .p-chrome {
-      display: flex; align-items: center; justify-content: space-between;
-      margin-bottom: 0.15rem;
+    .phone-frame img {
+      display: block; width: 100%; height: auto;
+      border-radius: 20px;
     }
-    .p-time {
-      font-family: 'DM Mono', monospace;
-      font-size: 8px; color: rgba(255,255,255,0.5); letter-spacing: 0.04em;
-    }
-    .p-status-dots { display: flex; gap: 3px; align-items: center; }
-    .p-status-dot { width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,0.3); }
-
-    .p-label { height: 4px; border-radius: 2px; background: rgba(255,255,255,0.25); width: 45%; margin-bottom: 0.15rem; }
-
-    /* Mini calendar grid */
-    .p-cal { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; }
-    .p-cal-dot {
-      width: 100%; aspect-ratio: 1; border-radius: 50%;
-      background: rgba(255,255,255,0.1);
-    }
-    .p-cal-dot.period  { background: var(--flow-medium); }
-    .p-cal-dot.period.heavy { background: var(--flow-heavy); }
-    .p-cal-dot.period.light { background: var(--flow-light); }
-    .p-cal-dot.fertile { background: rgba(242,177,131,0.4); outline: 1px solid rgba(242,177,131,0.6); }
-    .p-cal-dot.today   { outline: 1.5px solid #fff; }
-
-    /* Flow chip row */
-    .p-chips { display: flex; gap: 0.3rem; margin-top: 0.1rem; }
-    .p-chip {
-      flex: 1; height: 16px; border-radius: 100px;
-      background: rgba(255,255,255,0.08);
-      display: flex; align-items: center; justify-content: center;
-    }
-    .p-chip.active { background: var(--ember); }
-    .p-chip-mark { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.3); }
-    .p-chip.active .p-chip-mark { background: #fff; }
-
-    .p-predict {
-      background: rgba(255,255,255,0.08); border-radius: 10px;
-      padding: 0.5rem 0.6rem;
-      display: flex; flex-direction: column; gap: 0.3rem;
-    }
-    .p-predict-title { height: 5px; border-radius: 3px; background: rgba(255,255,255,0.55); width: 75%; }
-    .p-predict-sub { height: 4px; border-radius: 2px; background: rgba(255,255,255,0.22); width: 50%; }
-
-    .p-nav {
-      display: flex; justify-content: space-around;
-      margin-top: 0.2rem; padding-top: 0.5rem;
-      border-top: 1px solid rgba(255,255,255,0.08);
-    }
-    .p-nav-dot {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: rgba(255,255,255,0.2);
-    }
-    .p-nav-dot.active { background: var(--ember); }
 
     .mockup-label {
       font-size: 0.85rem; color: var(--teal-50); font-style: italic;
@@ -580,57 +524,15 @@
       </div>
     </header>
 
-    <!-- App preview (decorative mockup) -->
-    <div class="mockup-wrap" aria-hidden="true">
+    <!-- App preview -->
+    <div class="mockup-wrap">
       <div class="mockup-card">
-        <div class="phone" role="img" aria-label="Illustration of Inner Flare's calendar and logging screen">
-          <div class="p-chrome">
-            <span class="p-time">09:41</span>
-            <div class="p-status-dots">
-              <div class="p-status-dot"></div>
-              <div class="p-status-dot"></div>
-              <div class="p-status-dot"></div>
-            </div>
-          </div>
-          <div class="p-label"></div>
-          <div class="p-cal">
-            <div class="p-cal-dot"></div>
-            <div class="p-cal-dot"></div>
-            <div class="p-cal-dot period light"></div>
-            <div class="p-cal-dot period heavy"></div>
-            <div class="p-cal-dot period"></div>
-            <div class="p-cal-dot period light"></div>
-            <div class="p-cal-dot"></div>
-            <div class="p-cal-dot"></div>
-            <div class="p-cal-dot"></div>
-            <div class="p-cal-dot"></div>
-            <div class="p-cal-dot"></div>
-            <div class="p-cal-dot"></div>
-            <div class="p-cal-dot today"></div>
-            <div class="p-cal-dot"></div>
-            <div class="p-cal-dot"></div>
-            <div class="p-cal-dot"></div>
-            <div class="p-cal-dot fertile"></div>
-            <div class="p-cal-dot fertile"></div>
-            <div class="p-cal-dot fertile"></div>
-            <div class="p-cal-dot fertile"></div>
-            <div class="p-cal-dot"></div>
-          </div>
-          <div class="p-chips">
-            <div class="p-chip active"><div class="p-chip-mark"></div></div>
-            <div class="p-chip"><div class="p-chip-mark"></div></div>
-            <div class="p-chip"><div class="p-chip-mark"></div></div>
-            <div class="p-chip"><div class="p-chip-mark"></div></div>
-          </div>
-          <div class="p-predict">
-            <div class="p-predict-title"></div>
-            <div class="p-predict-sub"></div>
-          </div>
-          <div class="p-nav">
-            <div class="p-nav-dot active"></div>
-            <div class="p-nav-dot"></div>
-            <div class="p-nav-dot"></div>
-          </div>
+        <div class="phone-frame">
+          <img
+            src="../src/assets/inner-flare-calendar-screenshot.png"
+            alt="Inner Flare's calendar screen, showing a month view with period days, a predicted period, and the fertile window color-coded on the dates"
+            width="640" height="748"
+          >
         </div>
         <p class="mockup-label">Coming to iOS &amp; Android</p>
       </div>
