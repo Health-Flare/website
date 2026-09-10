@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title or "Blog" }} · Health Flare</title>
+  <meta name="description" content="{{ description or 'Notes on building a calm, private health companion.' }}">
+  <meta property="og:title" content="{{ title or 'Health Flare Blog' }}">
+  <meta property="og:description" content="{{ description or 'Notes on building a calm, private health companion.' }}">
+  <meta property="og:url" content="https://healthflare.org{{ page.url }}">
+  <meta name="theme-color" content="#F5A623">
+
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <meta property="og:image" content="https://healthflare.org/assets/banner.png">
+
+  <style>
+    /* ── Self-hosted fonts, no third-party requests ──────── */
+    @font-face { font-family: 'Fraunces'; src: url('/assets/fonts/Fraunces-Medium.ttf') format('truetype'); font-weight: 500; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Fraunces'; src: url('/assets/fonts/Fraunces-MediumItalic.ttf') format('truetype'); font-weight: 500; font-style: italic; font-display: swap; }
+    @font-face { font-family: 'Fraunces'; src: url('/assets/fonts/Fraunces-SemiBold.ttf') format('truetype'); font-weight: 600; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Fraunces'; src: url('/assets/fonts/Fraunces-SemiBoldItalic.ttf') format('truetype'); font-weight: 600; font-style: italic; font-display: swap; }
+    @font-face { font-family: 'DM Sans'; src: url('/assets/fonts/DMSans-Regular.ttf') format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'DM Sans'; src: url('/assets/fonts/DMSans-Italic.ttf') format('truetype'); font-weight: 400; font-style: italic; font-display: swap; }
+    @font-face { font-family: 'DM Sans'; src: url('/assets/fonts/DMSans-Medium.ttf') format('truetype'); font-weight: 500; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'DM Sans'; src: url('/assets/fonts/DMSans-MediumItalic.ttf') format('truetype'); font-weight: 500; font-style: italic; font-display: swap; }
+    @font-face { font-family: 'DM Sans'; src: url('/assets/fonts/DMSans-SemiBold.ttf') format('truetype'); font-weight: 600; font-style: normal; font-display: swap; }
+  </style>
+
+  <style>
+    /* ── Reset & tokens (matches src/index.html) ─────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --amber: #F5A623;
+      --coral: #F07560;
+      --dusk: #2C2825;
+      --cloud: #F4F1EC;
+
+      --dusk-80: rgba(44, 40, 37, 0.80);
+      --dusk-50: rgba(44, 40, 37, 0.50);
+      --dusk-15: rgba(44, 40, 37, 0.15);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-size: 1rem;
+      line-height: 1.65;
+      color: var(--dusk);
+      background: var(--cloud);
+    }
+
+    .sr-only {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+
+    .skip-link {
+      position: absolute; top: -99px; left: 1rem;
+      background: var(--dusk); color: var(--cloud);
+      padding: 0.5rem 1rem; border-radius: 0 0 8px 8px;
+      font-size: 0.875rem; z-index: 999;
+      transition: top 0.15s;
+    }
+    .skip-link:focus { top: 0; }
+
+    /* ── Nav ────────────────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2rem;
+      background: rgba(244, 241, 236, 0.88);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--dusk-15);
+    }
+
+    .logo {
+      display: flex; align-items: center; gap: 0.55rem;
+      text-decoration: none; color: var(--dusk);
+    }
+
+    .logo-mark {
+      width: 34px; height: 34px; border-radius: 9px; flex-shrink: 0;
+      overflow: hidden; display: block;
+    }
+
+    .logo-mark img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    .logo-name {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 1.1rem; font-weight: 600; letter-spacing: -0.01em;
+    }
+
+    .nav-pill {
+      display: inline-flex; align-items: center;
+      background: var(--amber); color: var(--dusk);
+      font-size: 0.875rem; font-weight: 500;
+      padding: 0.5rem 1.2rem; border-radius: 100px;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: opacity 0.15s, box-shadow 0.15s;
+    }
+    .nav-pill:hover { opacity: 0.88; box-shadow: 0 2px 12px rgba(245,166,35,0.35); }
+    .nav-pill:focus-visible { outline: 3px solid var(--dusk); outline-offset: 3px; }
+
+    /* ── Blog content ───────────────────────────────────── */
+    .blog-wrap {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: 4rem 1.5rem 5rem;
+    }
+
+    .blog-wrap h1 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(2rem, 4vw, 2.6rem);
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+
+    .blog-intro { color: var(--dusk-80); margin-bottom: 3rem; }
+
+    .post-list { list-style: none; display: flex; flex-direction: column; gap: 2.25rem; }
+
+    .post-card a { text-decoration: none; color: inherit; display: block; }
+
+    .post-card h2 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 1.4rem; font-weight: 600;
+      margin-bottom: 0.35rem;
+    }
+    .post-card a:hover h2 { color: var(--coral); }
+
+    .post-date {
+      font-size: 0.8rem; color: var(--dusk-50);
+      text-transform: uppercase; letter-spacing: 0.06em;
+      margin-bottom: 0.5rem;
+    }
+
+    .post-card p:last-child { color: var(--dusk-80); }
+
+    .post-meta {
+      font-size: 0.85rem; color: var(--dusk-50);
+      margin-bottom: 1.5rem;
+    }
+    .post-meta a { color: var(--dusk-80); }
+
+    .post-title {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(1.9rem, 4vw, 2.4rem);
+      font-weight: 600;
+      margin-bottom: 2rem;
+      line-height: 1.2;
+    }
+
+    .post-body h2 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 1.4rem; margin: 2rem 0 0.75rem;
+    }
+    .post-body p { margin-bottom: 1.25rem; }
+    .post-body a { color: var(--coral); }
+    .post-body ul, .post-body ol { margin: 0 0 1.25rem 1.25rem; }
+    .post-body li { margin-bottom: 0.4rem; }
+    .post-body code {
+      background: var(--dusk-15); padding: 0.15em 0.4em; border-radius: 4px;
+      font-family: 'DM Mono', monospace; font-size: 0.9em;
+    }
+
+    /* ── Footer ─────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--dusk-15);
+      padding: 2.25rem 2rem;
+      display: flex; align-items: flex-start;
+      justify-content: space-between; flex-wrap: wrap; gap: 1.25rem;
+      max-width: 100%;
+    }
+
+    .footer-brand {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 1rem; font-weight: 500; margin-bottom: 0.25rem;
+    }
+
+    .footer-copy { font-size: 0.78rem; color: #6B6560; }
+
+    .footer-nav { display: flex; gap: 1.75rem; flex-wrap: wrap; align-items: center; }
+
+    .footer-nav a { font-size: 0.85rem; color: var(--dusk-80); text-decoration: none; }
+    .footer-nav a:hover { color: var(--dusk); text-decoration: underline; text-underline-offset: 3px; }
+    .footer-nav a:focus-visible { outline: 3px solid var(--dusk); outline-offset: 3px; border-radius: 2px; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition: none !important; animation: none !important; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <nav aria-label="Main navigation">
+    <a href="/" class="logo" aria-label="Health Flare home">
+      <div class="logo-mark" aria-hidden="true">
+        <img src="/assets/icon.png" alt="" width="34" height="34" aria-hidden="true">
+      </div>
+      <span class="logo-name">Health Flare</span>
+    </a>
+    <a href="/" class="nav-pill">Back to site</a>
+  </nav>
+
+  <main id="main" tabindex="-1">
+    {{ content | safe }}
+  </main>
+
+  <footer>
+    <div>
+      <div class="footer-brand">Health Flare</div>
+      <p class="footer-copy">© 2026 AutomatedBytes &nbsp;·&nbsp; A calm companion for chronic illness.</p>
+    </div>
+    <nav class="footer-nav" aria-label="Footer links">
+      <a href="https://play.google.com/store/apps/details?id=org.healthflare.app.healthflare&hl=en" target="_blank" rel="noopener">Google Play ↗</a>
+      <a href="mailto:hello@healthflare.org">Contact</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/blog/">Blog</a>
+      <a href="/inner-flare/">Inner Flare</a>
+    </nav>
+  </footer>
+</body>
+</html>

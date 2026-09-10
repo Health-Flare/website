@@ -27,14 +27,20 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Assemble site
-        run: |
-          mkdir -p dist
-          cp index.html dist/
-          cp -f *.html dist/
-          [ -d assets ] && cp -r assets dist/
-          [ -d inner-flare ] && cp -r inner-flare dist/
-          touch dist/.nojekyll
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build site
+        run: npm run build
+
+      - name: Mark output for GitHub Pages
+        run: touch dist/.nojekyll
 
       - name: Configure Pages
         uses: actions/configure-pages@v5

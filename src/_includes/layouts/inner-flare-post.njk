@@ -1,0 +1,13 @@
+---
+layout: layouts/inner-flare-base.njk
+---
+<article class="blog-wrap post">
+  <p class="post-meta">
+    <a href="/inner-flare/blog/">← All posts</a> &nbsp;·&nbsp;
+    <time datetime="{{ date | htmlDateString }}">{{ date | readableDate }}</time>
+  </p>
+  <h1 class="post-title">{{ title }}</h1>
+  <div class="post-body">
+    {{ content | safe }}
+  </div>
+</article>

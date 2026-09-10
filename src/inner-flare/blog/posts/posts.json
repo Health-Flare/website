@@ -1,0 +1,5 @@
+{
+  "layout": "layouts/inner-flare-post.njk",
+  "tags": ["inner-flare-posts"],
+  "permalink": "/inner-flare/blog/{{ page.fileSlug }}/"
+}
