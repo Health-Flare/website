@@ -1,0 +1,22 @@
+---
+layout: layouts/inner-flare-base.njk
+title: Blog
+description: Notes on why Inner Flare exists and why reproductive health data deserves total privacy.
+permalink: /inner-flare/blog/
+---
+<div class="blog-wrap">
+  <h1>Blog</h1>
+  <p class="blog-intro">Notes on building Inner Flare in the open: why it exists, why it never leaves your device, and why that matters to everyone, not just the person tracking.</p>
+
+  <ul class="post-list">
+    {%- for post in collections.innerFlarePosts %}
+    <li class="post-card">
+      <a href="{{ post.url }}">
+        <p class="post-date">{{ post.data.date | readableDate }}</p>
+        <h2>{{ post.data.title }}</h2>
+        <p>{{ post.data.description }}</p>
+      </a>
+    </li>
+    {%- endfor %}
+  </ul>
+</div>

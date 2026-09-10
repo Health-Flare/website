@@ -41,8 +41,9 @@ HealthFlare was built from personal experience to solve this problem; designed t
 
 This repository (the marketing site and blog) is a static site built with
 [Eleventy](https://www.11ty.dev/). The hand-written marketing pages
-(`src/index.html`, `src/privacy.html`, `src/inner-flare/`) are copied
-through untouched; only `src/blog/` is templated.
+(`src/index.html`, `src/privacy.html`, `src/inner-flare/index.html`,
+`src/inner-flare/privacy.html`) are copied through untouched; `src/blog/`
+and `src/inner-flare/blog/` are templated.
 
 Requires Node.js 18 or later.
 
@@ -97,6 +98,14 @@ The file's `layout`, `permalink` (`/blog/<filename>/`), and `posts` tag are
 set automatically by `src/blog/posts/posts.json`, so a post only needs
 `title`, `date`, and `description` in its front matter. Preview it at
 `http://localhost:8080/blog/` before committing.
+
+Inner Flare has its own blog, nested at `/inner-flare/blog/`, using the same
+pattern with Inner Flare's own brand tokens and layouts
+(`src/_includes/layouts/inner-flare-base.njk` /
+`inner-flare-post.njk`). Add posts under `src/inner-flare/blog/posts/`; the
+front matter defaults (layout, permalink, `inner-flare-posts` tag) come
+from `src/inner-flare/blog/posts/posts.json`, so a post only needs `title`,
+`date`, and `description`. Preview it at `http://localhost:8080/inner-flare/blog/`.
 
 ---
 
