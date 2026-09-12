@@ -1,7 +1,7 @@
 // Step definitions for accessibility.feature
 // Tests WCAG 2.2 AA compliance and assistive technology support
 
-import { Then, Given } from '@cucumber/cucumber';
+import { Then, Given, When } from '@cucumber/cucumber';
 import { expect } from '@playwright/test';
 
 // ---------------------------------------------------------------------------
@@ -98,6 +98,10 @@ Then('the link is not visible when focus moves away from it', async function () 
 
 Given('a hamburger or disclosure menu is present', async function () {
   const menuToggle = this.page.locator('[aria-expanded], button:has-text("menu"), .hamburger, .menu-toggle').first();
+  if ((await menuToggle.count()) === 0) {
+    // The nav has no collapsible menu at any viewport width — nothing to test.
+    return 'skipped';
+  }
   this.menuToggle = menuToggle;
 });
 
@@ -343,21 +347,33 @@ Then('placeholder text is not used as the only label', async function () {
 });
 
 Given('a form with validation is present', async function () {
-  this.hasForm = await this.page.locator('form').count() > 0;
+  const hasForm = await this.page.locator('form').count() > 0;
+  if (!hasForm) {
+    // The site currently has no forms (client-side or otherwise) — nothing
+    // to validate, so skip rather than fake a pass.
+    return 'skipped';
+  }
+  this.hasForm = true;
+});
+
+When('the user submits the form with invalid data', async function () {
+  const form = this.page.locator('form').first();
+  const submit = form.locator('button[type="submit"], input[type="submit"]').first();
+  await submit.click();
 });
 
 Then('an error message is displayed adjacent to the offending field', async function () {
-  // This requires form submission with invalid data
-  // For now, we just verify the structure is in place
-  expect(true).toBe(true);
+  const errorMessage = this.page.locator('[role="alert"], .error, [aria-invalid="true"] ~ *').first();
+  await expect(errorMessage).toBeVisible();
 });
 
 Then('the error message is associated with the input via aria-describedby or role={string}', async function (role) {
-  // This is a structural check
-  expect(true).toBe(true);
+  const invalidField = this.page.locator('[aria-invalid="true"]').first();
+  const describedBy = await invalidField.getAttribute('aria-describedby');
+  expect(describedBy).toBeTruthy();
 });
 
 Then('focus moves to the first field with an error', async function () {
-  // This requires form submission with invalid data
-  expect(true).toBe(true);
+  const invalidField = this.page.locator('[aria-invalid="true"]').first();
+  await expect(invalidField).toBeFocused();
 });

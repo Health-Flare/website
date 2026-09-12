@@ -166,6 +166,16 @@
       background: var(--dusk-15); padding: 0.15em 0.4em; border-radius: 4px;
       font-family: 'DM Mono', monospace; font-size: 0.9em;
     }
+    .post-body img {
+      max-width: 100%; height: auto; display: block;
+      margin: 1.5rem 0; border-radius: 12px;
+      border: 1px solid var(--dusk-15); box-shadow: 0 1px 3px rgba(44, 40, 37, 0.08);
+    }
+    .post-body figure { margin: 1.5rem 0; }
+    .post-body figcaption {
+      font-size: 0.82rem; color: var(--dusk-50);
+      text-align: center; margin-top: 0.5rem;
+    }
 
     /* ── Footer ─────────────────────────────────────────── */
     footer {
@@ -219,6 +229,7 @@
       <p class="footer-copy">© 2026 AutomatedBytes &nbsp;·&nbsp; A calm companion for chronic illness.</p>
     </div>
     <nav class="footer-nav" aria-label="Footer links">
+      <a href="https://apps.apple.com/app/health-flare/id6803123766" target="_blank" rel="noopener">App Store ↗</a>
       <a href="https://play.google.com/store/apps/details?id=org.healthflare.app.healthflare&hl=en" target="_blank" rel="noopener">Google Play ↗</a>
       <a href="mailto:hello@healthflare.org">Contact</a>
       <a href="/privacy">Privacy</a>

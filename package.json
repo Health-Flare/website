@@ -14,7 +14,9 @@
     "serve": "npm run build && npx serve dist -l 3000",
     "lint:html": "npm run build && html-validate \"dist/**/*.html\"",
     "lint:css": "stylelint '**/*.css'",
-    "lighthouse": "lighthouse http://localhost:3000 --output html --output-path ./reports/lighthouse.html"
+    "lighthouse": "lighthouse http://localhost:3000 --output html --output-path ./reports/lighthouse.html",
+    "validate": "bash scripts/validate.sh",
+    "prepare": "husky"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0",
@@ -22,6 +24,7 @@
     "@cucumber/cucumber": "^10.3.0",
     "@playwright/test": "^1.41.0",
     "html-validate": "^8.9.0",
+    "husky": "^9.1.7",
     "lighthouse": "^11.5.0",
     "serve": "^14.2.0",
     "stylelint": "^16.2.0",

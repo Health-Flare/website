@@ -111,9 +111,9 @@ from `src/inner-flare/blog/posts/posts.json`, so a post only needs `title`,
 
 ## Status
 
-> 🚧 **Active development — pre-release.**
+> ✅ **Live on the App Store and Google Play.**
 
-HealthFlare is currently in development. We are working toward a private beta. If you're a parent, caregiver, or healthcare provider interested in early access or feedback opportunities, reach out via the contact below.
+HealthFlare is available now for [iOS](https://apps.apple.com/app/health-flare/id6803123766) and [Android](https://play.google.com/store/apps/details?id=org.healthflare.app.healthflare&hl=en). If you're a parent, caregiver, or healthcare provider with feedback, reach out via the contact below.
 
 ---
 
@@ -122,7 +122,7 @@ HealthFlare is currently in development. We are working toward a private beta. I
 This project is driven by a single human and carefully crafted AI support with a specific mission. We're not looking to move fast, we're looking to get it right.
 As the first user with a personal attachment, I have every desire to be clean, and clear about what the application does and how it does it.
 
-- **Early access / beta feedback:** [healthflare.org](https://healthflare.org) (Website is coming soon)
+- **Download / feedback:** [healthflare.org](https://healthflare.org)
 - **Security concerns:** Please disclose responsibly via the contact on our website
 - **General inquiries:** Open a discussion in the relevant repository
 

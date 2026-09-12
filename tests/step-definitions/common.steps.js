@@ -29,6 +29,10 @@ Given('the browser viewport is {int} pixels wide', async function (width) {
   await this.setViewport(width);
 });
 
+Given('the viewport is {int} pixels wide', async function (width) {
+  await this.setViewport(width);
+});
+
 Given('JavaScript is disabled in the browser', async function () {
   // Close current browser and relaunch with JS disabled, then re-navigate
   await this.closeBrowser();
@@ -66,6 +70,10 @@ When('the page loads', async function () {
   await this.page.waitForLoadState('load');
 });
 
+When('the page is viewed', async function () {
+  // No action needed - page is already loaded
+});
+
 When('I view the top of the page', async function () {
   await this.page.evaluate(() => window.scrollTo(0, 0));
 });
@@ -101,6 +109,16 @@ When('I read the privacy section', async function () {
 
 When('I locate the download section', async function () {
   const section = this.page.locator('[data-section="download"], #download, section:has-text("download")').first();
+  await section.scrollIntoViewIfNeeded();
+});
+
+When('I scroll to the about section', async function () {
+  const section = this.page.locator('#about, [data-section="about"]').first();
+  await section.scrollIntoViewIfNeeded();
+});
+
+When('I read the about section', async function () {
+  const section = this.page.locator('#about, [data-section="about"]').first();
   await section.scrollIntoViewIfNeeded();
 });
 
@@ -209,12 +227,16 @@ When('a screen reader navigates by landmark', async function () {
 
 When('a screen reader encounters an image', async function () {
   this.images = await this.page.evaluate(() => {
-    return Array.from(document.querySelectorAll('img')).map((img) => ({
-      src: img.src,
-      alt: img.getAttribute('alt'),
-      isDecorative: img.getAttribute('alt') === '',
-      ariaHidden: img.getAttribute('aria-hidden'),
-    }));
+    return Array.from(document.querySelectorAll('img'))
+      // Images inside a [hidden] ancestor (e.g. a closed dialog) are removed
+      // from the accessibility tree entirely, so they are not "encountered".
+      .filter((img) => !img.closest('[hidden]'))
+      .map((img) => ({
+        src: img.src,
+        alt: img.getAttribute('alt'),
+        isDecorative: img.getAttribute('alt') === '',
+        ariaHidden: img.getAttribute('aria-hidden'),
+      }));
   });
 });
 
