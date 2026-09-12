@@ -111,6 +111,12 @@
     }
     .nav-pill:hover { opacity: 0.88; box-shadow: 0 2px 12px rgba(245,166,35,0.35); }
     .nav-pill:focus-visible { outline: 3px solid var(--dusk); outline-offset: 3px; }
+    .nav-pill.nav-pill-ghost {
+      background: transparent; color: var(--dusk);
+      border: 1.5px solid var(--dusk-15);
+    }
+    .nav-pill.nav-pill-ghost:hover { opacity: 1; background: var(--peach); box-shadow: none; }
+    .nav-pills { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; justify-content: flex-end; }
 
     /* ── Page content ───────────────────────────────────── */
     .page-wrap {
@@ -233,7 +239,10 @@
       </div>
       <span class="logo-name">Health Flare</span>
     </a>
-    <a href="https://play.google.com/store/apps/details?id=org.healthflare.app.healthflare&hl=en" class="nav-pill" target="_blank" rel="noopener" aria-label="Download Health Flare on Google Play">Download on Google Play</a>
+    <div class="nav-pills">
+      <a href="https://apps.apple.com/app/health-flare/id6803123766" class="nav-pill" target="_blank" rel="noopener" aria-label="Download Health Flare on the App Store">App Store</a>
+      <a href="https://play.google.com/store/apps/details?id=org.healthflare.app.healthflare&hl=en" class="nav-pill nav-pill-ghost" target="_blank" rel="noopener" aria-label="Download Health Flare on Google Play">Google Play</a>
+    </div>
   </nav>
 
   <main id="main" tabindex="-1">

@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Health Flare: Your private health companion</title>
-  <meta name="description" content="A calm, private health journal for people living with chronic illness. Live now on Google Play, with the App Store on the way. Track symptoms, spot patterns, and share with your care team, all on your device.">
+  <meta name="description" content="A calm, private health journal for people living with chronic illness. Now on the App Store and Google Play. Track symptoms, spot patterns, and share with your care team, all on your device.">
   <meta property="og:title" content="Health Flare: Your private health companion">
-  <meta property="og:description" content="Live now on Google Play, with the App Store on the way. Track symptoms, spot patterns, share what matters. Everything stays on your device.">
+  <meta property="og:description" content="Now on the App Store and Google Play. Track symptoms, spot patterns, share what matters. Everything stays on your device.">
   <meta property="og:url" content="https://healthflare.org">
   <meta name="theme-color" content="#F5A623">
 
@@ -124,7 +124,7 @@
     }
 
     .nav-pill {
-      display: inline-flex; align-items: center;
+      display: inline-flex; align-items: center; gap: 0.4rem;
       background: var(--amber); color: var(--dusk);
       font-size: 0.875rem; font-weight: 500;
       padding: 0.5rem 1.2rem; border-radius: 100px;
@@ -133,6 +133,12 @@
     }
     .nav-pill:hover { opacity: 0.88; box-shadow: 0 2px 12px rgba(245,166,35,0.35); }
     .nav-pill:focus-visible { outline: 3px solid var(--dusk); outline-offset: 3px; }
+    .nav-pill.nav-pill-ghost {
+      background: transparent; color: var(--dusk);
+      border: 1.5px solid var(--dusk-15);
+    }
+    .nav-pill.nav-pill-ghost:hover { opacity: 1; background: var(--peach); box-shadow: none; }
+    .nav-pills { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; justify-content: flex-end; }
 
     /* ── Hero ───────────────────────────────────────────── */
     .hero {
@@ -382,42 +388,6 @@
 
     .access-section .lead { margin: 0 auto 2.5rem; text-align: center; }
 
-    .access-form {
-      display: flex; gap: 0.75rem; flex-wrap: wrap;
-      justify-content: center; max-width: 30rem; margin: 0 auto;
-    }
-
-    .email-input {
-      flex: 1; min-width: 200px;
-      font-family: 'DM Sans', system-ui, sans-serif;
-      font-size: 0.95rem; padding: 0.75rem 1.25rem;
-      border-radius: 100px;
-      border: 1.5px solid var(--warm-linen);
-      background: var(--ash-white); color: var(--dusk);
-      outline: none; transition: border-color 0.15s, box-shadow 0.15s;
-    }
-    .email-input::placeholder { color: var(--dusk-50); }
-    .email-input:focus {
-      border-color: var(--amber);
-      box-shadow: 0 0 0 3px rgba(245, 166, 35, 0.22);
-    }
-
-    .fine-print {
-      font-size: 0.78rem; color: #6B6560; /* ~5:1 on --cloud */
-      margin-top: 0.9rem; line-height: 1.5;
-    }
-    .fine-print.error { color: var(--coral); }
-    .waitlist-success {
-      font-family: 'DM Sans', system-ui, sans-serif;
-      font-size: 1rem; font-weight: 500;
-      color: var(--dusk); text-align: center;
-      padding: 0.85rem 1.5rem;
-      background: var(--ash-white);
-      border: 1.5px solid var(--warm-linen);
-      border-radius: 100px;
-      display: inline-block;
-    }
-
     /* ── Footer ─────────────────────────────────────────── */
     footer {
       border-top: 1px solid var(--dusk-15);
@@ -636,7 +606,10 @@
       </div>
       <span class="logo-name">Health Flare</span>
     </a>
-    <a href="https://play.google.com/store/apps/details?id=org.healthflare.app.healthflare&hl=en" class="nav-pill" target="_blank" rel="noopener" aria-label="Download Health Flare on Google Play">Download on Google Play</a>
+    <div class="nav-pills">
+      <a href="https://apps.apple.com/app/health-flare/id6803123766" class="nav-pill" target="_blank" rel="noopener" aria-label="Download Health Flare on the App Store">App Store</a>
+      <a href="https://play.google.com/store/apps/details?id=org.healthflare.app.healthflare&hl=en" class="nav-pill nav-pill-ghost" target="_blank" rel="noopener" aria-label="Download Health Flare on Google Play">Google Play</a>
+    </div>
   </nav>
 
   <main id="main" tabindex="-1">
@@ -645,7 +618,7 @@
     <header class="hero" aria-labelledby="hero-heading">
       <div class="hero-badge" role="status" data-section="availability">
         <span class="badge-dot" aria-hidden="true"></span>
-        Live on Android via Google Play &nbsp;·&nbsp; Apple App Store: submission underway
+        Now live on the App Store and Google Play
       </div>
 
       <h1 id="hero-heading">
@@ -659,6 +632,12 @@
       </p>
 
       <div class="hero-actions" data-section="download">
+        <a href="https://apps.apple.com/app/health-flare/id6803123766" class="btn-primary cta" target="_blank" rel="noopener" aria-label="Download Health Flare on the App Store">
+          <svg width="16" height="16" viewBox="0 0 384 512" fill="none" aria-hidden="true">
+            <path fill="currentColor" d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141 4 184.8 4 273.9c0 26.5 4.9 54 14.6 82.4 13 37.7 59.6 130.1 108.2 128.5 25.5-.6 43.5-18.1 76.7-18.1 32.2 0 48.9 18.1 76.4 18.1 49 .7 91.1-83.7 103.5-121.5-65.9-31.1-64.7-91.2-64.7-94.6zM255.1 66.4c26.9-32 24.5-61.2 23.7-71.7-23.8 1.4-51.4 16.4-67.1 34.9-17.3 19.7-27.5 44.1-25.4 71.4 25.9 2 49.5-11 68.8-34.6z"/>
+          </svg>
+          Download on the App Store
+        </a>
         <a href="https://play.google.com/store/apps/details?id=org.healthflare.app.healthflare&hl=en" class="btn-primary cta" target="_blank" rel="noopener" aria-label="Download Health Flare on Google Play">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
             <path d="M2.5 1.2c-.25.25-.4.62-.4 1.1v11.4c0 .48.15.85.4 1.1l.09.08 6.4-6.4v-.16l-6.4-6.4-.09.28z" fill="currentColor"/>
@@ -668,13 +647,10 @@
           </svg>
           Download on Google Play
         </a>
-        <a href="#features" class="btn-ghost">See how it works</a>
       </div>
 
       <p class="hero-note">
-        <img class="hero-note-icon" alt="Apple App Store" width="13" height="13" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 384 512'%3E%3Cpath fill='%236B6560' d='M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141 4 184.8 4 273.9c0 26.5 4.9 54 14.6 82.4 13 37.7 59.6 130.1 108.2 128.5 25.5-.6 43.5-18.1 76.7-18.1 32.2 0 48.9 18.1 76.4 18.1 49 .7 91.1-83.7 103.5-121.5-65.9-31.1-64.7-91.2-64.7-94.6zM255.1 66.4c26.9-32 24.5-61.2 23.7-71.7-23.8 1.4-51.4 16.4-67.1 34.9-17.3 19.7-27.5 44.1-25.4 71.4 25.9 2 49.5-11 68.8-34.6z'/%3E%3C/svg%3E">
-        On iPhone? The App Store version has been submitted to Apple:
-        <a href="#notify" class="hero-note-link">let me know when it's live</a>.
+        <a href="#features" class="hero-note-link">See how it works ↓</a>
       </p>
     </header>
 
@@ -750,7 +726,7 @@
       <div class="screenshots-header">
         <span class="eyebrow">The app</span>
         <h2 id="screenshots-heading">A look inside.</h2>
-        <p class="lead">Real screenshots from Health Flare, live now on Google Play.</p>
+        <p class="lead">Real screenshots from Health Flare, live now on the App Store and Google Play.</p>
       </div>
       <div class="screenshot-scroll">
         <div class="screenshot-track" id="screenshot-track">
@@ -955,38 +931,31 @@
       </div>
     </section>
 
-    <!-- Notify me for iOS -->
-    <section class="access-section" id="notify" aria-labelledby="access-heading">
-      <span class="eyebrow" style="display:block; text-align:center;">Apple App Store</span>
-      <h2 id="access-heading">Coming soon to iPhone.</h2>
+    <!-- Get the app -->
+    <section class="access-section" id="download" aria-labelledby="access-heading">
+      <span class="eyebrow" style="display:block; text-align:center;">Get the app</span>
+      <h2 id="access-heading">Free to download, wherever you are.</h2>
       <p class="lead">
-        Health Flare is live on Google Play today. The iOS build has been submitted to Apple and is working through review. Pop in your email and I'll let you know the moment it's live on the App Store.
+        Health Flare is live on the App Store and Google Play. No account, no ads, nothing to sign up for.
       </p>
 
-      <form
-        id="notify-form"
-        class="access-form"
-        aria-label="Let me know when App Store is live, by email"
-        novalidate
-      >
-        <label for="email-input" class="sr-only">Your email address</label>
-        <input
-          type="email"
-          id="email-input"
-          name="email"
-          class="email-input"
-          placeholder="your@email.com"
-          required
-          autocomplete="email"
-          aria-required="true"
-          aria-describedby="form-note"
-        >
-        <button type="submit" class="btn-primary">Notify me</button>
-      </form>
-
-      <p class="fine-print" id="form-note">
-        No marketing. Unsubscribe any time. Your email is used only to tell you when iOS launches.
-      </p>
+      <div class="hero-actions">
+        <a href="https://apps.apple.com/app/health-flare/id6803123766" class="btn-primary cta" target="_blank" rel="noopener" aria-label="Download Health Flare on the App Store">
+          <svg width="16" height="16" viewBox="0 0 384 512" fill="none" aria-hidden="true">
+            <path fill="currentColor" d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141 4 184.8 4 273.9c0 26.5 4.9 54 14.6 82.4 13 37.7 59.6 130.1 108.2 128.5 25.5-.6 43.5-18.1 76.7-18.1 32.2 0 48.9 18.1 76.4 18.1 49 .7 91.1-83.7 103.5-121.5-65.9-31.1-64.7-91.2-64.7-94.6zM255.1 66.4c26.9-32 24.5-61.2 23.7-71.7-23.8 1.4-51.4 16.4-67.1 34.9-17.3 19.7-27.5 44.1-25.4 71.4 25.9 2 49.5-11 68.8-34.6z"/>
+          </svg>
+          Download on the App Store
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=org.healthflare.app.healthflare&hl=en" class="btn-primary cta" target="_blank" rel="noopener" aria-label="Download Health Flare on Google Play">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M2.5 1.2c-.25.25-.4.62-.4 1.1v11.4c0 .48.15.85.4 1.1l.09.08 6.4-6.4v-.16l-6.4-6.4-.09.28z" fill="currentColor"/>
+            <path d="M11.1 9.6l-2.1-2.1v-.16l2.1-2.1 4.75 2.7c.36.2.58.48.58.76s-.22.56-.58.76l-4.75 2.7-.01-.5z" fill="currentColor" opacity="0.7"/>
+            <path d="M9 7.5l2.1-2.1L4.7 1.9c-.3-.17-.58-.2-.8-.1L9 7.5z" fill="currentColor" opacity="0.85"/>
+            <path d="M9 8.5l-5.1 5.7c.22.1.5.07.8-.1l6.4-3.64L9 8.5z" fill="currentColor"/>
+          </svg>
+          Download on Google Play
+        </a>
+      </div>
     </section>
 
   </main>
@@ -998,6 +967,7 @@
       <p class="footer-copy">© 2026 AutomatedBytes &nbsp;·&nbsp; A calm companion for chronic illness.</p>
     </div>
     <nav class="footer-nav" aria-label="Footer links">
+      <a href="https://apps.apple.com/app/health-flare/id6803123766" target="_blank" rel="noopener">App Store ↗</a>
       <a href="https://play.google.com/store/apps/details?id=org.healthflare.app.healthflare&hl=en" target="_blank" rel="noopener">Google Play ↗</a>
       <a href="mailto:hello@healthflare.org">Contact</a>
       <a href="/privacy">Privacy</a>
@@ -1005,53 +975,6 @@
       <a href="/inner-flare/">Inner Flare</a>
     </nav>
   </footer>
-
-  <script>
-    (function () {
-      var LOOPS_URL = 'https://app.loops.so/api/newsletter-form/cmmrbabel65ux0jzs4ahxh2pq';
-
-      var form = document.getElementById('notify-form');
-      var note = document.getElementById('form-note');
-      if (!form) return;
-
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        var email = form.email.value.trim();
-        if (!email) return;
-
-        var btn = form.querySelector('button[type="submit"]');
-        var originalLabel = btn.textContent;
-        btn.disabled = true;
-        btn.textContent = 'Saving\u2026';
-        note.textContent = 'No marketing. Unsubscribe any time. Your email is used only to tell you when iOS launches.';
-        note.className = 'fine-print';
-
-        fetch(LOOPS_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: new URLSearchParams({ email: email })
-        })
-          .then(function (res) { return res.json(); })
-          .then(function (data) {
-            if (data.success) {
-              form.innerHTML = '<p class="waitlist-success" role="status" aria-live="polite">You\u2019re on the list \u2014 I\u2019ll email you the moment iOS launches!</p>';
-              note.textContent = 'Check your inbox for a confirmation email.';
-            } else {
-              btn.disabled = false;
-              btn.textContent = originalLabel;
-              note.textContent = data.message || 'Something went wrong \u2014 please try again.';
-              note.className = 'fine-print error';
-            }
-          })
-          .catch(function () {
-            btn.disabled = false;
-            btn.textContent = originalLabel;
-            note.textContent = 'Couldn\u2019t connect \u2014 please check your connection and try again.';
-            note.className = 'fine-print error';
-          });
-      });
-    }());
-  </script>
 
   <script>
     (function () {
