@@ -249,6 +249,7 @@
 
     /* ── Section base ───────────────────────────────────── */
     .section { padding: 5rem 2rem; }
+    .section-flush-top { padding-top: 0; }
     .inner { max-width: 56rem; margin: 0 auto; }
 
     .eyebrow {
@@ -257,6 +258,7 @@
       color: #6B6255;
       margin-bottom: 0.9rem; display: block;
     }
+    .eyebrow-center { text-align: center; }
 
     h2 {
       font-family: 'Fraunces', Georgia, serif;
@@ -303,7 +305,10 @@
     .feature p { font-size: 0.9rem; color: var(--teal-80); line-height: 1.65; }
 
     /* ── Priority list ──────────────────────────────────── */
-    .priority-list { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2.5rem; }
+    .priority-list {
+      display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2.5rem;
+      list-style: none; padding: 0;
+    }
 
     .priority-row {
       display: flex; gap: 1.25rem; align-items: flex-start;
@@ -548,34 +553,34 @@
           this order. Nothing else is allowed to come first.
         </p>
 
-        <div class="priority-list" role="list">
-          <div class="priority-row" role="listitem">
+        <ul class="priority-list">
+          <li class="priority-row">
             <span class="priority-num" aria-hidden="true">1</span>
             <div class="priority-text">
               <strong>Secure data, on your device only.</strong>
               <span>Your cycle data is encrypted at rest and never leaves your phone unless you explicitly export it. There is no server to breach because there is no server.</span>
             </div>
-          </div>
-          <div class="priority-row" role="listitem">
+          </li>
+          <li class="priority-row">
             <span class="priority-num" aria-hidden="true">2</span>
             <div class="priority-text">
               <strong>Free, forever, and open source.</strong>
               <span>Inner Flare is FOSS-friendly by design: your device, your data, zero tracking, zero web access. The code is public so anyone can verify every claim on this page.</span>
             </div>
-          </div>
-          <div class="priority-row" role="listitem">
+          </li>
+          <li class="priority-row">
             <span class="priority-num" aria-hidden="true">3</span>
             <div class="priority-text">
               <strong>Reproductive health belongs to everyone.</strong>
               <span>Understanding your own cycle shouldn't require trusting a company with it. We believe the whole world benefits when people are empowered to track and understand their own reproductive health, on their own terms.</span>
             </div>
-          </div>
-        </div>
+          </li>
+        </ul>
       </div>
     </section>
 
     <!-- Features -->
-    <section class="section" id="features" aria-labelledby="features-heading" style="padding-top:0;">
+    <section class="section section-flush-top" id="features" aria-labelledby="features-heading">
       <div class="inner">
         <span class="eyebrow">How it works</span>
         <h2 id="features-heading">Built to be honest,<br>not clever.</h2>
@@ -637,7 +642,7 @@
     </section>
 
     <!-- Privacy -->
-    <div class="privacy-wrap" role="region" aria-labelledby="privacy-heading">
+    <section class="privacy-wrap" aria-labelledby="privacy-heading">
       <div class="privacy-block">
         <span class="eyebrow">Privacy by design</span>
         <h2 id="privacy-heading">No cloud. No accounts.<br>No web access at all.</h2>
@@ -646,7 +651,7 @@
           Inner Flare doesn't have the option to leak it, because it has no way to send it anywhere.
         </p>
 
-        <ul class="checks" role="list">
+        <ul class="checks">
           <li class="check-row">
             <div class="check-icon" aria-hidden="true">
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
@@ -693,12 +698,12 @@
           </li>
         </ul>
       </div>
-    </div>
+    </section>
 
     <!-- About / mission -->
     <section class="about-section" id="about" aria-labelledby="about-heading">
       <div class="about-inner">
-        <span class="eyebrow" style="display:block; text-align:center;">Why this exists</span>
+        <span class="eyebrow eyebrow-center">Why this exists</span>
         <h2 id="about-heading">Reproductive health, without the trade-off.</h2>
         <p class="lead">
           Cycle tracking is one of the most common (and most surveilled) forms of health tracking there is.
@@ -733,7 +738,7 @@
 
     <!-- Get involved -->
     <section class="access-section" id="get-involved" aria-labelledby="access-heading">
-      <span class="eyebrow" style="display:block; text-align:center;">Get involved</span>
+      <span class="eyebrow eyebrow-center">Get involved</span>
       <h2 id="access-heading">Follow along, or dig in.</h2>
       <p class="lead">
         Inner Flare is under active development in the open. Star the repo to follow progress,
@@ -758,7 +763,7 @@
   </main>
 
   <!-- Footer -->
-  <footer role="contentinfo">
+  <footer>
     <div>
       <div class="footer-brand">Inner Flare</div>
       <p class="footer-copy">© 2026 AutomatedBytes &nbsp;·&nbsp; A free, open-source cycle tracker.</p>

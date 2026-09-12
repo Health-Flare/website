@@ -75,6 +75,7 @@
       line-height: 1.65;
       color: var(--dusk);
       background: var(--cloud);
+      overflow-wrap: break-word;
     }
 
     /* ── Accessibility helpers ──────────────────────────── */
@@ -97,6 +98,7 @@
     nav {
       position: sticky; top: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 0.75rem;
       padding: 1rem 2rem;
       background: rgba(244, 241, 236, 0.88);
       backdrop-filter: blur(10px);
@@ -250,6 +252,7 @@
       color: #6B6560; /* ~5:1 on --cloud, avoids opacity trick */
       margin-bottom: 0.9rem; display: block;
     }
+    .eyebrow-center { text-align: center; }
 
     h2 {
       font-family: 'Fraunces', Georgia, serif;
@@ -319,6 +322,11 @@
       display: flex; align-items: flex-start; gap: 0.9rem;
     }
 
+    .check-text {
+      min-width: 0;
+      overflow-wrap: break-word;
+    }
+
     .check-icon {
       width: 22px; height: 22px; border-radius: 50%;
       background: var(--sage); flex-shrink: 0; margin-top: 0.15rem;
@@ -334,6 +342,15 @@
       font-size: 0.865rem;
       color: rgba(244, 241, 236, 0.6);
       line-height: 1.5;
+    }
+
+    .privacy-disclaimer {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(244, 241, 236, 0.15);
+      font-size: 0.82rem;
+      color: rgba(244, 241, 236, 0.55);
+      line-height: 1.6;
     }
 
     /* ── About ──────────────────────────────────────────── */
@@ -506,7 +523,7 @@
     .screenshot-item figcaption {
       font-size: 0.78rem;
       font-weight: 500;
-      color: var(--dusk-60);
+      color: var(--dusk-80);
       letter-spacing: 0.01em;
     }
 
@@ -674,7 +691,7 @@
               </svg>
             </div>
             <h3>Track what matters</h3>
-            <p>Log symptoms, energy, sleep, and mood in a few taps. Add notes when you want to, skip them when you don't. No required fields, no friction.</p>
+            <p>Log symptoms, vitals, energy, sleep, and mood in a few taps. Add notes when you want to, skip them when you don't. No required fields, no friction.</p>
           </article>
 
           <article class="feature">
@@ -700,7 +717,7 @@
               </svg>
             </div>
             <h3>Share on your terms</h3>
-            <p>Create a shareable summary for your doctor or care team. You choose exactly what's included, how much detail to show, and when to revoke it.</p>
+            <p>Export a PDF or CSV summary for your doctor or care team whenever you choose to. You decide exactly what's included, how much detail to show, and when to revoke it.</p>
           </article>
 
           <article class="feature">
@@ -733,7 +750,7 @@
 
           <figure class="screenshot-item">
             <button type="button" class="screenshot-phone screenshot-trigger" data-index="0" aria-haspopup="dialog" aria-label="View larger: Onboarding screen reading 'Your health story, in your hands'">
-              <img src="assets/screenshots/01_onboarding.png" alt="" loading="lazy" width="158" height="342">
+              <img src="assets/screenshots/01_onboarding.png" alt="Onboarding screen reading 'Your health story, in your hands'" loading="lazy" width="158" height="342">
               <span class="screenshot-zoom" aria-hidden="true">
                 <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
               </span>
@@ -743,7 +760,7 @@
 
           <figure class="screenshot-item">
             <button type="button" class="screenshot-phone screenshot-trigger" data-index="1" aria-haspopup="dialog" aria-label="View larger: Dashboard showing recent journal entries and an upcoming rheumatology follow-up">
-              <img src="assets/screenshots/02_dashboard.png" alt="" loading="lazy" width="158" height="342">
+              <img src="assets/screenshots/02_dashboard.png" alt="Dashboard showing recent journal entries and an upcoming rheumatology follow-up" loading="lazy" width="158" height="342">
               <span class="screenshot-zoom" aria-hidden="true">
                 <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
               </span>
@@ -753,7 +770,7 @@
 
           <figure class="screenshot-item">
             <button type="button" class="screenshot-phone screenshot-trigger" data-index="2" aria-haspopup="dialog" aria-label="View larger: Symptoms screen listing fatigue, joint pain, and brain fog with severity scores">
-              <img src="assets/screenshots/03_symptoms.png" alt="" loading="lazy" width="158" height="342">
+              <img src="assets/screenshots/03_symptoms.png" alt="Symptoms screen listing fatigue, joint pain, and brain fog with severity scores" loading="lazy" width="158" height="342">
               <span class="screenshot-zoom" aria-hidden="true">
                 <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
               </span>
@@ -763,7 +780,7 @@
 
           <figure class="screenshot-item">
             <button type="button" class="screenshot-phone screenshot-trigger" data-index="3" aria-haspopup="dialog" aria-label="View larger: Conditions screen showing active and in-recovery illnesses like lupus and fibromyalgia">
-              <img src="assets/screenshots/04_illnesses.png" alt="" loading="lazy" width="158" height="342">
+              <img src="assets/screenshots/04_illnesses.png" alt="Conditions screen showing active and in-recovery illnesses like lupus and fibromyalgia" loading="lazy" width="158" height="342">
               <span class="screenshot-zoom" aria-hidden="true">
                 <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
               </span>
@@ -773,7 +790,7 @@
 
           <figure class="screenshot-item">
             <button type="button" class="screenshot-phone screenshot-trigger" data-index="4" aria-haspopup="dialog" aria-label="View larger: Medications screen showing Hydroxychloroquine, Tramadol, and Vitamin D with dosages">
-              <img src="assets/screenshots/05_medications.png" alt="" loading="lazy" width="158" height="342">
+              <img src="assets/screenshots/05_medications.png" alt="Medications screen showing Hydroxychloroquine, Tramadol, and Vitamin D with dosages" loading="lazy" width="158" height="342">
               <span class="screenshot-zoom" aria-hidden="true">
                 <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
               </span>
@@ -783,7 +800,7 @@
 
           <figure class="screenshot-item">
             <button type="button" class="screenshot-phone screenshot-trigger" data-index="5" aria-haspopup="dialog" aria-label="View larger: Meals log showing oat porridge, gluten-free pasta, and a green smoothie entry">
-              <img src="assets/screenshots/06_meals.png" alt="" loading="lazy" width="158" height="342">
+              <img src="assets/screenshots/06_meals.png" alt="Meals log showing oat porridge, gluten-free pasta, and a green smoothie entry" loading="lazy" width="158" height="342">
               <span class="screenshot-zoom" aria-hidden="true">
                 <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
               </span>
@@ -793,7 +810,7 @@
 
           <figure class="screenshot-item">
             <button type="button" class="screenshot-phone screenshot-trigger" data-index="6" aria-haspopup="dialog" aria-label="View larger: Journal screen showing entries titled 'Rough Saturday' and 'A good day'">
-              <img src="assets/screenshots/07_journal.png" alt="" loading="lazy" width="158" height="342">
+              <img src="assets/screenshots/07_journal.png" alt="Journal screen showing entries titled 'Rough Saturday' and 'A good day'" loading="lazy" width="158" height="342">
               <span class="screenshot-zoom" aria-hidden="true">
                 <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
               </span>
@@ -803,7 +820,7 @@
 
           <figure class="screenshot-item">
             <button type="button" class="screenshot-phone screenshot-trigger" data-index="7" aria-haspopup="dialog" aria-label="View larger: Journal entry detail showing weather, mood, and energy level alongside the day's notes">
-              <img src="assets/screenshots/08_journal_detail.png" alt="" loading="lazy" width="158" height="342">
+              <img src="assets/screenshots/08_journal_detail.png" alt="Journal entry detail showing weather, mood, and energy level alongside the day's notes" loading="lazy" width="158" height="342">
               <span class="screenshot-zoom" aria-hidden="true">
                 <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
               </span>
@@ -834,7 +851,7 @@
     </div>
 
     <!-- Privacy -->
-    <div class="privacy-wrap" role="region" aria-labelledby="privacy-heading">
+    <section class="privacy-wrap" aria-labelledby="privacy-heading">
       <div class="privacy-block">
         <span class="eyebrow">Privacy by design</span>
         <h2 id="privacy-heading">No cloud. No accounts.<br>No compromises.</h2>
@@ -843,7 +860,7 @@
           We built Health Flare so it never has to leave your device.
         </p>
 
-        <ul class="checks" role="list">
+        <ul class="checks">
           <li class="check-row">
             <div class="check-icon" aria-hidden="true">
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
@@ -889,13 +906,19 @@
             </div>
           </li>
         </ul>
+
+        <p class="privacy-disclaimer">
+          Health Flare is not a medical device and isn't a substitute for professional care.
+          It's a personal record to help you spot patterns and have better conversations at appointments —
+          always consult a qualified clinician about symptoms or treatment.
+        </p>
       </div>
-    </div>
+    </section>
 
     <!-- About -->
     <section class="about-section" id="about" aria-labelledby="about-heading">
       <div class="about-inner">
-        <span class="eyebrow" style="display:block; text-align:center;">About</span>
+        <span class="eyebrow eyebrow-center">About</span>
         <h2 id="about-heading">Built by someone who lives it.</h2>
         <p class="lead">
           I'm a parent of a child with a chronic illness, and a software developer with two
@@ -933,7 +956,7 @@
 
     <!-- Get the app -->
     <section class="access-section" id="download" aria-labelledby="access-heading">
-      <span class="eyebrow" style="display:block; text-align:center;">Get the app</span>
+      <span class="eyebrow eyebrow-center">Get the app</span>
       <h2 id="access-heading">Free to download, wherever you are.</h2>
       <p class="lead">
         Health Flare is live on the App Store and Google Play. No account, no ads, nothing to sign up for.
@@ -961,7 +984,7 @@
   </main>
 
   <!-- Footer -->
-  <footer role="contentinfo">
+  <footer>
     <div>
       <div class="footer-brand">Health Flare</div>
       <p class="footer-copy">© 2026 AutomatedBytes &nbsp;·&nbsp; A calm companion for chronic illness.</p>

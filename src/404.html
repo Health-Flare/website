@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page not found · Health Flare</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+
+  <style>
+    :root {
+      --amber: #F5A623;
+      --dusk: #2C2825;
+      --cloud: #F4F1EC;
+      --dusk-80: rgba(44, 40, 37, 0.80);
+      --dusk-15: rgba(44, 40, 37, 0.15);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 1.25rem;
+      padding: 2rem;
+      font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+      color: var(--dusk);
+      background: var(--cloud);
+      text-align: center;
+    }
+    .mark {
+      width: 48px; height: 48px; border-radius: 13px;
+      background: var(--amber);
+    }
+    h1 { font-size: 1.6rem; font-weight: 600; }
+    p { color: var(--dusk-80); max-width: 32rem; line-height: 1.6; }
+    a {
+      display: inline-flex; align-items: center;
+      background: var(--amber); color: var(--dusk);
+      font-weight: 500; text-decoration: none;
+      padding: 0.7rem 1.5rem; border-radius: 100px;
+      border: 1.5px solid var(--dusk-15);
+    }
+  </style>
+</head>
+<body>
+  <div class="mark" aria-hidden="true"></div>
+  <h1>This page doesn't exist.</h1>
+  <p>The link you followed may be broken, or the page may have moved. Let's get you back to something real.</p>
+  <a href="/">Back to Health Flare</a>
+</body>
+</html>
