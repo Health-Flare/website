@@ -1,6 +1,6 @@
 ---
 title: "Health Flare is officially live on the App Store and Google Play"
-date: 2026-09-12
+date: 2026-09-11
 description: "Health Flare is now available for iPhone and Android: a free, open source, privacy-first health journal for chronic illness, built so no data ever has to leave your device."
 ---
 
