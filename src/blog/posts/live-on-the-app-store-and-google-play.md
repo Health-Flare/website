@@ -57,11 +57,9 @@ not our claim to grade our own homework on. It is Apple's and Google's own
 disclosure process, applied to an app that genuinely has nothing to send
 them.
 
-We will drop screenshots of both listings into this post directly, but in
-the meantime the fastest way to check is to open either store page and look
-under Privacy (App Store) or Data safety (Google Play) for yourself. That
-is the point: you should not have to take anyone's word for it, ours
-included.
+The fastest way to check is to open either store page and look under
+Privacy (App Store) or Data safety (Google Play) for yourself. That is the
+point: you should not have to take anyone's word for it, ours included.
 
 ## Get it
 
