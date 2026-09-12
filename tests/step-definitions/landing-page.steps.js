@@ -60,31 +60,31 @@ Then('I see a description of symptom logging', async function () {
 });
 
 Then('I see a description of vitals tracking', async function () {
-  await expect(this.page.getByText(/vital/i)).toBeVisible();
+  await expect(this.page.getByText(/vital/i).first()).toBeVisible();
 });
 
 Then('I see a description of medication management', async function () {
-  await expect(this.page.getByText(/medication/i)).toBeVisible();
+  await expect(this.page.getByText(/medication/i).first()).toBeVisible();
 });
 
 Then('I see a description of meal and trigger logging', async function () {
-  await expect(this.page.getByText(/meal|food|trigger/i)).toBeVisible();
+  await expect(this.page.getByText(/meal|food|trigger/i).first()).toBeVisible();
 });
 
 Then('I see a description of freeform journal entries', async function () {
-  await expect(this.page.getByText(/journal|note/i)).toBeVisible();
+  await expect(this.page.getByText(/journal|note/i).first()).toBeVisible();
 });
 
 Then('I see a description of multi-profile support for the whole family', async function () {
-  await expect(this.page.getByText(/family|profile|multiple/i)).toBeVisible();
+  await expect(this.page.getByText(/family|profile|multiple/i).first()).toBeVisible();
 });
 
 Then('I see that reports can be exported as PDF or CSV', async function () {
-  await expect(this.page.getByText(/pdf|csv|export/i)).toBeVisible();
+  await expect(this.page.getByText(/pdf|csv|export/i).first()).toBeVisible();
 });
 
 Then('I see that exports are for sharing with doctors or specialists', async function () {
-  await expect(this.page.getByText(/doctor|specialist|share|healthcare/i)).toBeVisible();
+  await expect(this.page.getByText(/doctor|specialist|share|healthcare/i).first()).toBeVisible();
 });
 
 Then('the copy makes clear that exporting is a deliberate, user-initiated act', async function () {
@@ -94,11 +94,11 @@ Then('the copy makes clear that exporting is a deliberate, user-initiated act', 
 });
 
 Then('I see that Android is currently supported', async function () {
-  await expect(this.page.getByText(/android/i)).toBeVisible();
+  await expect(this.page.getByText(/android/i).first()).toBeVisible();
 });
 
 Then('I see that iOS is currently supported', async function () {
-  await expect(this.page.getByText(/ios|iphone|apple/i)).toBeVisible();
+  await expect(this.page.getByText(/ios|iphone|apple/i).first()).toBeVisible();
 });
 
 Then('I see that additional platforms are planned', async function () {
@@ -124,7 +124,7 @@ Then('I see a clear statement that no data leaves the device unless the user exp
 });
 
 Then('I see a clear statement that there are no analytics, telemetry, or third-party SDKs', async function () {
-  await expect(this.page.getByText(/no analytics|no telemetry|no tracking|zero.*data/i)).toBeVisible();
+  await expect(this.page.getByText(/no analytics|no telemetry|no tracking|zero.*data/i).first()).toBeVisible();
 });
 
 Then('I see a clear statement that all fonts and assets are bundled locally', async function () {
@@ -155,7 +155,7 @@ Then('I see no medical claims or diagnostic promises', async function () {
 });
 
 Then('the copy includes a disclaimer that the app is not a medical device', async function () {
-  await expect(this.page.getByText(/not.*medical device|not.*replace.*doctor|informational/i)).toBeVisible();
+  await expect(this.page.getByText(/not.*medical device|not.*replace.*doctor|informational/i).first()).toBeVisible();
 });
 
 Then('the tone is calm, warm, and reassuring throughout', async function () {
@@ -192,7 +192,7 @@ Then('each link has a descriptive accessible name indicating its destination pla
     const link = downloadLinks.nth(i);
     const ariaLabel = await link.getAttribute('aria-label');
     const text = await link.textContent();
-    const hasAccessibleName = ariaLabel || text.trim().length > 0;
+    const hasAccessibleName = Boolean(ariaLabel) || text.trim().length > 0;
     expect(hasAccessibleName).toBe(true);
   }
 });
@@ -207,7 +207,7 @@ Then('I see a way to reach the project for general inquiries', async function ()
 });
 
 Then('I see a way to disclose security concerns responsibly', async function () {
-  await expect(this.page.getByText(/security|responsible disclosure|vulnerability/i)).toBeVisible();
+  await expect(this.page.getByText(/security|responsible disclosure|vulnerability/i).first()).toBeVisible();
 });
 
 Then('I see a way to express interest in early access or beta testing', async function () {

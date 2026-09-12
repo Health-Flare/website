@@ -19,7 +19,4 @@ export default {
 
   // Parallel execution (disabled by default for stability)
   parallel: 1,
-
-  // Publish to Cucumber Reports (disabled)
-  publishQuiet: true,
 };
