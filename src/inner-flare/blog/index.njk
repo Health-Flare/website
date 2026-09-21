@@ -8,6 +8,17 @@ permalink: /inner-flare/blog/
   <h1>Blog</h1>
   <p class="blog-intro">Notes on building Inner Flare in the open: why it exists, why it never leaves your device, and why that matters to everyone, not just the person tracking.</p>
 
+  {%- if collections.innerFlarePostTopics.length %}
+  <div class="topic-nav">
+    <p class="topic-nav-label">Browse by topic</p>
+    <ul class="topic-list">
+      {%- for topic in collections.innerFlarePostTopics %}
+      <li><a class="topic-pill" href="/inner-flare/blog/tags/{{ topic | slugify }}/">{{ topic | topicLabel }}</a></li>
+      {%- endfor %}
+    </ul>
+  </div>
+  {%- endif %}
+
   <ul class="post-list">
     {%- for post in collections.innerFlarePosts %}
     <li class="post-card">
@@ -16,6 +27,15 @@ permalink: /inner-flare/blog/
         <h2>{{ post.data.title }}</h2>
         <p>{{ post.data.description }}</p>
       </a>
+      {%- if post.data.tags | length %}
+      <ul class="topic-list">
+        {%- for topic in post.data.tags %}
+        {%- if topic != "inner-flare-posts" %}
+        <li><a class="topic-pill" href="/inner-flare/blog/tags/{{ topic | slugify }}/">{{ topic | topicLabel }}</a></li>
+        {%- endif %}
+        {%- endfor %}
+      </ul>
+      {%- endif %}
     </li>
     {%- endfor %}
   </ul>

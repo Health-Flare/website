@@ -157,6 +157,28 @@
 
     .post-card p:last-child { color: var(--teal-80); }
 
+    .topic-list {
+      list-style: none; display: flex; flex-wrap: wrap;
+      gap: 0.5rem; margin: 0.6rem 0 0;
+    }
+    .topic-pill {
+      display: inline-flex; align-items: center;
+      background: var(--teal-15); color: var(--teal-80);
+      font-size: 0.75rem; font-weight: 500;
+      padding: 0.25rem 0.75rem; border-radius: 100px;
+      text-decoration: none; transition: background 0.15s, color 0.15s;
+    }
+    .topic-pill:hover { background: var(--ember); color: var(--ash-white); }
+    .topic-pill:focus-visible { outline: 3px solid var(--teal); outline-offset: 2px; }
+    .topic-pill.is-current { background: var(--ember); color: var(--ash-white); }
+
+    .topic-nav { margin-bottom: 3rem; }
+    .topic-nav-label {
+      font-size: 0.8rem; color: var(--teal-50);
+      text-transform: uppercase; letter-spacing: 0.06em;
+      margin-bottom: 0.6rem;
+    }
+
     .post-meta {
       font-size: 0.85rem; color: var(--teal-50);
       margin-bottom: 1.5rem;
@@ -170,6 +192,9 @@
       margin-bottom: 2rem;
       line-height: 1.2;
     }
+
+    .post-title:has(+ .topic-list) { margin-bottom: 0.75rem; }
+    .post-title + .topic-list { margin-bottom: 2rem; }
 
     .post-body h2 {
       font-family: 'Fraunces', Georgia, serif;

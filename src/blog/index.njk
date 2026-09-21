@@ -8,6 +8,17 @@ permalink: /blog/
   <h1>Blog</h1>
   <p class="blog-intro">Notes on building Health Flare in the open: why it is free software, why it stays offline, and why it exists at all.</p>
 
+  {%- if collections.postTopics.length %}
+  <div class="topic-nav">
+    <p class="topic-nav-label">Browse by topic</p>
+    <ul class="topic-list">
+      {%- for topic in collections.postTopics %}
+      <li><a class="topic-pill" href="/blog/tags/{{ topic | slugify }}/">{{ topic | topicLabel }}</a></li>
+      {%- endfor %}
+    </ul>
+  </div>
+  {%- endif %}
+
   <ul class="post-list">
     {%- for post in collections.posts %}
     <li class="post-card">
@@ -16,6 +27,15 @@ permalink: /blog/
         <h2>{{ post.data.title }}</h2>
         <p>{{ post.data.description }}</p>
       </a>
+      {%- if post.data.tags | length %}
+      <ul class="topic-list">
+        {%- for topic in post.data.tags %}
+        {%- if topic != "posts" %}
+        <li><a class="topic-pill" href="/blog/tags/{{ topic | slugify }}/">{{ topic | topicLabel }}</a></li>
+        {%- endif %}
+        {%- endfor %}
+      </ul>
+      {%- endif %}
     </li>
     {%- endfor %}
   </ul>

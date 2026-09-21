@@ -7,6 +7,15 @@ layout: layouts/inner-flare-base.njk
     <time datetime="{{ date | htmlDateString }}">{{ date | readableDate }}</time>
   </p>
   <h1 class="post-title">{{ title }}</h1>
+  {%- if tags | length %}
+  <ul class="topic-list">
+    {%- for topic in tags %}
+    {%- if topic != "inner-flare-posts" %}
+    <li><a class="topic-pill" href="/inner-flare/blog/tags/{{ topic | slugify }}/">{{ topic | topicLabel }}</a></li>
+    {%- endif %}
+    {%- endfor %}
+  </ul>
+  {%- endif %}
   <div class="post-body">
     {{ content | safe }}
   </div>

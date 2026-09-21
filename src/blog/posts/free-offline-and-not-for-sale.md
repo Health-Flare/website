@@ -2,6 +2,7 @@
 title: "Why Health Flare is free, offline, and not for sale"
 date: 2026-09-09
 description: "Why this project is free and open source software, why it stays offline and private by default, why we're using AI to build it, and why it will never track you."
+tags: ["privacy", "open-source", "philosophy"]
 ---
 
 Health Flare is free software. It runs entirely on your device. No account,

@@ -2,6 +2,7 @@
 title: "Why Inner Flare exists"
 date: 2026-09-09
 description: "Reproductive rights are being rolled back, reproductive health data is being used against the people it describes, and reproductive health touches every human on earth. Here is why that means this app has to be private by construction, not by policy."
+tags: ["privacy", "reproductive-health", "philosophy"]
 ---
 
 Inner Flare is a cycle tracker that never leaves your device. No account, no

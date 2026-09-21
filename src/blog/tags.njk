@@ -1,0 +1,30 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: collections.postTopics
+  size: 1
+  alias: tag
+permalink: "/blog/tags/{{ tag | slugify }}/"
+eleventyComputed:
+  title: "{{ tag | topicLabel }}"
+  description: "Health Flare blog posts about {{ tag | topicLabel | lower }}."
+---
+<div class="blog-wrap">
+  <p class="post-meta"><a href="/blog/">← All posts</a></p>
+  <h1>{{ tag | topicLabel }}</h1>
+  <p class="blog-intro">Posts tagged &ldquo;{{ tag | topicLabel }}&rdquo;.</p>
+
+  <ul class="post-list">
+    {%- for post in collections.posts %}
+    {%- if tag in post.data.tags %}
+    <li class="post-card">
+      <a href="{{ post.url }}">
+        <p class="post-date">{{ post.data.date | readableDate }}</p>
+        <h2>{{ post.data.title }}</h2>
+        <p>{{ post.data.description }}</p>
+      </a>
+    </li>
+    {%- endif %}
+    {%- endfor %}
+  </ul>
+</div>
