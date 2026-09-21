@@ -26,6 +26,10 @@ export default function (eleventyConfig) {
     new Date(dateObj).toISOString().slice(0, 10)
   );
 
+  eleventyConfig.addFilter("topicLabel", (topic) =>
+    topic.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())
+  );
+
   eleventyConfig.addCollection("posts", (collectionApi) =>
     collectionApi.getFilteredByTag("posts").sort((a, b) => b.date - a.date)
   );
@@ -34,6 +38,29 @@ export default function (eleventyConfig) {
     collectionApi
       .getFilteredByTag("inner-flare-posts")
       .sort((a, b) => b.date - a.date)
+  );
+
+  // "posts" / "inner-flare-posts" are structural tags used to build the
+  // collections above, not topics readers browse by, so they're excluded
+  // from the topic lists below.
+  const structuralTags = new Set(["posts", "inner-flare-posts", "all", "nav"]);
+
+  const topicsFrom = (posts) => {
+    const tags = new Set();
+    posts.forEach((post) =>
+      (post.data.tags || []).forEach((tag) => {
+        if (!structuralTags.has(tag)) tags.add(tag);
+      })
+    );
+    return [...tags].sort();
+  };
+
+  eleventyConfig.addCollection("postTopics", (collectionApi) =>
+    topicsFrom(collectionApi.getFilteredByTag("posts"))
+  );
+
+  eleventyConfig.addCollection("innerFlarePostTopics", (collectionApi) =>
+    topicsFrom(collectionApi.getFilteredByTag("inner-flare-posts"))
   );
 
   return {
