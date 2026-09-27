@@ -40,10 +40,17 @@ export default function (eleventyConfig) {
       .sort((a, b) => b.date - a.date)
   );
 
+  // Use-case pages under /for/, in the order set by each page's `order`.
+  eleventyConfig.addCollection("useCases", (collectionApi) =>
+    collectionApi
+      .getFilteredByTag("use-cases")
+      .sort((a, b) => (a.data.order || 0) - (b.data.order || 0))
+  );
+
   // "posts" / "inner-flare-posts" are structural tags used to build the
   // collections above, not topics readers browse by, so they're excluded
   // from the topic lists below.
-  const structuralTags = new Set(["posts", "inner-flare-posts", "all", "nav"]);
+  const structuralTags = new Set(["posts", "inner-flare-posts", "use-cases", "all", "nav"]);
 
   const topicsFrom = (posts) => {
     const tags = new Set();
