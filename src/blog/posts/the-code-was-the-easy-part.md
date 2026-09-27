@@ -1,5 +1,7 @@
 ---
 title: "The code was the easy part: what building Health Flare taught us about the quiet battles around us"
+# Shorter <title> for the browser tab and search results; html-validate caps it at 70 characters.
+seoTitle: "The code was the easy part"
 date: 2026-09-21
 description: "On discovering that the real difficulty in building a health app was never the code, but reckoning with how much invisible labor chronic illness demands from the people living it every day."
 tags:
