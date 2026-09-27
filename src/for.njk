@@ -1,0 +1,20 @@
+---
+layout: layouts/base.njk
+title: Who Health Flare is for
+description: Three ways people use Health Flare, and how to set it up for each. Tracking your own chronic illness, tracking for a child, or both at once.
+permalink: /for/
+---
+<div class="blog-wrap">
+  <h1>Who Health Flare is for</h1>
+  <p class="blog-intro">Health Flare does one job: it keeps a private record of a long-term condition so the next appointment goes better than the last one. How you use it depends on whose record you're keeping. Pick the one closest to you.</p>
+  <ul class="use-case-list">
+    {%- for item in collections.useCases %}
+    <li>
+      <a href="{{ item.url }}">
+        <h2>{{ item.data.title }}</h2>
+        <p>{{ item.data.summary }}</p>
+      </a>
+    </li>
+    {%- endfor %}
+  </ul>
+</div>

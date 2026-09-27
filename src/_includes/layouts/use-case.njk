@@ -1,0 +1,21 @@
+---
+layout: layouts/base.njk
+---
+<article class="blog-wrap use-case">
+  <p class="post-meta"><a href="/for/">← Who Health Flare is for</a></p>
+  <h1 class="post-title">{{ title }}</h1>
+  <p class="use-case-lede">{{ lede }}</p>
+  <p class="use-case-note">{{ persona }} is a made-up example, built from the situations Health Flare was designed and tested against.</p>
+  <div class="post-body">
+    {{ content | safe }}
+  </div>
+  <aside class="use-case-cta" aria-labelledby="cta-heading">
+    <h2 id="cta-heading">Get Health Flare</h2>
+    <p>Free, open source, and on both stores. No account to create.</p>
+    <p class="use-case-stores">
+      <a href="https://apps.apple.com/app/health-flare/id6803123766" target="_blank" rel="noopener">App Store ↗</a>
+      <a href="https://play.google.com/store/apps/details?id=org.healthflare.app.healthflare&hl=en" target="_blank" rel="noopener">Google Play ↗</a>
+    </p>
+    <p class="use-case-disclaimer">Health Flare is not a medical device and isn't a substitute for professional care. It keeps a record to help you have better conversations at appointments.</p>
+  </aside>
+</article>

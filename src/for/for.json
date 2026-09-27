@@ -1,0 +1,5 @@
+{
+  "layout": "layouts/use-case.njk",
+  "tags": ["use-cases"],
+  "permalink": "/for/{{ page.fileSlug }}/"
+}
