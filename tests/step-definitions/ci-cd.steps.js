@@ -70,6 +70,13 @@ Then('the CI workflow runs an HTML validation step', function () {
   expect(this.ciYaml).toMatch(/lint:html|html-validate/);
 });
 
+Then('the deploy workflow validates the built HTML before uploading the Pages artefact', function () {
+  const validateAt = this.deployYaml.search(/html-validate|lint:html/);
+  const uploadAt = this.deployYaml.search(/upload-pages-artifact/);
+  expect(validateAt).toBeGreaterThan(-1);
+  expect(uploadAt).toBeGreaterThan(validateAt);
+});
+
 Then('the CI workflow runs the Cucumber test suite that includes axe-core accessibility scenarios', function () {
   expect(this.ciYaml).toMatch(/test:ci|cucumber-js/);
   expect(existsSync('features/accessibility.feature')).toBe(true);

@@ -56,6 +56,10 @@ Feature: CI/CD Pipeline — GitHub Actions
     When the workflow files are inspected
     Then the CI workflow runs an HTML validation step
 
+  Scenario: HTML is validated before anything is deployed
+    When the workflow files are inspected
+    Then the deploy workflow validates the built HTML before uploading the Pages artefact
+
   Scenario: Accessibility is checked during the pipeline
     When the workflow files are inspected
     Then the CI workflow runs the Cucumber test suite that includes axe-core accessibility scenarios

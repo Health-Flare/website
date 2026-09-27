@@ -36,6 +36,13 @@ jobs:
       - name: Build site
         run: npm run build
 
+      # Same check as the CI Lint job. CI only runs on PRs and non-main
+      # branches, so without this a push straight to main (or a PR merged
+      # while Lint was red) deploys invalid HTML and nothing flags it until
+      # the next unrelated PR fails.
+      - name: Validate HTML
+        run: npx html-validate "dist/**/*.html"
+
       - name: Mark output for GitHub Pages
         run: touch dist/.nojekyll
 
