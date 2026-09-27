@@ -41,9 +41,8 @@ underwriting, employment, or worse.
 
 The usual answer from most software is "we secure it well." We think the
 better answer is "it never leaves your device in the first place." Health
-Flare stores everything locally, encrypted with your device's own secure
-hardware (Android StrongBox or iOS Secure Enclave, depending on platform).
-There is no login because there is no account to log into. If data never
+Flare stores everything locally, in the app's private storage, which your
+phone encrypts when it has a passcode set. There is no login because there is no account to log into. If data never
 leaves your device, there is no server to breach, no database to subpoena,
 and no company standing between you and your own health record.
 
