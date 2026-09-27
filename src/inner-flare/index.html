@@ -304,6 +304,21 @@
 
     .feature p { font-size: 0.9rem; color: var(--teal-80); line-height: 1.65; }
 
+    /* ── Screens strip ──────────────────────────────────── */
+    .screens {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1.5rem; margin-top: 3.5rem;
+      list-style: none;
+    }
+    .screens figure { display: flex; flex-direction: column; align-items: center; gap: 0.85rem; }
+    .screens .phone-frame { width: 100%; max-width: 180px; }
+    .screens figcaption {
+      font-size: 0.85rem; color: var(--teal-80); text-align: center; line-height: 1.5;
+      max-width: 14rem;
+    }
+    .screens-note { font-size: 0.8rem; color: var(--teal-60); margin-top: 1.5rem; }
+
     /* ── Priority list ──────────────────────────────────── */
     .priority-list {
       display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2.5rem;
@@ -543,9 +558,9 @@
       <div class="mockup-card">
         <div class="phone-frame">
           <img
-            src="../assets/inner-flare-calendar-screenshot.png"
-            alt="Inner Flare's calendar screen, showing a month view with period days, a predicted period, and the fertile window color-coded on the dates"
-            width="640" height="748"
+            src="../assets/inner-flare/calendar-hero.webp"
+            alt="Inner Flare's calendar for September 2026: five logged period days shaded by flow, dots on days with symptoms, and the fertile window outlined and labelled as an estimate"
+            width="640" height="747"
           >
         </div>
         <p class="mockup-label">On Google Play now. iOS is in App Store review.</p>
@@ -647,6 +662,56 @@
           </article>
 
         </div>
+
+        <h3 class="sr-only" id="screens-heading">Screens from the app</h3>
+        <ul class="screens" aria-labelledby="screens-heading">
+          <li>
+            <figure>
+              <div class="phone-frame">
+                <img src="../assets/inner-flare/log.webp" width="400" height="866" loading="lazy" decoding="async"
+                  alt="The log screen for one day: flow chips with Medium selected, symptom chips with Cramps and Fatigue selected, and a short note. A line at the top says nothing here is required.">
+              </div>
+              <figcaption>One screen per day. Nothing is required.</figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure>
+              <div class="phone-frame">
+                <img src="../assets/inner-flare/insights.webp" width="400" height="866" loading="lazy" decoding="async"
+                  alt="The insights screen: average cycle length of 28 days based on the last 5 cycles, variability of plus or minus 1 day, a predicted next period range, and a fertile window labelled as an estimate and not a reliable method of contraception.">
+              </div>
+              <figcaption>Averages show their sample size and spread.</figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure>
+              <div class="phone-frame">
+                <img src="../assets/inner-flare/customize.webp" width="400" height="866" loading="lazy" decoding="async"
+                  alt="The customize dashboard screen: cards for quick stats, calendar, insights, a gauge and a trend chart, each with a resize handle.">
+              </div>
+              <figcaption>Turn cards off, reorder them, resize them.</figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure>
+              <div class="phone-frame">
+                <img src="../assets/inner-flare/lock.webp" width="400" height="866" loading="lazy" decoding="async"
+                  alt="The lock screen: Inner Flare is locked, with a note that data is hidden after being away a while, and an Unlock button.">
+              </div>
+              <figcaption>Locks again when you step away.</figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure>
+              <div class="phone-frame">
+                <img src="../assets/inner-flare/export.webp" width="400" height="866" loading="lazy" decoding="async"
+                  alt="The export screen: it creates one file for moving to your own device, nothing is sent automatically, with an optional switch to encrypt the export with a passphrase.">
+              </div>
+              <figcaption>One file, when you ask for it. Encryption optional.</figcaption>
+            </figure>
+          </li>
+        </ul>
+        <p class="screens-note">Screens from Inner Flare 1.2 on iPhone, using made-up demo data.</p>
       </div>
     </section>
 
