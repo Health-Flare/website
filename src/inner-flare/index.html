@@ -319,6 +319,94 @@
     }
     .screens-note { font-size: 0.8rem; color: var(--teal-60); margin-top: 1.5rem; }
 
+    /* ── Screenshot triggers ────────────────────────────── */
+    button.phone-frame {
+      position: relative; display: block;
+      border: none; margin: 0; font: inherit; color: inherit;
+      cursor: zoom-in;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    button.phone-frame:hover,
+    button.phone-frame:focus-visible {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg), 0 0 0 1px rgba(23,39,44,0.12), 0 10px 26px rgba(23,39,44,0.18);
+    }
+    button.phone-frame:focus-visible { outline: 3px solid var(--ember); outline-offset: 3px; }
+
+    .screenshot-zoom {
+      position: absolute; right: 14px; bottom: 14px;
+      width: 28px; height: 28px; border-radius: 50%;
+      background: rgba(23, 39, 44, 0.6);
+      color: var(--ash-white);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transform: scale(0.85);
+      transition: opacity 0.15s, transform 0.15s;
+    }
+    button.phone-frame:hover .screenshot-zoom,
+    button.phone-frame:focus-visible .screenshot-zoom { opacity: 1; transform: scale(1); }
+    @media (hover: none) {
+      .screenshot-zoom { opacity: 1; transform: scale(1); }
+    }
+
+    /* ── Screenshot lightbox ────────────────────────────── */
+    .lightbox {
+      position: fixed; inset: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .lightbox[hidden] { display: none; }
+
+    .lightbox-backdrop {
+      position: absolute; inset: 0;
+      background: rgba(12, 21, 24, 0.88);
+    }
+
+    .lightbox-figure {
+      position: relative; z-index: 1;
+      display: flex; flex-direction: column; align-items: center; gap: 1rem;
+      max-width: min(92vw, 460px);
+      max-height: 90vh;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    .lightbox-img {
+      max-width: 100%;
+      max-height: 76vh;
+      border-radius: 22px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+      background: var(--teal);
+      display: block;
+    }
+
+    .lightbox-caption {
+      color: rgba(255, 253, 249, 0.88);
+      font-size: 0.9rem; font-weight: 500;
+      text-align: center;
+    }
+
+    .lightbox-close,
+    .lightbox-nav {
+      position: absolute; z-index: 2;
+      border-radius: 50%;
+      background: rgba(255, 253, 249, 0.12);
+      color: var(--ash-white); border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.15s;
+    }
+    .lightbox-close { top: 1.25rem; right: 1.25rem; width: 42px; height: 42px; }
+    .lightbox-nav { top: 50%; transform: translateY(-50%); width: 46px; height: 46px; }
+    .lightbox-close:hover, .lightbox-nav:hover { background: rgba(255, 253, 249, 0.22); }
+    .lightbox-close:focus-visible, .lightbox-nav:focus-visible { outline: 3px solid var(--soft-orange); outline-offset: 2px; }
+    .lightbox-prev { left: 1rem; }
+    .lightbox-next { right: 1rem; }
+
+    @media (max-width: 640px) {
+      .lightbox-nav { width: 40px; height: 40px; }
+      .lightbox-prev { left: 0.5rem; }
+      .lightbox-next { right: 0.5rem; }
+      .lightbox-close { top: 0.75rem; right: 0.75rem; }
+    }
+
     /* ── Priority list ──────────────────────────────────── */
     .priority-list {
       display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2.5rem;
@@ -556,13 +644,17 @@
     <!-- App preview -->
     <div class="mockup-wrap">
       <div class="mockup-card">
-        <div class="phone-frame">
+        <button type="button" class="phone-frame screenshot-trigger" aria-haspopup="dialog" data-caption="The calendar. Fertile days are always labelled as an estimate."
+          aria-label="View larger: the calendar screen">
           <img
             src="../assets/inner-flare/calendar-hero.webp"
             alt="Inner Flare's calendar for September 2026: five logged period days shaded by flow, dots on days with symptoms, and the fertile window outlined and labelled as an estimate"
             width="640" height="747"
           >
-        </div>
+          <span class="screenshot-zoom" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </span>
+        </button>
         <p class="mockup-label">On Google Play now. iOS is in App Store review.</p>
       </div>
     </div>
@@ -667,46 +759,61 @@
         <ul class="screens" aria-labelledby="screens-heading">
           <li>
             <figure>
-              <div class="phone-frame">
+              <button type="button" class="phone-frame screenshot-trigger" aria-haspopup="dialog" aria-label="View larger: the daily log screen">
                 <img src="../assets/inner-flare/log.webp" width="400" height="866" loading="lazy" decoding="async"
                   alt="The log screen for one day: flow chips with Medium selected, symptom chips with Cramps and Fatigue selected, and a short note. A line at the top says nothing here is required.">
-              </div>
+                <span class="screenshot-zoom" aria-hidden="true">
+                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </span>
+              </button>
               <figcaption>One screen per day. Nothing is required.</figcaption>
             </figure>
           </li>
           <li>
             <figure>
-              <div class="phone-frame">
+              <button type="button" class="phone-frame screenshot-trigger" aria-haspopup="dialog" aria-label="View larger: the insights screen">
                 <img src="../assets/inner-flare/insights.webp" width="400" height="866" loading="lazy" decoding="async"
                   alt="The insights screen: average cycle length of 28 days based on the last 5 cycles, variability of plus or minus 1 day, a predicted next period range, and a fertile window labelled as an estimate and not a reliable method of contraception.">
-              </div>
+                <span class="screenshot-zoom" aria-hidden="true">
+                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </span>
+              </button>
               <figcaption>Averages show their sample size and spread.</figcaption>
             </figure>
           </li>
           <li>
             <figure>
-              <div class="phone-frame">
+              <button type="button" class="phone-frame screenshot-trigger" aria-haspopup="dialog" aria-label="View larger: the customize dashboard screen">
                 <img src="../assets/inner-flare/customize.webp" width="400" height="866" loading="lazy" decoding="async"
                   alt="The customize dashboard screen: cards for quick stats, calendar, insights, a gauge and a trend chart, each with a resize handle.">
-              </div>
+                <span class="screenshot-zoom" aria-hidden="true">
+                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </span>
+              </button>
               <figcaption>Turn cards off, reorder them, resize them.</figcaption>
             </figure>
           </li>
           <li>
             <figure>
-              <div class="phone-frame">
+              <button type="button" class="phone-frame screenshot-trigger" aria-haspopup="dialog" aria-label="View larger: the lock screen">
                 <img src="../assets/inner-flare/lock.webp" width="400" height="866" loading="lazy" decoding="async"
                   alt="The lock screen: Inner Flare is locked, with a note that data is hidden after being away a while, and an Unlock button.">
-              </div>
+                <span class="screenshot-zoom" aria-hidden="true">
+                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </span>
+              </button>
               <figcaption>Locks again when you step away.</figcaption>
             </figure>
           </li>
           <li>
             <figure>
-              <div class="phone-frame">
+              <button type="button" class="phone-frame screenshot-trigger" aria-haspopup="dialog" aria-label="View larger: the export screen">
                 <img src="../assets/inner-flare/export.webp" width="400" height="866" loading="lazy" decoding="async"
                   alt="The export screen: it creates one file for moving to your own device, nothing is sent automatically, with an optional switch to encrypt the export with a passphrase.">
-              </div>
+                <span class="screenshot-zoom" aria-hidden="true">
+                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </span>
+              </button>
               <figcaption>One file, when you ask for it. Encryption optional.</figcaption>
             </figure>
           </li>
@@ -835,6 +942,24 @@
       </p>
     </section>
 
+    <!-- Screenshot lightbox -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Screenshot viewer" hidden>
+      <div class="lightbox-backdrop" data-close="true"></div>
+      <button type="button" class="lightbox-close" data-close="true" aria-label="Close">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 4l12 12M16 4L4 16" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+      </button>
+      <button type="button" class="lightbox-nav lightbox-prev" aria-label="Previous screenshot">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M12 4l-6 6 6 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <figure class="lightbox-figure">
+        <img class="lightbox-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBTAA7" alt="">
+        <figcaption class="lightbox-caption"></figcaption>
+      </figure>
+      <button type="button" class="lightbox-nav lightbox-next" aria-label="Next screenshot">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M8 4l6 6-6 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+
   </main>
 
   <!-- Footer -->
@@ -851,5 +976,84 @@
     </nav>
   </footer>
 
+  <script>
+    (function () {
+      var lightbox = document.getElementById('lightbox');
+      if (!lightbox) return;
+
+      var triggers = Array.prototype.slice.call(document.querySelectorAll('.screenshot-trigger'));
+      var items = triggers.map(function (btn) {
+        var img = btn.querySelector('img');
+        var figure = btn.closest('figure');
+        var caption = btn.getAttribute('data-caption') ||
+          (figure && figure.querySelector('figcaption') ? figure.querySelector('figcaption').textContent : '');
+        return { src: img.getAttribute('src'), alt: img.getAttribute('alt'), caption: caption.trim() };
+      });
+
+      var lightboxImg = lightbox.querySelector('.lightbox-img');
+      var lightboxCaption = lightbox.querySelector('.lightbox-caption');
+      var prevBtn = lightbox.querySelector('.lightbox-prev');
+      var nextBtn = lightbox.querySelector('.lightbox-next');
+      var closeBtn = lightbox.querySelector('.lightbox-close');
+      var blank = lightboxImg.getAttribute('src');
+      var currentIndex = 0;
+      var lastFocused = null;
+
+      function render() {
+        var item = items[currentIndex];
+        lightboxImg.src = item.src;
+        lightboxImg.alt = item.alt;
+        lightboxCaption.textContent = item.caption;
+      }
+
+      function open(index) {
+        currentIndex = index;
+        lastFocused = document.activeElement;
+        render();
+        lightbox.hidden = false;
+        document.body.style.overflow = 'hidden';
+        closeBtn.focus();
+      }
+
+      function close() {
+        lightbox.hidden = true;
+        document.body.style.overflow = '';
+        lightboxImg.src = blank;
+        if (lastFocused) lastFocused.focus();
+      }
+
+      function show(delta) {
+        currentIndex = (currentIndex + delta + items.length) % items.length;
+        render();
+      }
+
+      triggers.forEach(function (btn, index) {
+        btn.addEventListener('click', function () { open(index); });
+      });
+
+      lightbox.querySelectorAll('[data-close]').forEach(function (el) {
+        el.addEventListener('click', close);
+      });
+      prevBtn.addEventListener('click', function () { show(-1); });
+      nextBtn.addEventListener('click', function () { show(1); });
+
+      document.addEventListener('keydown', function (e) {
+        if (lightbox.hidden) return;
+        if (e.key === 'Escape') close();
+        else if (e.key === 'ArrowLeft') show(-1);
+        else if (e.key === 'ArrowRight') show(1);
+        else if (e.key === 'Tab') {
+          var focusable = [closeBtn, prevBtn, nextBtn];
+          var idx = focusable.indexOf(document.activeElement);
+          e.preventDefault();
+          if (e.shiftKey) {
+            focusable[(idx <= 0 ? focusable.length : idx) - 1].focus();
+          } else {
+            focusable[(idx + 1) % focusable.length].focus();
+          }
+        }
+      });
+    }());
+  </script>
 </body>
 </html>
