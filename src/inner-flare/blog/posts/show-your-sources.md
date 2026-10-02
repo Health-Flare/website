@@ -82,6 +82,12 @@ calculation works, what the research says about the assumption behind it
 Citations are written out in full, so they're readable offline. Tapping one
 opens the original publication in your browser.
 
+<figure class="post-figure">
+  <img src="/assets/inner-flare/how-estimates-work.webp" width="424" height="849" loading="lazy" decoding="async"
+    alt="The How estimates work screen. A short introduction says every estimate is calculated from the dates you log, published sources are listed for general assumptions, and these are estimates, not medical advice. Below it, cards for average cycle length and variability, and for predicted next period, each explain the calculation and list their sources as tappable citations.">
+  <figcaption>The new "How estimates work" screen. Each citation opens the original publication.</figcaption>
+</figure>
+
 You can reach it four ways: an info button on Insights, a "How is this
 calculated?" link under each prediction, the Calendar legend, and Settings
 under About. It doesn't depend on having logged anything, because the time to
