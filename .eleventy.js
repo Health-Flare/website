@@ -19,6 +19,9 @@ export default function (eleventyConfig) {
       year: "numeric",
       month: "long",
       day: "numeric",
+      // Front matter dates are UTC midnight; format them in UTC so a build
+      // in a negative-offset timezone doesn't show the previous day.
+      timeZone: "UTC",
     })
   );
 
