@@ -55,6 +55,6 @@ Afterwards, record what the doctor said, any medication changes, and the follow-
 
 ## Keeping it private
 
-Everything stays on your phone. There's no account and no Health Flare server to send it to. Before you change phones, export a backup from Settings and lock it with a password.
+Your records live on your phone, and in your phone's own iCloud or Google backup if you use one. There's no account and no Health Flare server to send it to. If you don't use phone backups, export a backup from Settings before you change phones, and lock it with a password.
 
 Weather tracking is the one feature that uses the network. When it's on, the app sends your approximate location to Open-Meteo to get the local weather. None of your health data goes with it. It's off unless you turn it on.

@@ -35,3 +35,7 @@ Then('the main content does not mention {string} in relation to sharing', async 
 Then('the main content mentions that a backup can be locked with a password', async function () {
   expect(await mainText(this.page)).toMatch(/backup[^.]*password|password[^.]*backup/);
 });
+
+Then('the main content mentions {string}', async function (phrase) {
+  expect(await mainText(this.page)).toContain(phrase.toLowerCase());
+});

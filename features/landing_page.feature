@@ -58,7 +58,7 @@ Feature: Landing Page Content and Presentation
     When I read the privacy section
     Then I see a clear statement that no account or login is required
     And I see a clear statement that all data is stored on-device only
-    And I see a clear statement that no data leaves the device unless the user exports it
+    And I see a clear statement that Health Flare has no server and never receives the data
     And I see a clear statement that there are no analytics, telemetry, or third-party SDKs
     And I see a clear statement that all fonts and assets are bundled locally
 

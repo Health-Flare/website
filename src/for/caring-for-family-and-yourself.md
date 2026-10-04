@@ -38,7 +38,7 @@ Each person has their own appointments, questions, and reports. Write the questi
 
 ## Privacy and backup
 
-All three records stay on your phone. There's no account and no Health Flare server. One backup covers every profile. Lock it with a password when you export it.
+All three records live on your phone, and in your phone's own iCloud or Google backup if you use one. There's no account and no Health Flare server. One backup covers every profile. Lock it with a password when you export it.
 
 ## What it doesn't do
 

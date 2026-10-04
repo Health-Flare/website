@@ -6,7 +6,7 @@
   <title>Health Flare: Your private health companion</title>
   <meta name="description" content="A calm, private health journal for people living with chronic illness. Now on the App Store and Google Play. Track symptoms, spot patterns, and share with your care team, all on your device.">
   <meta property="og:title" content="Health Flare: Your private health companion">
-  <meta property="og:description" content="Now on the App Store and Google Play. Track symptoms, spot patterns, share what matters. Everything stays on your device.">
+  <meta property="og:description" content="Now on the App Store and Google Play. Track symptoms, spot patterns, share what matters. No account, no server of ours.">
   <meta property="og:url" content="https://healthflare.org">
   <meta name="theme-color" content="#F5A623">
 
@@ -312,6 +312,7 @@
     .privacy-block .eyebrow { color: #B8B5B0; opacity: 1; } /* ~7:1 on --dusk */
 
     .privacy-block h2 { color: var(--cloud); }
+    .check-text a { color: var(--amber); text-underline-offset: 2px; }
 
     .privacy-block .lead {
       color: rgba(244, 241, 236, 0.72);
@@ -859,7 +860,7 @@
         <h2 id="privacy-heading">No cloud. No accounts.<br>No compromises.</h2>
         <p class="lead">
           Your health data is some of the most sensitive information that exists.
-          We built Health Flare so it never has to leave your device.
+          We built Health Flare so we never see it. There is no server of ours to send it to.
         </p>
 
         <ul class="checks">
@@ -870,8 +871,8 @@
               </svg>
             </div>
             <div class="check-text">
-              <strong>Stored on your phone, nowhere else</strong>
-              <span>Your records live in the app's private storage, which your phone encrypts when it has a passcode set. Backups you export can be locked with a password.</span>
+              <strong>Stored on your phone, and in your phone's own backup</strong>
+              <span>Your records live in the app's private storage, which your phone encrypts when it has a passcode set. They are included in your iCloud or Google backup if you use one, so a new phone gets them back. Backups you export can be locked with a password. <a href="/privacy#phone-backups">How phone backups are protected</a>.</span>
             </div>
           </li>
           <li class="check-row">
