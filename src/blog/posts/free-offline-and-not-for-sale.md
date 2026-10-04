@@ -40,11 +40,14 @@ to data brokers, and use against the very people it describes, in
 underwriting, employment, or worse.
 
 The usual answer from most software is "we secure it well." We think the
-better answer is "it never leaves your device in the first place." Health
-Flare stores everything locally, in the app's private storage, which your
-phone encrypts when it has a passcode set. There is no login because there is no account to log into. If data never
-leaves your device, there is no server to breach, no database to subpoena,
-and no company standing between you and your own health record.
+better answer is "we never have it in the first place." Health Flare stores
+everything locally, in the app's private storage, which your phone encrypts
+when it has a passcode set. There is no login because there is no account to
+log into. Your phone's own backup can include it, the same as any other app,
+and that backup is run by Apple or Google under your account, not by us
+([how that works](/privacy#phone-backups)). But there is no Health Flare
+server to breach, no Health Flare database to subpoena, and no company
+standing between you and your own health record.
 
 ## Why we are using AI to build this, and the tension we are not pretending away
 

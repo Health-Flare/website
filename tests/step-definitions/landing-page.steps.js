@@ -119,8 +119,10 @@ Then('I see a clear statement that all data is stored on-device only', async fun
   await expect(this.page.getByText(/on.?device|local|your device/i).first()).toBeVisible();
 });
 
-Then('I see a clear statement that no data leaves the device unless the user exports it', async function () {
-  await expect(this.page.getByText(/never.*leave|stays on|only.*export/i).first()).toBeVisible();
+Then('I see a clear statement that Health Flare has no server and never receives the data', async function () {
+  // Not "data never leaves the device": the phone's own iCloud/Google backup
+  // includes it (Health-Flare/app#98). The true claim is that we never get it.
+  await expect(this.page.getByText(/never see it|no server of ours|no health flare server/i).first()).toBeVisible();
 });
 
 Then('I see a clear statement that there are no analytics, telemetry, or third-party SDKs', async function () {

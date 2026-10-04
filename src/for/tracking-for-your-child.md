@@ -43,7 +43,7 @@ Afterwards, write down what the doctor said, any dose changes, and when the foll
 
 ## Her data stays with you
 
-There's no account, no Health Flare server, and no analytics. Your child's record lives on your phone. Export a password-protected backup from Settings before you change phones.
+There's no account, no Health Flare server, and no analytics. Your child's record lives on your phone, and in your phone's own iCloud or Google backup if you use one. If you don't use phone backups, export a password-protected backup from Settings before you change phones.
 
 ## What it doesn't do
 
