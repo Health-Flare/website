@@ -20,7 +20,7 @@ Feature: Hosting and Deployment
 
   Scenario: Built output is a fully static site
     When the build process completes
-    Then the output directory contains only HTML, CSS, JavaScript, image, and font files
+    Then the output directory contains only HTML, CSS, JavaScript, image, and font files, plus sitemap.xml and robots.txt
     And there are no server-side runtime dependencies required to serve the output
 
   Scenario: Deployment configuration is stored in version control

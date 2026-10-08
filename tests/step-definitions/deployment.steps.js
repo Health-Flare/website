@@ -13,6 +13,8 @@ const ALLOWED_EXTENSIONS = new Set([
   '.png', '.jpg', '.jpeg', '.svg', '.webp', '.gif', '.ico',
   '.woff', '.woff2', '.ttf', '.otf',
 ]);
+// Crawler files at the site root (see search_indexing.feature).
+const ALLOWED_ROOT_FILES = new Set(['dist/sitemap.xml', 'dist/robots.txt']);
 
 function walk(dir) {
   const out = [];
@@ -37,8 +39,10 @@ When('the build process completes', function () {
   this.distFiles = walk('dist');
 });
 
-Then('the output directory contains only HTML, CSS, JavaScript, image, and font files', function () {
-  const disallowed = this.distFiles.filter((f) => !ALLOWED_EXTENSIONS.has(extname(f).toLowerCase()));
+Then('the output directory contains only HTML, CSS, JavaScript, image, and font files, plus sitemap.xml and robots.txt', function () {
+  const disallowed = this.distFiles.filter(
+    (f) => !ALLOWED_EXTENSIONS.has(extname(f).toLowerCase()) && !ALLOWED_ROOT_FILES.has(f)
+  );
   expect(disallowed, `Unexpected file types in build output:\n${disallowed.join('\n')}`).toHaveLength(0);
 });
 

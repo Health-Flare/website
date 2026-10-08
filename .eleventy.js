@@ -7,6 +7,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/index.html": "index.html" });
   eleventyConfig.addPassthroughCopy({ "src/privacy.html": "privacy.html" });
   eleventyConfig.addPassthroughCopy({ "src/404.html": "404.html" });
+  eleventyConfig.addPassthroughCopy({ "src/robots.txt": "robots.txt" });
   eleventyConfig.addPassthroughCopy({
     "src/inner-flare/index.html": "inner-flare/index.html",
   });

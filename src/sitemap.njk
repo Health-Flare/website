@@ -1,0 +1,43 @@
+---
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+# The hand-authored pages are passthrough copies, so Eleventy doesn't see
+# them as templates. List them here; everything templated (blog, posts,
+# tag pages, /for/) comes from collections.all.
+staticPages:
+  - /
+  - /privacy
+  - /inner-flare/
+  - /inner-flare/privacy
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{%- for url in staticPages %}
+  <url>
+    <loc>https://healthflare.org{{ url }}</loc>
+  </url>
+{%- endfor %}
+{%- for item in collections.all %}
+{%- if not item.data.pagination %}
+  <url>
+    <loc>https://healthflare.org{{ item.url }}</loc>
+    {%- set tags = item.data.tags or [] %}
+    {%- if "posts" in tags or "inner-flare-posts" in tags %}
+    <lastmod>{{ item.date | htmlDateString }}</lastmod>
+    {%- endif %}
+  </url>
+{%- endif %}
+{%- endfor %}
+{#- Tag pages are paginated, and collections.all only holds the first page
+    of a paginated template, so list them from the topic collections. #}
+{%- for tag in collections.postTopics %}
+  <url>
+    <loc>https://healthflare.org/blog/tags/{{ tag | slugify }}/</loc>
+  </url>
+{%- endfor %}
+{%- for tag in collections.innerFlarePostTopics %}
+  <url>
+    <loc>https://healthflare.org/inner-flare/blog/tags/{{ tag | slugify }}/</loc>
+  </url>
+{%- endfor %}
+</urlset>
