@@ -6,19 +6,25 @@ description: "Health Flare 1.10.0 moves screens people use every day. Why we did
 tags: ["release", "product", "design", "accessibility"]
 ---
 
-<!-- TODO (Alexander): the opening moment. A real one: the day you went
-     looking for an appointment, or someone told you they couldn't find
-     something, or the first time you ran the app at 200% text and saw
-     the six-item bar. Two or three sentences, your words. Don't publish
-     without it. -->
+I was sitting in a hospital waiting room while someone I love was in for a
+scan. I knew I'd added the appointment to Health Flare, and I couldn't find
+it. I could make one from Quick Log, but once it scrolled out of recent
+entries it was gone from view, and I sat there wondering what questions I'd
+forgotten. I was thoroughly confused, and I'm the one who built it.
 
-Health Flare 1.10.0 moves things people use every day. After the update,
-the bottom bar reads Dashboard, Track, Care and Journal. It used to read
-Dashboard, Tracking, Meds, Meals, Journal and Sleep. It's the biggest
-change to the app since it shipped, and for a while we weren't sure we
-should make it at all.
+Health Flare 1.10.0 fixes that, and to do it, it moves things people use
+every day. After the update, the bottom bar reads Dashboard, Track, Care and
+Journal. It used to read Dashboard, Tracking, Meds, Meals, Journal and
+Sleep. It's the biggest change to the app since it shipped.
 
 ## Why touch it at all
+
+Honestly, the whole idea of moving the bar was overwhelming. It has
+far-reaching consequences, and it quietly says my design is the only right
+one. As a user, I find it frustrating to lose what I knew because someone
+else thought their idea was better. If I had less mobility, or worse vision,
+or a foggier memory, would I want to track my health in an app I couldn't
+trust to stay put?
 
 Health Flare is supposed to get out of the way. On a bad day the job is to
 log the thing and put the phone down, and keeping track of symptoms,
@@ -28,13 +34,17 @@ the person who learned where the button was. Someone in the middle of a
 flare, tired and foggy, shouldn't have to relearn anything. So our default
 answer to "should we move this?" is no.
 
-But the old bar had a problem that leaving it alone couldn't fix. It had
-six items and still couldn't reach everything. Appointments, Activity,
+But the old bar had a problem that leaving it alone couldn't fix. It was
+built for me originally, for where our health adventures were at the time.
+As time moves on and you learn new things, an app fills up fast. Sleep
+landed in the bar because another user told me sleep tracking would help,
+I'd already built it, and it had nowhere else to go. So the bar had six
+items and still couldn't reach everything. Appointments, Activity,
 Check-in history and Flare history all had screens, and nothing in the bar
 led to them. The only way into your appointments was a "See all" link on the
 Dashboard, and that only showed up once you had three or more coming up.
 With one appointment booked, the list of your appointments was a screen you
-couldn't get to.
+couldn't get to. That's the screen I was looking for in the waiting room.
 
 Six is also more than a bottom bar holds well. Material's guidance is three
 to five, and at large text sizes six labels don't fit. Large text isn't an
@@ -45,6 +55,9 @@ So this one was needed and broken, not new and shiny. That's the first
 question we ask of any change: is it for the person using the app, or for
 us? A redesign that makes the app look more current, or makes a release
 feel bigger, fails that test. Screens people can't reach pass it.
+
+Making the change actually serve people was far more work than changing
+the bar and walking away. And I could have done that.
 
 ## Fix, addition, or move
 
@@ -181,9 +194,10 @@ people see on every log form, and it needed its own explanation after the
 update. Shipping it alongside a new bar would have meant two things to
 relearn in one release, so it waits for the next one.
 
-<!-- CHECK (Alexander): this names the flare bug (#173) publicly before
-     it's fixed. Keep it if you're happy saying so; otherwise swap in
-     another real cut, or drop the paragraph and keep the first one. -->
+I'd rather say that out loud than leave it for someone to find. Being open
+and honest about what isn't fixed yet is how I live and how I work, and
+it's part of earning the trust of everyone using Health Flare, now and
+later.
 
 The update card has a hard limit of four highlights. When a fifth thing
 wants in, something comes out. The rest is still listed under "All changes"
@@ -234,16 +248,18 @@ like, and some releases will be smaller than they could have been. That's
 the trade we'd rather make. The app is there for your harder days, and
 those are exactly the days it shouldn't surprise you.
 
-<!-- TODO (Alexander): close by coming back to the opening moment, in one
-     or two sentences. No moral. -->
+As it turned out, I had no questions for that scan, and all was well. But
+the next time I'm sitting in that chair, my appointment will be under Care,
+my questions will be queued up on it, and I'll take the outcome notes and
+any medication changes as they happen. I'll have a better view of our
+insights, and a more useful conversation with our care providers.
 
 ## Get it
 
-<!-- CHECK (Alexander): confirm 1.10.0 is live in both stores before
-     publishing, or change this to say it's rolling out. -->
-
-1.10.0 is on the [App Store](https://apps.apple.com/app/health-flare/id6803123766)
-and [Google Play](https://play.google.com/store/apps/details?id=org.healthflare.app.healthflare&hl=en).
+1.10.0 is in review with Apple and Google now. Once it's approved, it will
+be on the [App Store](https://apps.apple.com/app/health-flare/id6803123766)
+and [Google Play](https://play.google.com/store/apps/details?id=org.healthflare.app.healthflare&hl=en),
+and the card and guide will be waiting on your Dashboard after you update.
 Everything else in this release, including vitals on Insights, °C or °F
 per profile, and an app lock, is in the
 [changelog](https://github.com/Health-Flare/app/blob/main/CHANGELOG.md).
