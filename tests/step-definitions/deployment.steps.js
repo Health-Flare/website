@@ -12,6 +12,7 @@ const ALLOWED_EXTENSIONS = new Set([
   '.html', '.css', '.js', '.mjs', '.json',
   '.png', '.jpg', '.jpeg', '.svg', '.webp', '.gif', '.ico',
   '.woff', '.woff2', '.ttf', '.otf',
+  '.mp4',
 ]);
 // Crawler files at the site root (see search_indexing.feature).
 const ALLOWED_ROOT_FILES = new Set(['dist/sitemap.xml', 'dist/robots.txt']);
@@ -39,7 +40,7 @@ When('the build process completes', function () {
   this.distFiles = walk('dist');
 });
 
-Then('the output directory contains only HTML, CSS, JavaScript, image, and font files, plus sitemap.xml and robots.txt', function () {
+Then('the output directory contains only HTML, CSS, JavaScript, image, video, and font files, plus sitemap.xml and robots.txt', function () {
   const disallowed = this.distFiles.filter(
     (f) => !ALLOWED_EXTENSIONS.has(extname(f).toLowerCase()) && !ALLOWED_ROOT_FILES.has(f)
   );
