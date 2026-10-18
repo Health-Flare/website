@@ -126,6 +126,12 @@ As the first user with a personal attachment, I have every desire to be clean, a
 - **Security concerns:** Please disclose responsibly via the contact on our website
 - **General inquiries:** Open a discussion in the relevant repository
 
+## Contributors
+
+Not every contribution is code. People who test, report bugs, review wording, or design are credited by hand in [CONTRIBUTORS.md](CONTRIBUTORS.md). Code authors are in [GitHub's contributor list](https://github.com/Health-Flare/website/graphs/contributors).
+
+---
+
 ---
 
 *Built by [AutomatedBytes](https://Automatedbytes.com) — small team, meaningful software.*
