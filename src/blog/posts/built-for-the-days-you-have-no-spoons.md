@@ -1,6 +1,6 @@
 ---
 title: "Built for the days you have no spoons"
-date: 2026-10-24
+date: 2026-10-23
 description: "Health Flare is a symptom tracker that asks for as little as possible on a bad day, and never counts a missed day as a good one."
 tags: ["chronic-illness", "product-design"]
 ---
