@@ -12,7 +12,9 @@ permissions:
 jobs:
   test:
     name: Tests
-    runs-on: ubuntu-latest
+    # Pinned: ubuntu-latest moved to 26.04, where Playwright can't install
+    # chromium yet. Move back once Playwright supports it.
+    runs-on: ubuntu-24.04
 
     steps:
       - name: Checkout
