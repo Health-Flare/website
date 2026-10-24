@@ -1,0 +1,32 @@
+---
+layout: layouts/base.njk
+title: Thanks
+description: The people who helped build Health Flare and Inner Flare without writing code. Design, testing, writing, clinical review, outreach, and more.
+permalink: /thanks/
+---
+{#- One entry per person in src/_data/contributors.json:
+    { "name": "...", "url": "optional link", "contribution": "what they did" }
+    Only people who agreed to be named, under the name they chose.
+    Describe the work, never the person's health or family. -#}
+<div class="blog-wrap">
+  <h1>Thanks</h1>
+  <p class="blog-intro">Health Flare and Inner Flare are built by one developer, but a lot of the work behind them isn't code. Testing builds, reporting bugs, checking medical wording, design, writing, accessibility checks, and getting the word out. This page is for the people who did that.</p>
+  <div class="post-body">
+    {%- if contributors.length %}
+    <ul class="thanks-list">
+      {%- for person in contributors %}
+      <li><strong>{% if person.url %}<a href="{{ person.url }}">{{ person.name }}</a>{% else %}{{ person.name }}{% endif %}</strong>: {{ person.contribution }}</li>
+      {%- endfor %}
+    </ul>
+    {%- else %}
+    <p>No one is listed yet. If you'd like to be the first, see below.</p>
+    {%- endif %}
+
+    <h2>Code</h2>
+    <p>Everyone who has committed code is credited by GitHub: <a href="https://github.com/Health-Flare/app/graphs/contributors">Health Flare</a>, <a href="https://github.com/Health-Flare/InnerFlare/graphs/contributors">Inner Flare</a>, <a href="https://github.com/Health-Flare/website/graphs/contributors">this website</a>.</p>
+
+    <h2>Want to help?</h2>
+    <p>Most of what the project needs isn't code. <a href="https://github.com/Health-Flare/.github/blob/main/CONTRIBUTING.md">Ways to help</a> lists what's needed and where to start. Everyone who helps gets listed here, if they want to be.</p>
+    <p>You're only named if you agree, under the name you choose, and you're taken off if you ask. We never mention anyone's health or family.</p>
+  </div>
+</div>
