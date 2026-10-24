@@ -2,7 +2,7 @@
 
 Code contributions are credited automatically. Everyone who has committed to this repository shows up in [GitHub's contributor list](https://github.com/Health-Flare/website/graphs/contributors).
 
-A lot of the work on the Health Flare website never lands as a commit: proofreading, reviewing copy and medical wording, design, accessibility checks, photos and screenshots, and pointing out what didn't make sense. That work doesn't show up anywhere on GitHub, so it's credited here by hand.
+A lot of the work on the Health Flare website never lands as a commit: proofreading, reviewing copy and medical wording, design, accessibility checks, photos and screenshots, marketing and outreach, and pointing out what didn't make sense. That work doesn't show up anywhere on GitHub, so it's credited here by hand, and on the public [thanks page](https://healthflare.org/thanks/).
 
 ## Other contributions
 
@@ -10,7 +10,7 @@ _No one listed yet._
 
 ## Adding someone
 
-Open a PR that adds a line under "Other contributions", or ask in an issue and a maintainer will add it. One line per person, in the order they were added:
+Open a PR that adds a line under "Other contributions" and an entry in `src/_data/contributors.json` (that file drives the thanks page), or ask in an issue and a maintainer will add it. One line per person, in the order they were added:
 
 ```markdown
 - **Name** ([@handle](https://github.com/handle)): what they did.
