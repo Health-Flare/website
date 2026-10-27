@@ -133,6 +133,12 @@
     }
     .nav-pill:hover { opacity: 0.9; box-shadow: 0 2px 12px rgba(224,131,74,0.35); }
     .nav-pill:focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; }
+    .nav-pill.nav-pill-ghost {
+      background: transparent; color: var(--teal);
+      border: 1.5px solid var(--teal-15);
+    }
+    .nav-pill.nav-pill-ghost:hover { opacity: 1; background: var(--card); box-shadow: none; }
+    .nav-pills { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; justify-content: flex-end; }
 
     /* ── Hero ───────────────────────────────────────────── */
     .hero {
@@ -597,9 +603,10 @@
       </a>
       <a href="/" class="family-tag">Part of the Health Flare family</a>
     </div>
-    <a href="https://play.google.com/store/apps/details?id=org.healthflare.app.innerflare&amp;hl=en" class="nav-pill" target="_blank" rel="noopener" aria-label="Download Inner Flare on Google Play">
-      Google Play
-    </a>
+    <div class="nav-pills">
+      <a href="https://apps.apple.com/app/inner-flare/id6810504084" class="nav-pill" target="_blank" rel="noopener" aria-label="Download Inner Flare on the App Store">App Store</a>
+      <a href="https://play.google.com/store/apps/details?id=org.healthflare.app.innerflare&amp;hl=en" class="nav-pill nav-pill-ghost" target="_blank" rel="noopener" aria-label="Download Inner Flare on Google Play">Google Play</a>
+    </div>
   </nav>
 
   <main id="main" tabindex="-1">
@@ -608,7 +615,7 @@
     <header class="hero" aria-labelledby="hero-heading">
       <div class="hero-badge" role="status" data-section="availability">
         <span class="badge-dot" aria-hidden="true"></span>
-        Free &amp; open source &nbsp;·&nbsp; Now on Google Play
+        Free &amp; open source &nbsp;·&nbsp; On the App Store and Google Play
       </div>
 
       <h1 id="hero-heading">
@@ -622,6 +629,12 @@
       </p>
 
       <div class="hero-actions" data-section="download">
+        <a href="https://apps.apple.com/app/inner-flare/id6810504084" class="btn-primary" target="_blank" rel="noopener" aria-label="Download Inner Flare on the App Store">
+          <svg width="16" height="16" viewBox="0 0 384 512" fill="none" aria-hidden="true">
+            <path fill="currentColor" d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141 4 184.8 4 273.9c0 26.5 4.9 54 14.6 82.4 13 37.7 59.6 130.1 108.2 128.5 25.5-.6 43.5-18.1 76.7-18.1 32.2 0 48.9 18.1 76.4 18.1 49 .7 91.1-83.7 103.5-121.5-65.9-31.1-64.7-91.2-64.7-94.6zM255.1 66.4c26.9-32 24.5-61.2 23.7-71.7-23.8 1.4-51.4 16.4-67.1 34.9-17.3 19.7-27.5 44.1-25.4 71.4 25.9 2 49.5-11 68.8-34.6z"/>
+          </svg>
+          Download on the App Store
+        </a>
         <a href="https://play.google.com/store/apps/details?id=org.healthflare.app.innerflare&amp;hl=en" class="btn-primary" target="_blank" rel="noopener" aria-label="Download Inner Flare on Google Play">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
             <path d="M2.5 1.2c-.25.25-.4.62-.4 1.1v11.4c0 .48.15.85.4 1.1l.09.08 6.4-6.4v-.16l-6.4-6.4-.09.28z" fill="currentColor"/>
@@ -655,7 +668,7 @@
             <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
           </span>
         </button>
-        <p class="mockup-label">On Google Play now. iOS is in App Store review.</p>
+        <p class="mockup-label">On the App Store for iPhone and Google Play for Android.</p>
       </div>
     </div>
 
@@ -922,12 +935,27 @@
       <span class="eyebrow eyebrow-center">Get involved</span>
       <h2 id="access-heading">Follow along, or dig in.</h2>
       <p class="lead">
-        Inner Flare is on Google Play now, and the iOS version is in App Store review.
+        Inner Flare is on the App Store for iPhone and on Google Play for Android.
         Development stays in the open: star the repo to follow progress, open an issue with an idea,
         or read the code yourself. There's nothing hidden to find.
       </p>
 
       <div class="access-actions">
+        <a href="https://apps.apple.com/app/inner-flare/id6810504084" class="btn-primary" target="_blank" rel="noopener" aria-label="Download Inner Flare on the App Store">
+          <svg width="16" height="16" viewBox="0 0 384 512" fill="none" aria-hidden="true">
+            <path fill="currentColor" d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141 4 184.8 4 273.9c0 26.5 4.9 54 14.6 82.4 13 37.7 59.6 130.1 108.2 128.5 25.5-.6 43.5-18.1 76.7-18.1 32.2 0 48.9 18.1 76.4 18.1 49 .7 91.1-83.7 103.5-121.5-65.9-31.1-64.7-91.2-64.7-94.6zM255.1 66.4c26.9-32 24.5-61.2 23.7-71.7-23.8 1.4-51.4 16.4-67.1 34.9-17.3 19.7-27.5 44.1-25.4 71.4 25.9 2 49.5-11 68.8-34.6z"/>
+          </svg>
+          Download on the App Store
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=org.healthflare.app.innerflare&amp;hl=en" class="btn-primary" target="_blank" rel="noopener" aria-label="Download Inner Flare on Google Play">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M2.5 1.2c-.25.25-.4.62-.4 1.1v11.4c0 .48.15.85.4 1.1l.09.08 6.4-6.4v-.16l-6.4-6.4-.09.28z" fill="currentColor"/>
+            <path d="M11.1 9.6l-2.1-2.1v-.16l2.1-2.1 4.75 2.7c.36.2.58.48.58.76s-.22.56-.58.76l-4.75 2.7-.01-.5z" fill="currentColor" opacity="0.7"/>
+            <path d="M9 7.5l2.1-2.1L4.7 1.9c-.3-.17-.58-.2-.8-.1L9 7.5z" fill="currentColor" opacity="0.85"/>
+            <path d="M9 8.5l-5.1 5.7c.22.1.5.07.8-.1l6.4-3.64L9 8.5z" fill="currentColor"/>
+          </svg>
+          Download on Google Play
+        </a>
         <a href="https://github.com/Health-Flare/InnerFlare" class="btn-primary" rel="noopener" target="_blank">
           View on GitHub
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
