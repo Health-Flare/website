@@ -72,6 +72,23 @@
     }
     .skip-link:focus { top: 0; }
 
+    /* ── Sponsor banner ─────────────────────────────────── */
+    .sponsor-banner {
+      background: var(--teal); color: var(--cream);
+      text-align: center; padding: 0.6rem 1.25rem;
+      font-size: 0.85rem;
+    }
+    .sponsor-banner p { margin: 0; }
+    .sponsor-banner a {
+      color: var(--soft-orange); font-weight: 600;
+      text-decoration: underline; text-underline-offset: 2px;
+    }
+    .sponsor-banner a:hover { color: var(--cream); }
+    .sponsor-banner a:focus-visible { outline: 3px solid var(--soft-orange); outline-offset: 2px; border-radius: 2px; }
+    @media (max-width: 480px) {
+      .sponsor-banner { font-size: 0.8rem; padding: 0.55rem 1rem; }
+    }
+
     /* ── Nav ────────────────────────────────────────────── */
     nav {
       position: sticky; top: 0; z-index: 100;
@@ -250,6 +267,10 @@
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
 
+  <div class="sponsor-banner">
+    <p>Help keep Health Flare and Inner Flare free, private, and independent. <a href="/sponsor/">Become a GitHub Sponsor →</a></p>
+  </div>
+
   <nav aria-label="Main navigation">
     <div class="nav-left">
       <a href="/inner-flare/" class="logo" aria-label="Inner Flare home">
@@ -274,6 +295,7 @@
     </div>
     <nav class="footer-nav" aria-label="Footer links">
       <a href="https://github.com/Health-Flare/InnerFlare" rel="noopener" target="_blank">GitHub</a>
+      <a href="/sponsor/">Sponsor</a>
       <a href="/inner-flare/privacy">Privacy</a>
       <a href="/inner-flare/blog/">Blog</a>
       <a href="/">Health Flare</a>
