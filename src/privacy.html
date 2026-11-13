@@ -32,14 +32,23 @@
     :root {
       --amber:      #E0694E;
       --coral:      #B4502F;
-      --sky:        #6BB8D4;
       --dusk:       #221C18;
       --cloud:      #FBF7F2;
-      --peach:      #FDE8D8;
       --sage:       #B8CCBF;
       --ash-white:  #FAFAF8;
       --warm-linen: #EDE8DF;
-      --pale-sky:   #DFF0F7;
+
+      /* Brand v2 extension tokens (same hues, no new colours) */
+      --sunrise-tint: #FDF0EB;
+      --amber-tint:   #FEF3E1;
+      --deep-amber:   #8A5A0C;
+      --stone:        #8C7D6D;
+      --line:         #E8DCCD;
+      --sand:         var(--warm-linen);
+      --dawn:         var(--ash-white);
+      --ink:          var(--dusk);
+      --ember:        var(--coral);
+
       --dusk-80: rgba(34, 28, 24, 0.80);
       --dusk-60: rgba(34, 28, 24, 0.60);
       --dusk-15: rgba(34, 28, 24, 0.15);
@@ -115,7 +124,7 @@
       background: transparent; color: var(--dusk);
       border: 1.5px solid var(--dusk-15);
     }
-    .nav-pill.nav-pill-ghost:hover { opacity: 1; background: var(--peach); box-shadow: none; }
+    .nav-pill.nav-pill-ghost:hover { opacity: 1; background: var(--sunrise-tint); box-shadow: none; }
     .nav-pills { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; justify-content: flex-end; }
 
     /* ── Page content ───────────────────────────────────── */
@@ -150,13 +159,14 @@
     }
 
     .summary-box {
-      background: var(--pale-sky);
-      border-left: 3px solid var(--sky);
+      background: var(--sand);
+      border-left: 3px solid var(--line);
       border-radius: 0 12px 12px 0;
       padding: 1rem 1.25rem;
       margin-bottom: 2.75rem;
       font-weight: 500;
       font-size: 0.975rem;
+      color: var(--ink);
     }
 
     h2 {
