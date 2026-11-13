@@ -8,9 +8,12 @@
   <meta property="og:title" content="{{ title or 'Health Flare Blog' }}">
   <meta property="og:description" content="{{ description or 'Notes on building a calm, private health companion.' }}">
   <meta property="og:url" content="https://healthflare.org{{ page.url }}">
-  <meta name="theme-color" content="#F5A623">
+  <meta name="theme-color" content="#E0694E">
 
-  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <link rel="icon" href="/assets/favicon/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/favicon/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="/assets/favicon/favicon-16.png" sizes="16x16" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon-180.png">
   <meta property="og:image" content="https://healthflare.org/assets/banner.png">
 
   <style>
@@ -31,14 +34,14 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --amber: #F5A623;
-      --coral: #F07560;
-      --dusk: #2C2825;
-      --cloud: #F4F1EC;
+      --amber: #E0694E;
+      --coral: #B4502F;
+      --dusk: #221C18;
+      --cloud: #FBF7F2;
 
-      --dusk-80: rgba(44, 40, 37, 0.80);
-      --dusk-50: rgba(44, 40, 37, 0.50);
-      --dusk-15: rgba(44, 40, 37, 0.15);
+      --dusk-80: rgba(34, 28, 24, 0.80);
+      --dusk-50: rgba(34, 28, 24, 0.50);
+      --dusk-15: rgba(34, 28, 24, 0.15);
     }
 
     html { scroll-behavior: smooth; }
@@ -100,11 +103,10 @@
     }
 
     .logo-mark {
-      width: 34px; height: 34px; border-radius: 9px; flex-shrink: 0;
-      overflow: hidden; display: block;
+      width: 34px; height: 34px; flex-shrink: 0; display: block;
     }
 
-    .logo-mark img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .logo-mark img { width: 100%; height: 100%; object-fit: contain; display: block; }
 
     .logo-name {
       font-family: 'Fraunces', Georgia, serif;
@@ -119,7 +121,7 @@
       text-decoration: none; border: none; cursor: pointer;
       transition: opacity 0.15s, box-shadow 0.15s;
     }
-    .nav-pill:hover { opacity: 0.88; box-shadow: 0 2px 12px rgba(245,166,35,0.35); }
+    .nav-pill:hover { opacity: 0.88; box-shadow: 0 2px 12px rgba(224,105,78,0.35); }
     .nav-pill:focus-visible { outline: 3px solid var(--dusk); outline-offset: 3px; }
 
     /* ── Blog content ───────────────────────────────────── */
@@ -211,7 +213,7 @@
     .post-body img {
       max-width: 100%; height: auto; display: block;
       margin: 1.5rem 0; border-radius: 12px;
-      border: 1px solid var(--dusk-15); box-shadow: 0 1px 3px rgba(44, 40, 37, 0.08);
+      border: 1px solid var(--dusk-15); box-shadow: 0 1px 3px rgba(34, 28, 24, 0.08);
     }
     .post-body figure { margin: 1.5rem 0; }
     .post-body figcaption {
@@ -280,7 +282,7 @@
       font-size: 1rem; font-weight: 500; margin-bottom: 0.25rem;
     }
 
-    .footer-copy { font-size: 0.78rem; color: #6B6560; }
+    .footer-copy { font-size: 0.78rem; color: #6B5E54; }
 
     .footer-nav { display: flex; gap: 1.75rem; flex-wrap: wrap; align-items: center; }
 
@@ -305,7 +307,7 @@
   <nav aria-label="Main navigation">
     <a href="/" class="logo" aria-label="Health Flare home">
       <div class="logo-mark" aria-hidden="true">
-        <img src="/assets/icon.png" alt="" width="34" height="34" aria-hidden="true">
+        <img src="/assets/brand/healthflare-mark-compact-sunrise.svg" alt="" width="34" height="34" aria-hidden="true">
       </div>
       <span class="logo-name">Health Flare</span>
     </a>
