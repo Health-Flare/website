@@ -8,9 +8,12 @@
   <meta property="og:title" content="Health Flare: Your private health companion">
   <meta property="og:description" content="Now on the App Store and Google Play. Track symptoms, spot patterns, share what matters. No account, no server of ours.">
   <meta property="og:url" content="https://healthflare.org">
-  <meta name="theme-color" content="#F5A623">
+  <meta name="theme-color" content="#E0694E">
 
-  <link rel="icon" type="image/png" href="assets/icon.png">
+  <link rel="icon" href="assets/favicon/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/favicon/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="assets/favicon/favicon-16.png" sizes="16x16" type="image/png">
+  <link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon-180.png">
   <meta property="og:image" content="https://healthflare.org/assets/banner.png">
 
   <style>
@@ -34,11 +37,11 @@
 
     :root {
       /* Brand colors */
-      --amber:      #F5A623;
-      --coral:      #F07560;
+      --amber:      #E0694E;
+      --coral:      #B4502F;
       --sky:        #6BB8D4;
-      --dusk:       #2C2825;
-      --cloud:      #F4F1EC;
+      --dusk:       #221C18;
+      --cloud:      #FBF7F2;
       --peach:      #FDE8D8;
       --sage:       #B8CCBF;
 
@@ -48,23 +51,23 @@
       --pale-sky:   #DFF0F7;
 
       /* Semantic opacity */
-      --dusk-80: rgba(44, 40, 37, 0.80);
-      --dusk-60: rgba(44, 40, 37, 0.60);
-      --dusk-50: rgba(44, 40, 37, 0.50);
-      --dusk-15: rgba(44, 40, 37, 0.15);
-      --dusk-08: rgba(44, 40, 37, 0.08);
+      --dusk-80: rgba(34, 28, 24, 0.80);
+      --dusk-60: rgba(34, 28, 24, 0.60);
+      --dusk-50: rgba(34, 28, 24, 0.50);
+      --dusk-15: rgba(34, 28, 24, 0.15);
+      --dusk-08: rgba(34, 28, 24, 0.08);
 
       /* Severity scale */
       --sev-clear:       #B8CCBF;
       --sev-mild:        #F5E6A3;
-      --sev-moderate:    #F5A623;
-      --sev-significant: #F07560;
+      --sev-moderate:    #E0694E;
+      --sev-significant: #B4502F;
       --sev-severe:      #C94F3A;
 
       /* Warm shadows */
-      --shadow-sm: 0 1px 3px rgba(44, 40, 37, 0.08);
-      --shadow-md: 0 4px 12px rgba(44, 40, 37, 0.10);
-      --shadow-lg: 0 8px 24px rgba(44, 40, 37, 0.12);
+      --shadow-sm: 0 1px 3px rgba(34, 28, 24, 0.08);
+      --shadow-md: 0 4px 12px rgba(34, 28, 24, 0.10);
+      --shadow-lg: 0 8px 24px rgba(34, 28, 24, 0.12);
     }
 
     html { scroll-behavior: smooth; }
@@ -129,13 +132,10 @@
     }
 
     .logo-mark {
-      width: 34px; height: 34px; border-radius: 9px; flex-shrink: 0;
-      overflow: hidden; display: block;
+      width: 34px; height: 34px; flex-shrink: 0; display: block;
     }
 
-    .logo-mark img {
-      width: 100%; height: 100%; object-fit: cover; display: block;
-    }
+    .logo-mark img { width: 100%; height: 100%; object-fit: contain; display: block; }
 
     .logo-name {
       font-family: 'Fraunces', Georgia, serif;
@@ -150,7 +150,7 @@
       text-decoration: none; border: none; cursor: pointer;
       transition: opacity 0.15s, box-shadow 0.15s;
     }
-    .nav-pill:hover { opacity: 0.88; box-shadow: 0 2px 12px rgba(245,166,35,0.35); }
+    .nav-pill:hover { opacity: 0.88; box-shadow: 0 2px 12px rgba(224,105,78,0.35); }
     .nav-pill:focus-visible { outline: 3px solid var(--dusk); outline-offset: 3px; }
     .nav-pill.nav-pill-ghost {
       background: transparent; color: var(--dusk);
@@ -173,7 +173,7 @@
       width: 900px; height: 500px;
       background: radial-gradient(ellipse at 50% 20%,
         rgba(253, 232, 216, 0.7) 0%,
-        rgba(245, 166, 35, 0.08) 55%,
+        rgba(224, 105, 78, 0.08) 55%,
         transparent 75%);
       pointer-events: none; z-index: 0;
     }
@@ -183,7 +183,7 @@
     .hero-badge {
       display: inline-flex; align-items: center; gap: 0.45rem;
       background: var(--peach);
-      border: 1px solid rgba(240, 117, 96, 0.3);
+      border: 1px solid rgba(180, 80, 47, 0.3);
       color: var(--dusk); font-size: 0.8rem; font-weight: 500;
       padding: 0.3rem 0.9rem; border-radius: 100px;
       margin-bottom: 2rem;
@@ -205,7 +205,7 @@
     h1 em {
       font-style: italic; color: var(--coral);
       text-decoration: underline wavy;
-      text-decoration-color: rgba(240, 117, 96, 0.3);
+      text-decoration-color: rgba(180, 80, 47, 0.3);
       text-underline-offset: 4px;
     }
 
@@ -246,7 +246,7 @@
     }
     .btn-primary:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 22px rgba(245, 166, 35, 0.4);
+      box-shadow: 0 6px 22px rgba(224, 105, 78, 0.4);
     }
     .btn-primary:focus-visible { outline: 3px solid var(--dusk); outline-offset: 3px; }
 
@@ -266,7 +266,7 @@
     .eyebrow {
       font-size: 0.72rem; font-weight: 500;
       letter-spacing: 0.12em; text-transform: uppercase;
-      color: #6B6560; /* ~5:1 on --cloud, avoids opacity trick */
+      color: #6B5E54; /* ~5:1 on --cloud, avoids opacity trick */
       margin-bottom: 0.9rem; display: block;
     }
     .eyebrow-center { text-align: center; }
@@ -439,7 +439,7 @@
       font-size: 1rem; font-weight: 500; margin-bottom: 0.25rem;
     }
 
-    .footer-copy { font-size: 0.78rem; color: #6B6560; } /* ~5:1 on --cloud */
+    .footer-copy { font-size: 0.78rem; color: #6B5E54; } /* ~5:1 on --cloud */
 
     .footer-nav {
       display: flex; gap: 1.75rem; flex-wrap: wrap; align-items: center;
@@ -501,7 +501,7 @@
       background: var(--dusk);
       border-radius: 26px;
       overflow: hidden;
-      box-shadow: var(--shadow-lg), 0 0 0 1px rgba(44,40,37,0.12);
+      box-shadow: var(--shadow-lg), 0 0 0 1px rgba(34,28,24,0.12);
       flex-shrink: 0;
       padding: 0; border: none; margin: 0;
       font: inherit; cursor: pointer;
@@ -510,7 +510,7 @@
     .screenshot-phone:hover,
     .screenshot-phone:focus-visible {
       transform: translateY(-3px);
-      box-shadow: var(--shadow-lg), 0 0 0 1px rgba(44,40,37,0.12), 0 10px 26px rgba(44,40,37,0.18);
+      box-shadow: var(--shadow-lg), 0 0 0 1px rgba(34,28,24,0.12), 0 10px 26px rgba(34,28,24,0.18);
     }
     .screenshot-phone:focus-visible { outline: 3px solid var(--amber); outline-offset: 3px; }
 
@@ -525,7 +525,7 @@
     .screenshot-zoom {
       position: absolute; right: 8px; bottom: 8px;
       width: 26px; height: 26px; border-radius: 50%;
-      background: rgba(44, 40, 37, 0.55);
+      background: rgba(34, 28, 24, 0.55);
       backdrop-filter: blur(2px);
       color: var(--cloud);
       display: flex; align-items: center; justify-content: center;
@@ -556,7 +556,7 @@
 
     .lightbox-backdrop {
       position: absolute; inset: 0;
-      background: rgba(26, 23, 20, 0.86);
+      background: rgba(34, 28, 24, 0.86);
     }
 
     .lightbox-figure {
@@ -643,7 +643,7 @@
   <nav aria-label="Main navigation">
     <a href="/" class="logo" aria-label="Health Flare home">
       <div class="logo-mark" aria-hidden="true">
-        <img src="assets/icon.png" alt="" width="34" height="34" aria-hidden="true">
+        <img src="assets/brand/healthflare-mark-compact-sunrise.svg" alt="" width="34" height="34" aria-hidden="true">
       </div>
       <span class="logo-name">Health Flare</span>
     </a>
@@ -709,9 +709,9 @@
             <div class="f-icon ic-amber" aria-hidden="true">
               <!-- Sun rays / dawn -->
               <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-                <circle cx="11" cy="11" r="4" fill="#2C2825" opacity="0.85"/>
+                <circle cx="11" cy="11" r="4" fill="#221C18" opacity="0.85"/>
                 <path d="M11 2v2M11 18v2M2 11h2M18 11h2M4.93 4.93l1.41 1.41M15.66 15.66l1.41 1.41M4.93 17.07l1.41-1.41M15.66 6.34l1.41-1.41"
-                  stroke="#2C2825" stroke-width="1.5" stroke-linecap="round" opacity="0.85"/>
+                  stroke="#221C18" stroke-width="1.5" stroke-linecap="round" opacity="0.85"/>
               </svg>
             </div>
             <h3>Track what matters</h3>
@@ -722,9 +722,9 @@
             <div class="f-icon ic-sky" aria-hidden="true">
               <!-- Wave / pattern -->
               <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-                <path d="M2 14c1.5-2 3-4 5-3s3 3 5 2 3-3 5-1" stroke="#2C2825" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity="0.85"/>
-                <circle cx="7" cy="11.5" r="1.5" fill="#2C2825" opacity="0.6"/>
-                <circle cx="15" cy="12.5" r="1.5" fill="#2C2825" opacity="0.6"/>
+                <path d="M2 14c1.5-2 3-4 5-3s3 3 5 2 3-3 5-1" stroke="#221C18" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity="0.85"/>
+                <circle cx="7" cy="11.5" r="1.5" fill="#221C18" opacity="0.6"/>
+                <circle cx="15" cy="12.5" r="1.5" fill="#221C18" opacity="0.6"/>
               </svg>
             </div>
             <h3>Spot your patterns</h3>
@@ -735,9 +735,9 @@
             <div class="f-icon ic-coral" aria-hidden="true">
               <!-- Share / export arrow -->
               <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-                <path d="M14 4h4v4" stroke="#2C2825" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity="0.85"/>
-                <path d="M18 4l-8 8" stroke="#2C2825" stroke-width="1.6" stroke-linecap="round" opacity="0.85"/>
-                <path d="M10 6H6a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-4" stroke="#2C2825" stroke-width="1.6" stroke-linecap="round" opacity="0.85"/>
+                <path d="M14 4h4v4" stroke="#221C18" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity="0.85"/>
+                <path d="M18 4l-8 8" stroke="#221C18" stroke-width="1.6" stroke-linecap="round" opacity="0.85"/>
+                <path d="M10 6H6a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-4" stroke="#221C18" stroke-width="1.6" stroke-linecap="round" opacity="0.85"/>
               </svg>
             </div>
             <h3>Share on your terms</h3>
@@ -748,10 +748,10 @@
             <div class="f-icon ic-sage" aria-hidden="true">
               <!-- People / family -->
               <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-                <circle cx="8" cy="7" r="3" stroke="#2C2825" stroke-width="1.6" opacity="0.85"/>
-                <path d="M2 18c0-3.314 2.686-5 6-5s6 1.686 6 5" stroke="#2C2825" stroke-width="1.6" stroke-linecap="round" opacity="0.85"/>
-                <circle cx="16" cy="8" r="2.5" stroke="#2C2825" stroke-width="1.4" opacity="0.65"/>
-                <path d="M19 18c0-2.761-1.343-4.5-3-5" stroke="#2C2825" stroke-width="1.4" stroke-linecap="round" opacity="0.65"/>
+                <circle cx="8" cy="7" r="3" stroke="#221C18" stroke-width="1.6" opacity="0.85"/>
+                <path d="M2 18c0-3.314 2.686-5 6-5s6 1.686 6 5" stroke="#221C18" stroke-width="1.6" stroke-linecap="round" opacity="0.85"/>
+                <circle cx="16" cy="8" r="2.5" stroke="#221C18" stroke-width="1.4" opacity="0.65"/>
+                <path d="M19 18c0-2.761-1.343-4.5-3-5" stroke="#221C18" stroke-width="1.4" stroke-linecap="round" opacity="0.65"/>
               </svg>
             </div>
             <h3>Built for families too</h3>
@@ -888,7 +888,7 @@
           <li class="check-row">
             <div class="check-icon" aria-hidden="true">
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                <path d="M1.5 6l3 3 6-5.5" stroke="#2C2825" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M1.5 6l3 3 6-5.5" stroke="#221C18" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </div>
             <div class="check-text">
@@ -899,7 +899,7 @@
           <li class="check-row">
             <div class="check-icon" aria-hidden="true">
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                <path d="M1.5 6l3 3 6-5.5" stroke="#2C2825" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M1.5 6l3 3 6-5.5" stroke="#221C18" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </div>
             <div class="check-text">
@@ -910,7 +910,7 @@
           <li class="check-row">
             <div class="check-icon" aria-hidden="true">
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                <path d="M1.5 6l3 3 6-5.5" stroke="#2C2825" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M1.5 6l3 3 6-5.5" stroke="#221C18" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </div>
             <div class="check-text">
@@ -921,7 +921,7 @@
           <li class="check-row">
             <div class="check-icon" aria-hidden="true">
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                <path d="M1.5 6l3 3 6-5.5" stroke="#2C2825" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M1.5 6l3 3 6-5.5" stroke="#221C18" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </div>
             <div class="check-text">

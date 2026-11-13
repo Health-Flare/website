@@ -7,9 +7,12 @@
   <meta name="description" content="Health Flare has no servers and never receives your data. Your records live on your device and in your phone's own backup. Optional weather sends an approximate location to Open-Meteo.">
   <meta property="og:title" content="Privacy Policy: Health Flare">
   <meta property="og:url" content="https://healthflare.org/privacy">
-  <meta name="theme-color" content="#F5A623">
+  <meta name="theme-color" content="#E0694E">
 
-  <link rel="icon" type="image/png" href="assets/icon.png">
+  <link rel="icon" href="assets/favicon/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/favicon/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="assets/favicon/favicon-16.png" sizes="16x16" type="image/png">
+  <link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon-180.png">
 
   <style>
     /* ── Self-hosted fonts, no third-party requests ──────── */
@@ -27,22 +30,22 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --amber:      #F5A623;
-      --coral:      #F07560;
+      --amber:      #E0694E;
+      --coral:      #B4502F;
       --sky:        #6BB8D4;
-      --dusk:       #2C2825;
-      --cloud:      #F4F1EC;
+      --dusk:       #221C18;
+      --cloud:      #FBF7F2;
       --peach:      #FDE8D8;
       --sage:       #B8CCBF;
       --ash-white:  #FAFAF8;
       --warm-linen: #EDE8DF;
       --pale-sky:   #DFF0F7;
-      --dusk-80: rgba(44, 40, 37, 0.80);
-      --dusk-60: rgba(44, 40, 37, 0.60);
-      --dusk-15: rgba(44, 40, 37, 0.15);
-      --dusk-08: rgba(44, 40, 37, 0.08);
-      --shadow-sm: 0 1px 3px rgba(44, 40, 37, 0.08);
-      --shadow-md: 0 4px 12px rgba(44, 40, 37, 0.10);
+      --dusk-80: rgba(34, 28, 24, 0.80);
+      --dusk-60: rgba(34, 28, 24, 0.60);
+      --dusk-15: rgba(34, 28, 24, 0.15);
+      --dusk-08: rgba(34, 28, 24, 0.08);
+      --shadow-sm: 0 1px 3px rgba(34, 28, 24, 0.08);
+      --shadow-md: 0 4px 12px rgba(34, 28, 24, 0.10);
     }
 
     html { scroll-behavior: smooth; }
@@ -88,13 +91,10 @@
     }
 
     .logo-mark {
-      width: 34px; height: 34px; border-radius: 9px; flex-shrink: 0;
-      overflow: hidden; display: block;
+      width: 34px; height: 34px; flex-shrink: 0; display: block;
     }
 
-    .logo-mark img {
-      width: 100%; height: 100%; object-fit: cover; display: block;
-    }
+    .logo-mark img { width: 100%; height: 100%; object-fit: contain; display: block; }
 
     .logo-name {
       font-family: 'Fraunces', Georgia, serif;
@@ -109,7 +109,7 @@
       text-decoration: none; border: none; cursor: pointer;
       transition: opacity 0.15s, box-shadow 0.15s;
     }
-    .nav-pill:hover { opacity: 0.88; box-shadow: 0 2px 12px rgba(245,166,35,0.35); }
+    .nav-pill:hover { opacity: 0.88; box-shadow: 0 2px 12px rgba(224,105,78,0.35); }
     .nav-pill:focus-visible { outline: 3px solid var(--dusk); outline-offset: 3px; }
     .nav-pill.nav-pill-ghost {
       background: transparent; color: var(--dusk);
@@ -206,7 +206,7 @@
       font-size: 1rem; font-weight: 500; margin-bottom: 0.25rem;
     }
 
-    .footer-copy { font-size: 0.78rem; color: #6B6560; }
+    .footer-copy { font-size: 0.78rem; color: #6B5E54; }
 
     .footer-nav {
       display: flex; gap: 1.75rem; flex-wrap: wrap; align-items: center;
@@ -235,7 +235,7 @@
   <nav aria-label="Main navigation">
     <a href="/" class="logo" aria-label="Health Flare home">
       <div class="logo-mark" aria-hidden="true">
-        <img src="assets/icon.png" alt="" width="34" height="34" aria-hidden="true">
+        <img src="assets/brand/healthflare-mark-compact-sunrise.svg" alt="" width="34" height="34" aria-hidden="true">
       </div>
       <span class="logo-name">Health Flare</span>
     </a>
