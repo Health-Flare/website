@@ -1,4 +1,4 @@
-# HealthFlare <img src="https://github.com/Health-Flare/app/blob/main/assets/images/HealthFlare%20Icon%20Light-256.png" width="48" height="48">
+# HealthFlare <img src="https://raw.githubusercontent.com/Health-Flare/brand/v2.0.0/assets/app-icons/healthflare-app-icon.png" width="48" height="48">
 
 **A privacy-first health tracking app for children with complex or chronic conditions.**
 
