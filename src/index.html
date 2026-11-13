@@ -215,6 +215,11 @@
       max-width: 38rem; margin: 0 auto 2.75rem;
     }
 
+    .hero-sub-tight {
+      font-size: 0.95rem; font-weight: 500;
+      color: var(--dusk); margin-top: -1.75rem; margin-bottom: 2.75rem;
+    }
+
     .hero-actions {
       display: flex; align-items: center; justify-content: center;
       gap: 1rem; flex-wrap: wrap;
@@ -372,6 +377,34 @@
       color: rgba(244, 241, 236, 0.55);
       line-height: 1.6;
     }
+
+    /* ── No catch ───────────────────────────────────────── */
+    .no-catch-section {
+      background: var(--ash-white);
+      padding: 5rem 2rem;
+      border-top: 1px solid var(--warm-linen);
+      border-bottom: 1px solid var(--warm-linen);
+    }
+
+    .no-catch-inner {
+      max-width: 42rem; margin: 0 auto; text-align: center;
+    }
+
+    .no-catch-inner .lead { margin: 0 auto 1.75rem; text-align: left; }
+
+    .no-catch-list {
+      display: flex; flex-direction: column; gap: 0.9rem;
+      text-align: left; margin-bottom: 2rem;
+    }
+
+    .no-catch-row { display: flex; gap: 0.75rem; align-items: baseline; }
+
+    .no-catch-row strong {
+      font-family: 'Fraunces', Georgia, serif; font-weight: 600;
+      color: var(--dusk); flex-shrink: 0; min-width: 9rem;
+    }
+
+    .no-catch-row span { color: var(--dusk-80); font-size: 0.95rem; }
 
     /* ── About ──────────────────────────────────────────── */
     .about-section {
@@ -672,6 +705,10 @@
         Track symptoms, spot patterns, and share what matters, with everything staying on your device.
       </p>
 
+      <p class="hero-sub hero-sub-tight">
+        No account. No ads. No data sold, ever.
+      </p>
+
       <div class="hero-actions" data-section="download">
         <a href="https://apps.apple.com/app/health-flare/id6803123766" class="btn-primary cta" target="_blank" rel="noopener" aria-label="Download Health Flare on the App Store">
           <svg width="16" height="16" viewBox="0 0 384 512" fill="none" aria-hidden="true">
@@ -939,6 +976,26 @@
       </div>
     </section>
 
+    <!-- No catch -->
+    <section class="no-catch-section" id="no-catch" aria-labelledby="no-catch-heading">
+      <div class="no-catch-inner">
+        <span class="eyebrow eyebrow-center">No catch</span>
+        <h2 id="no-catch-heading">Free because it has to be.</h2>
+        <p class="lead">
+          Health Flare and Inner Flare make no money. No ads, no data sales, no subscription tier,
+          no "free with limits." The project runs on GitHub Sponsors, and what that covers is
+          specific: the Apple and Google developer fees, the domain, the hosting for this site.
+          That's the entire budget.
+        </p>
+        <div class="no-catch-list">
+          <div class="no-catch-row"><strong>Funded by</strong><span>GitHub Sponsors, five monthly sponsors is the current goal.</span></div>
+          <div class="no-catch-row"><strong>Covers</strong><span>App Store and Google Play developer fees, the domain, and site hosting. Nothing else.</span></div>
+          <div class="no-catch-row"><strong>If it stopped</strong><span>Both apps keep working exactly as they do now. There's no server for them to depend on.</span></div>
+        </div>
+        <a href="/sponsor/" class="about-link">See where every dollar goes →</a>
+      </div>
+    </section>
+
     <!-- About -->
     <section class="about-section" id="about" aria-labelledby="about-heading">
       <div class="about-inner">
@@ -949,6 +1006,14 @@
           decades in tech. Health Flare exists because our family needed it.
         </p>
         <div class="about-body">
+          <p>
+            Our son's diagnosis took close to two years. Every specialist saw a slice of it: a limp
+            that came and went, a fever with no clear source, fatigue that got written off as
+            "kids get tired." Nobody saw the whole timeline, because it only existed in our heads,
+            and that's an exhausting thing to hold and a hard thing to say out loud in a
+            fifteen-minute appointment. Health Flare exists so that timeline lives somewhere other
+            than memory.
+          </p>
           <p>
             I was inspired by <a href="https://flaredown.com/" class="about-link" rel="noopener" target="_blank">Flaredown</a>
             (a pioneering open-source symptom tracker) and built Health Flare to carry that mission
